@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"lt4hyl.top","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"lt4hyl.top","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
@@ -189,7 +189,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-16 12:12:45" itemprop="dateModified" datetime="2020-08-16T12:12:45+08:00">2020-08-16</time>
+                <time title="修改时间：2020-08-16 14:19:39" itemprop="dateModified" datetime="2020-08-16T14:19:39+08:00">2020-08-16</time>
               </span>
 
           
@@ -211,296 +211,16 @@
 
       
           <h1 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h1><ul>
-<li><p>概念：程序运行期间，每个函数都会占用一 段连续的内存空间。而函数名就是该函数所占内存区域的起始地址(也称“<strong>入口地址</strong>”)。我们可以将函数的<strong>入口地址</strong>赋给一个指针变量，使该指针变量指向该函数。然后通过指针变量就可以调用这个函数。这种指向函数的指针变量称为 “<strong>函数指针</strong>“  。</p>
-</li>
-<li><p>定义形式：<code>类型名 (* 指针变量名)(参数类型1, 参数类型2,…);</code></p>
-</li>
+<li>概念：程序运行期间，每个函数都会占用一 段连续的内存空间。而函数名就是该函数所占内存区域的起始地址(也称“<strong>入口地址</strong>”)。我们可以将函数的<strong>入口地址</strong>赋给一个指针变量，使该指针变量指向该函数。然后通过指针变量就可以调用这个函数。这种指向函数的指针变量称为 “<strong>函数指针</strong>“  。</li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例：</span></span><br><span class="line"><span class="keyword">int</span> (*pf)(<span class="keyword">int</span> ,<span class="keyword">char</span>);</span><br><span class="line"><span class="comment">//表示pf是一个函数指针，它所指向的函数，返回值类型应是int，该函数应有两个参数，第一个是int 类型，第二个是char类型。</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>使用方法：可以用一个原型匹配的函数的名字给一个函数指针赋值。</p>
-<ul>
-<li>要通过函数指针调用它所指向的函数，写法为<strong>：<code>函数指针名(实参表);</code>。</strong></li>
-</ul>
-</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PrintMin</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span> </span>&#123;<span class="comment">//实际函数体</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">void</span> (* pf)(<span class="keyword">int</span> ,<span class="keyword">int</span>);<span class="comment">//定义 pf函数指针，指向函数的入口地址</span></span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">4</span>, y = <span class="number">5</span>;</span><br><span class="line">    pf = PrintMin;<span class="comment">//对pf函数指针赋值</span></span><br><span class="line">    pf(x,y);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在库函数中应用，如：<strong>qsort</strong> 库函数（C语言快速排序库函数）</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">qsort</span><span class="params">(<span class="keyword">void</span> *base, <span class="keyword">int</span> nelem, <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="built_in">width</span>, <span class="keyword">int</span> ( * pfCompare)( <span class="keyword">const</span> <span class="keyword">void</span> *, <span class="keyword">const</span> <span class="keyword">void</span> *))</span></span>;</span><br><span class="line"><span class="comment">//其中 pfCompare 为用于比较元素大小的函数指针</span></span><br><span class="line"><span class="comment">// base 数组起始地址</span></span><br><span class="line"><span class="comment">// nelem 数组元素的个数</span></span><br><span class="line"><span class="comment">// width 每个元素的大小（由此可以算出每个元素的地址）以字节为单位</span></span><br><span class="line"><span class="comment">// pfCompare  比较函数的地址</span></span><br><span class="line"><span class="comment">// 因此可以对任意类型的数组进行排序</span></span><br><span class="line">      </span><br><span class="line"><span class="comment">//pfCompare: 函数指针，它指向一个“比较函数”</span></span><br><span class="line"><span class="comment">//该比较函数应为以下形式：</span></span><br><span class="line"><span class="keyword">int</span> 函数名(<span class="keyword">const</span> <span class="keyword">void</span> * elem1, <span class="keyword">const</span> <span class="keyword">void</span> * elem2);</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="命令行参数"><a href="#命令行参数" class="headerlink" title="命令行参数"></a>命令行参数</h1><ul>
-<li>概念：将用户在CMD窗口输入可执行文件名的方式启动程序时，跟在可执行文件名后面的那些字符串，称为“<strong>命令行参数</strong>”。命令行参数可以有多个，以空格分隔。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p><strong><code>argc</code>:</strong> 代表启动程序时，命令行参数的个数。C/C++语言规定，可执行程序程序本身的文件名，也算一个命令行参数，因此，<code>argc</code> 的值至少是1。</p>
-</li>
-<li><p><strong><code>argv</code>:</strong> 指针数组，其中的每个元素都是一个char* 类型的指针，该指针指向一个字符串，这个字符串里就存放着命令行参数。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; argc; i ++ )</span><br><span class="line">        <span class="built_in">printf</span>( <span class="string">&quot;%s\n&quot;</span>,argv[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//编译成sample.exe，然后在控制台窗口输入:</span></span><br><span class="line"><span class="comment">//sample para1 para2 s.txt 5 “hello world” </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//输出结果为：</span></span><br><span class="line">sample</span><br><span class="line">para1</span><br><span class="line">para2</span><br><span class="line">s.txt</span><br><span class="line"><span class="number">5</span></span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<h1 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h1><ul>
-<li><p>概念：用于对整数类型（<code>int,char, long</code> 等）变量中的<strong>某一位</strong>(bit)，或者<strong>若干位</strong>进行操作。</p>
-<ul>
-<li>如：判断某一位是否为 1；只改变其中某一位，而保持其他位都不变。</li>
-</ul>
-</li>
-<li><p>C/C++语言提供了<strong>六种位运算符</strong>来进行位运算操作：</p>
-<ul>
-<li><strong>&amp;</strong> 按位与 (双目 ) </li>
-<li><strong>|</strong> 按位或 (双目 ) </li>
-<li><strong>^</strong> 按位异或 (双目 ) </li>
-<li><strong>~</strong> 按位非 (取反)(单目 ) </li>
-<li><strong>&lt;&lt;</strong> 左移 (双目 ) </li>
-<li><strong>&gt;&gt;</strong> 右移 (双目 )</li>
-</ul>
-</li>
-<li><p>位运算的应用：</p>
-<ol>
-<li><p>通常用来将某变量中的<strong>某些位清0且同时保留其他位不变</strong>。也可以用来<strong>获取某变量中的某一位</strong>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果需要将int型变量n的低8位全置成0，而其余位不变，则可以执行：</span></span><br><span class="line">n = n &amp; <span class="number">0xffffff00</span>;</span><br><span class="line"><span class="comment">// 也可以写成：</span></span><br><span class="line">n &amp;= <span class="number">0xffffff00</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如何判断一个int型变量n的第7位（从右往左，从0开始数）是否是1 ?</p>
-<ul>
-<li>只需看表达式 <code>“n &amp; 0x80”</code>的值是否等于<code>0x80</code>即可。（0x80: 1000 0000）</li>
-</ul>
-</li>
-<li><p>按位或运算通常用来<strong>将某变量中的某些位置1且保留其他位不变</strong>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果需要将int型变量n的低8位全置成1，而其余位不变，则可以执行：</span></span><br><span class="line">n |= <span class="number">0xff</span>;</span><br><span class="line"><span class="comment">// 0xff: 1111 1111</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>按位异或运算通常用来<strong>将某变量中的某些位取反，且保留其他位不变</strong>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果需要将int型变量n的低8位取反，而其余位不变，则可以执行：</span></span><br><span class="line">n ^= <span class="number">0xff</span>;</span><br><span class="line"><span class="comment">//0xff: 1111 1111</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>异或运算的特点：如果 <code>a^b=c</code>，那么就有 <code>c^b = a</code>以及<code>c^a=b</code>。（穷举法可证）能实现不通过临时变 量，就能交换两个变量的值。或进行最简单的加密和解密。</p>
-</li>
-<li><p><code>a &lt;&lt; b</code> 的值是：将a各二进位全部左移b位后得到的值。左移时，高位丢弃，低位补0。a 的值不因运算而改变。</p>
-</li>
-<li><p><code>a &gt;&gt; b</code>的值是：将a各二进位全部右移b位后得到的值。右移时，移出最右边的位就被丢弃。 a 的值不因运算而改变。</p>
-</li>
-</ol>
-</li>
-</ul>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><ul>
-<li>概念：某个变量的<strong>引用</strong>等价于这个变量，相当于该变量得一个别名。<ul>
-<li>定义引用时一定要将其<strong>初始化</strong>成引用某个变量；</li>
-<li>初始化后，它就一直引用该变量，不会再引用别的变量了；</li>
-<li>引用只能引用<strong>变量</strong>，不能引用常量和表达式。</li>
-</ul>
-</li>
-<li>写法：<code>类型名 &amp; 引用名 = 某变量名；</code></li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n =<span class="number">4</span>;</span><br><span class="line"><span class="keyword">int</span>&amp; r =n;<span class="comment">//r引用了n,r的类型是 int&amp;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 交换两个整型变量值的函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp;</span><br><span class="line">    tmp=a;a=b;b=tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n1,n2;</span><br><span class="line">swap(n1,n2);<span class="comment">//n1,n2 的值不会被交换</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//因此要换种写法，但这种写法也很麻烦</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>*a,<span class="keyword">int</span>*b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp;</span><br><span class="line">    tmp=*a;*a=*b;*b=tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n1,n2;</span><br><span class="line">swap(&amp; n1,&amp; n2);<span class="comment">//n1,n2的值被交换</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//有了C++的引用：</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp;</span><br><span class="line">    tmp=a;a=b;b=tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n1,n2;</span><br><span class="line">swap(n1,n2);<span class="comment">//n1,n2的值被交换了</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>引用作为函数的返回值</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n =<span class="number">4</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp; <span class="title">SetValue</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> n;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    setValue() = <span class="number">40</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; n;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;<span class="comment">//输出：40</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>常引用：定义引用时，前面加  <code>const</code> 关键字，即为“常引用”</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp; r =n;</span><br><span class="line"><span class="comment">// r的类型是 const int &amp;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 不能通过常引用去修改其引用的内容</span></span><br><span class="line"><span class="keyword">int</span> n =<span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp; r = n;</span><br><span class="line">r = <span class="number">200</span>;<span class="comment">//编译错</span></span><br><span class="line">n = <span class="number">300</span>; <span class="comment">//没问题</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>常引用和非常引用的转换：<ul>
-<li><u><strong><code>const T&amp;</code> 和 <code>T&amp;</code> 是不同的类型！！！</strong></u></li>
-<li><code>T&amp;</code> 类型的引用或<code>T</code> 类型的变量可以用来初始化 <code>const T&amp;</code> 类型的引用。<code>const T</code> 类型的常变量和 <code>const T &amp;</code> 类型的引用则不能用来初始化 <code>T &amp;</code> 类型的引用，除非进行<strong>强制类型转换</strong>。</li>
-</ul>
-</li>
-</ul>
-<h1 id="const-关键字"><a href="#const-关键字" class="headerlink" title="const 关键字"></a>const 关键字</h1><ul>
-<li>定义常量，不再使用 define 了，而改用 <strong>const</strong> 关键字</li>
-<li>定义常量指针：<ul>
-<li>不可通过常量指针修改其指向的内容</li>
-<li>不能把常量指针赋值给非常量指针，反过来可以</li>
-<li>函数参数为常量指针时，可避免函数内部不小心改变参数指针所指地方的内容</li>
-</ul>
-</li>
-<li>定义常引用：不能通过常引用修改其引用的变量。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_VAL=<span class="number">23</span></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p=&amp;n;</span><br><span class="line">*p = <span class="number">5</span>;<span class="comment">//编译出错</span></span><br><span class="line">n=<span class="number">4</span>;<span class="comment">//ok </span></span><br><span class="line">p=&amp;m;<span class="comment">//ok，常量指针的指向可以变化</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p1;<span class="keyword">int</span> *p2;</span><br><span class="line">p1=p2;<span class="comment">//ok</span></span><br><span class="line">p2=p1;<span class="comment">//error</span></span><br><span class="line">p2=(<span class="keyword">int</span>*)p1;<span class="comment">//ok,强制类型转换</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MyPrintf</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>*p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    strcpy(p,&#x27;this&#x27;);//编译出错</span><br><span class="line">    printf(&#x27;%s&#x27;,p);//ok</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="动态内存分配"><a href="#动态内存分配" class="headerlink" title="动态内存分配"></a>动态内存分配</h1><ul>
-<li><p>概念：用 new 运算符实现动态内存分配。</p>
-<ol>
-<li><p>分配一个变量： <code>P = new T;</code></p>
-<ul>
-<li>T 是任意<strong>类型名</strong>，P是类型为<code>T *</code> 的指针</li>
-<li>动态分配出一片大小为 <code>sizeof(T)</code>字节的内存空间，并且将该内存空间的<strong>起始地址</strong>赋值给P。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* pn;</span><br><span class="line">pn =<span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">*pn=<span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>分配一个数组：<code>P =new T[N];</code></p>
-<ul>
-<li>T：任意类型名；P：类型为<code>T *</code> 的指针；N：要分配的数组元素的<strong>个数</strong>，可以是<strong>整型表达式</strong>。</li>
-<li>动态分配出一片大小为 <code>N*sizeof(T)</code>字节的内存空间，并且将该内存空间的<strong>起始地址</strong>赋值给P</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *pn;</span><br><span class="line"><span class="keyword">int</span> i=<span class="number">5</span>;</span><br><span class="line">pn=<span class="keyword">new</span> <span class="keyword">int</span>[i*<span class="number">20</span>];</span><br><span class="line">pn[<span class="number">0</span>]=<span class="number">20</span>;</span><br><span class="line">pn[<span class="number">100</span>]=<span class="number">30</span>;<span class="comment">//编译没问题，但运行时会导致数组越界</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>new 运算符的返回值类型：</p>
-<ul>
-<li><code>new T;new T[n];</code></li>
-<li>这两个表达式返回值的类型都是 *<em>T**</em></li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p =<span class="keyword">new</span> <span class="keyword">int</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用“new”动态分配的内存空间，一定要用“delete”运算符进行释放</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> 指针;<span class="comment">//该指针必须指向 new 出来的空间</span></span><br><span class="line"><span class="keyword">int</span> *p =<span class="keyword">new</span> <span class="keyword">int</span>;</span><br><span class="line">*p=<span class="number">5</span>;</span><br><span class="line"><span class="keyword">delete</span> p;</span><br><span class="line"><span class="keyword">delete</span> p;<span class="comment">//导致异常，一片空间不能被多次delete</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用“delete”释放动态分配的数组，要加<strong>“[]”</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> []指针;<span class="comment">//该指针必须指向 new 出来的空间</span></span><br><span class="line"><span class="keyword">int</span> *p =<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">20</span>];</span><br><span class="line">p[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">delete</span> []p;<span class="comment">//如果没有[],会导致new 出来的存储空间没有被完全回收，会存在内存的垃圾碎片</span></span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-</li>
-</ul>
-<h1 id="内联函数、函数重载、函数缺省参数"><a href="#内联函数、函数重载、函数缺省参数" class="headerlink" title="内联函数、函数重载、函数缺省参数"></a>内联函数、函数重载、函数缺省参数</h1><ul>
-<li><p>内联函数概念：在函数定义前面加<strong>“inline”</strong>关键字，即可定义内联函数。</p>
-<ul>
-<li>函数调用是有时间开销的。如果函数本身只有几条语句，执行非常快，而函数被反复执行很多次，相比之下调用函数所产生的开销就会显得比较大（参数入栈，返回地址入栈，以及相关出栈操作）。</li>
-<li>为了减少函数调用的开销，引入<strong>内联函数</strong>机制。编译器处理对内联函数的调用语句时，是将整个函数的代码插入到调用语句处，而不会产生调用函数的语句。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//内联函数</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Max</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a&gt;b) <span class="keyword">return</span> a;</span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//编写代码时</span></span><br><span class="line">K = Max(n1,n2);</span><br><span class="line"></span><br><span class="line"><span class="comment">//编译时大概会变成</span></span><br><span class="line"><span class="keyword">if</span>(n1&gt;n2)</span><br><span class="line">    tmp=n1;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    tmp=n2;</span><br><span class="line">k=tmp;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>函数重载概念：</p>
-<ul>
-<li>一个或多个函数，名字相同，然而<strong>参数个数</strong>或<strong>参数类型</strong>不相同，这叫做函数的重载。仅仅只有返回值类型不同，这个叫做<strong>重复定义</strong>。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以下三个函数是重载关系</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Max</span><span class="params">(<span class="keyword">double</span> f1,<span class="keyword">double</span> f2)</span></span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Max</span><span class="params">(<span class="keyword">int</span> n1,<span class="keyword">int</span> n2)</span></span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Max</span><span class="params">(<span class="keyword">int</span> n1,<span class="keyword">int</span> n2,<span class="keyword">int</span> n3)</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>函数重载使得函数命名变得简单；</li>
-<li>编译器根据调用语句中的实参的类型和个数判断应该调用哪个函数。</li>
-</ul>
-</li>
-<li><p>函数缺省参数：</p>
-<ul>
-<li>定义函数的时候可以让<strong>最右边的连续若干个参数</strong>有<strong>缺省值</strong>，那么调用函数的时候，若相应位置不写参数，参数就是缺省值。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> x1,<span class="keyword">int</span> x2=<span class="number">2</span>,<span class="keyword">int</span> x3=<span class="number">3</span>)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">func(<span class="number">10</span>);<span class="comment">//等效于func(10,2,3)</span></span><br><span class="line">func(<span class="number">10</span>,<span class="number">8</span>);<span class="comment">//等效于 func(10,8,3)</span></span><br><span class="line">func(<span class="number">10</span>,,<span class="number">8</span>);<span class="comment">//不行，只能最右边的连续若干个参数缺省</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>函数参数可缺省的目的在于提高程序的可扩充性。</li>
-<li>即如果某个写好的函数要添加新的参数，而原先那些调用该函数的语句，未必需要使用新增的参数，那么为了避免对原先那些函数调用语句的修改，就可以使用缺省参数。</li>
-</ul>
-</li>
-</ul>
-<h1 id="面向对象程序设计方法"><a href="#面向对象程序设计方法" class="headerlink" title="面向对象程序设计方法"></a>面向对象程序设计方法</h1><p><img src="pictures/image-20200714212904890.png" alt="image-20200714212904890"></p>
-<h2 id="结构化程序设计中存在的问题："><a href="#结构化程序设计中存在的问题：" class="headerlink" title="结构化程序设计中存在的问题："></a>结构化程序设计中存在的问题：</h2><ul>
-<li>数据结构和算法没有直观的联系</li>
-<li>四大囧境：<ul>
-<li>理解难：随着程序规模的增加，程序变得非常难以理解</li>
-<li>修改难：因为结构化设计本身是没有封装的概念的。，所以如果我们想要修改其中某一个变量定义的时候， 就必须把所有访问该变量的语句全部找出来才能修改。非常不利于程序本身的维护和扩充。</li>
-<li>查错难：当某个数据结构的值不正常的时候，因为本身程序的关系错综复杂，很难找出到底是哪个函数所导致的。</li>
-<li>重用难：结构化的程序设计中，随着程序规模的不断增大， 由于程序关系本身错综复杂， 所以想要抽取其中需要的部分代码就会变得十分的困难。</li>
-</ul>
-</li>
-</ul>
-<h2 id="面向对象程序设计"><a href="#面向对象程序设计" class="headerlink" title="面向对象程序设计"></a>面向对象程序设计</h2><p><img src="pictures/image-20200714213525261.png" alt="image-20200714213525261"></p>
-<ul>
-<li>面向对象的程序设计方法：抽象、封装、多态和继承</li>
-</ul>
-<p><img src="pictures/image-20200714213619114.png" alt="image-20200714213619114"></p>
-<ul>
-<li>举例-类的定义（带函数的结构体）：</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CRecrangle</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> w,h;<span class="comment">//成员变量</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Init</span><span class="params">(<span class="keyword">int</span> w_,<span class="keyword">int</span> h_)</span></span>&#123;</span><br><span class="line">        w = w_;h=h_;</span><br><span class="line">    &#125;<span class="comment">//成员函数</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Area</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> w*h;</span><br><span class="line">    &#125;<span class="comment">//成员函数</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Perimeter</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>*(w+h);</span><br><span class="line">    &#125;<span class="comment">//成员函数</span></span><br><span class="line">&#125;;<span class="comment">//类定义的结尾，必须有分号</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> w,h;</span><br><span class="line">    CRecrangle r;<span class="comment">//r是一个对象</span></span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;w&gt;&gt;h;</span><br><span class="line">    r.Init(w,h);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;r.Area()&lt;&lt;<span class="built_in">endl</span>&lt;&lt;r.Perimeter();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//类定义的变量 --&gt;类的实例 --&gt;“对象”</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>对象的内存空间</p>
-<ul>
-<li>对象的大小=所有<strong>成员变量</strong>的大小之和</li>
-<li>如：CRectangle类的对象，<font color=Blue>sizeof(CRectangle)=8</font></li>
-</ul>
-</li>
-<li><p>每个对象各有自己的存储空间</p>
-<ul>
-<li>一个对象的某个成员变量被改变，不会影响到其它的对象。</li>
-</ul>
-</li>
-<li><p>对象间的运算</p>
-<ul>
-<li>对象之间可以用“=”进行赋值</li>
-<li>不能用**<code>‘==’，‘!=’,&#39;&gt;&#39;,&#39;&lt;&#39;,&#39;&gt;=&#39;,&#39;&lt;=&#39;</code>**进行比较<ul>
-<li>除非这些运算符经过了重载</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>访问类的成员变量和成员函数</p>
-<ul>
-<li>用法1：对象名.成员名</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CRectangle r1,r2;</span><br><span class="line">r1.w=<span class="number">5</span>;</span><br><span class="line">r2.Init(<span class="number">3</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>用法2：指针-&gt;成员名</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CRectangle r1,r2;</span><br><span class="line">CRectangle *p1=&amp;r1;</span><br><span class="line">CRectangle *p2=&amp;r2;</span><br><span class="line">p1-&gt;w=<span class="number">5</span>;</span><br><span class="line">p2-&gt;Init(<span class="number">3</span>,<span class="number">4</span>);<span class="comment">//Init 作用在p2指向的对象上</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>用法3：引用名.成员名</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CRectangle r2;</span><br><span class="line">CRectangle &amp; rr=r2;<span class="comment">//定义引用，引用就是某一个成员变量的别名</span></span><br><span class="line">rr.w=<span class="number">5</span>;</span><br><span class="line">rr.Init(<span class="number">3</span>,<span class="number">4</span>) <span class="comment">//rr的值变了，r2的值也变</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>类的成员函数的另一种写法：成员函数体和类的定义分开写</p>
-</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CRectangle</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">int</span> w,h;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">Area</span><span class="params">()</span></span>; <span class="comment">//成员函数仅在此处声明</span></span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">Perimeter</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">Init</span><span class="params">(<span class="keyword">int</span> w_,<span class="keyword">int</span> h_)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//可以在类的外部定义成员函数  使用 类名::函数名 ，来说明该函数是这个类的</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CRectangle::Init</span><span class="params">(<span class="keyword">int</span> w_,<span class="keyword">int</span> h_)</span></span>&#123;</span><br><span class="line">        w = w_;h=h_;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CRectangle::Area</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> w*h;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">CRectangle::Perimeter</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>*(w+h);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用通过：对象/对象指针/对象的引用</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>类成员的可访问范围</p>
-<ul>
-<li>关键字–类成员可被访问的范围<ul>
-<li>private：指定私有成员，只能在<strong>成员函数内</strong>被访问</li>
-<li>public：指定公有成员，可以在<strong>任何地方</strong>被访问</li>
-<li>protected：指定保护成员</li>
-</ul>
-</li>
-<li>三种关键字出现的次数和先后顺序本身是没有限制的。</li>
-<li>若未使用关键字进行修饰，缺省为<strong>私有成员</strong></li>
-</ul>
-</li>
-<li><p>对象成员的访问权限</p>
-<ul>
-<li><p>类的<strong>成员函数内部</strong>，可以访问：</p>
-<ul>
-<li>当前对象的全部属性，函数</li>
-<li><strong>同类</strong>其它对象的全部属性，函数</li>
-</ul>
-</li>
-<li><p>类的<strong>成员函数以外</strong>的地方</p>
-<ul>
-<li>只能够访问该类对象的<strong>公有成员</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CEmployee</span>&#123;</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">char</span> szName[<span class="number">30</span>];<span class="comment">//名字</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">int</span> salary; <span class="comment">//工资</span></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="keyword">char</span>* name)</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">getName</span><span class="params">(<span class="keyword">char</span>* name)</span></span>;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">averageSalary</span><span class="params">(CEmployee e1,CEmployee e2)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CEmployee::setName</span><span class="params">(<span class="keyword">char</span>* name)</span></span>&#123;</span><br><span class="line">    <span class="built_in">strcpy</span>(szName,name);<span class="comment">//ok  成员函数内部  可以访问当前对象的全部属性</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CEmployee::setName</span><span class="params">(<span class="keyword">char</span>* name)</span></span>&#123;</span><br><span class="line">    <span class="built_in">strcpy</span>(name,szName);<span class="comment">//ok  成员函数内部  可以访问当前对象的全部属性</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CEmployee::averageSalary</span><span class="params">(CEmployee e1,CEmployee e2)</span></span>&#123;</span><br><span class="line">    salary = (e1.salary+e2.salary)/<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    CEmployee e;</span><br><span class="line">    strcpy(e.szName,&#x27;Tom123456789&#x27;);//编译错，不能访问私有成员</span><br><span class="line">    e.setName(&#x27;Tom&#x27;);//ok</span><br><span class="line">    e.salary =<span class="number">5000</span>;<span class="comment">//ok</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>设置私有成员的目的：<ul>
-<li>强制对成员变量的访问一定要通过成员函数进行</li>
-<li>通过成员函数进行修改，减少出错可能</li>
-</ul>
-</li>
-<li>设置私有成员的机制–<strong>隐藏</strong></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020-08-14/c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%AB%98%E7%BA%A7%E5%86%85%E5%AE%B9.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -620,7 +340,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">刘涛</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
   </div>
 
         
@@ -687,7 +407,7 @@
         });
     }
 
-    let { app_id, app_key, server_url } = {"enable":true,"app_id":"aLln3gUjLEdfvraryTCNjK0M-gzGzoHsz","app_key":"9A4kOACWEaDqfgz2BlxAXcPB","server_url":"http://lt4hyl.top/","security":false};
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"MxrUXwts7rlzq762NfLCiSVk-gzGzoHsz","app_key":"bqlnUht41VcOv8c5hK8DrOyz","server_url":"https://kingarthertt.github.io/","security":false};
     function fetchData(api_server) {
       var Counter = (method, url, data) => {
         return fetch(`${api_server}/1.1${url}`, {

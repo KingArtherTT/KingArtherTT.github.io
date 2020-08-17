@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"lt4hyl.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="内联成员函数和重载成员函数 内联成员函数  inline + 成员函数  整个函数体出现在类定义内部">
+  <meta name="description" content="基本概念说明 C++预定义了运算符表示对数据的运算：+, -, *, &#x2F;, %, ^, &amp;, ~, !, |, &#x3D;, &lt;&lt;, &gt;&gt;, !&#x3D; ； 但这些只能用于基本的数据类型：整型, 实型, 字符型, 逻辑型。   要想运用于自定义数据类型，就得进行运算符重载 对抽象数据类型也能够直接使用C++提供的运算符。 使得程序更简洁；使得代码更容易理解。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="内联成员函数和重载成员函数">
-<meta property="og:url" content="http://lt4hyl.top/2020-08-16/%E5%86%85%E8%81%94%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%92%8C%E9%87%8D%E8%BD%BD%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0.html">
+<meta property="og:title" content="运算符重载">
+<meta property="og:url" content="http://lt4hyl.top/2020-08-17/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.html">
 <meta property="og:site_name" content="Lancelot的小站">
-<meta property="og:description" content="内联成员函数和重载成员函数 内联成员函数  inline + 成员函数  整个函数体出现在类定义内部">
+<meta property="og:description" content="基本概念说明 C++预定义了运算符表示对数据的运算：+, -, *, &#x2F;, %, ^, &amp;, ~, !, |, &#x3D;, &lt;&lt;, &gt;&gt;, !&#x3D; ； 但这些只能用于基本的数据类型：整型, 实型, 字符型, 逻辑型。   要想运用于自定义数据类型，就得进行运算符重载 对抽象数据类型也能够直接使用C++提供的运算符。 使得程序更简洁；使得代码更容易理解。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-16T08:21:51.000Z">
-<meta property="article:modified_time" content="2020-08-16T11:16:39.221Z">
+<meta property="article:published_time" content="2020-08-17T03:13:17.000Z">
+<meta property="article:modified_time" content="2020-08-17T05:37:56.942Z">
 <meta property="article:author" content="刘涛">
 <meta property="article:tag" content="编程工具">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://lt4hyl.top/2020-08-16/%E5%86%85%E8%81%94%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%92%8C%E9%87%8D%E8%BD%BD%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0.html">
+<link rel="canonical" href="http://lt4hyl.top/2020-08-17/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.html">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>内联成员函数和重载成员函数 | Lancelot的小站</title>
+  <title>运算符重载 | Lancelot的小站</title>
   
 
 
@@ -162,7 +162,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-16/%E5%86%85%E8%81%94%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%92%8C%E9%87%8D%E8%BD%BD%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0.html">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-17/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -175,7 +175,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          内联成员函数和重载成员函数
+          运算符重载
         </h1>
 
         <div class="post-meta">
@@ -186,11 +186,11 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-16 16:21:51 / 修改时间：19:16:39" itemprop="dateCreated datePublished" datetime="2020-08-16T16:21:51+08:00">2020-08-16</time>
+              <time title="创建时间：2020-08-17 11:13:17 / 修改时间：13:37:56" itemprop="dateCreated datePublished" datetime="2020-08-17T11:13:17+08:00">2020-08-17</time>
             </span>
 
           
-            <span id="/2020-08-16/%E5%86%85%E8%81%94%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%92%8C%E9%87%8D%E8%BD%BD%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0.html" class="post-meta-item leancloud_visitors" data-flag-title="内联成员函数和重载成员函数" title="阅读次数">
+            <span id="/2020-08-17/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.html" class="post-meta-item leancloud_visitors" data-flag-title="运算符重载" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -214,32 +214,58 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="内联成员函数和重载成员函数"><a href="#内联成员函数和重载成员函数" class="headerlink" title="内联成员函数和重载成员函数"></a>内联成员函数和重载成员函数</h1><ol>
-<li><p>内联成员函数</p>
-<ul>
-<li><p><strong>inline</strong> + 成员函数</p>
+        <h1 id="基本概念说明"><a href="#基本概念说明" class="headerlink" title="基本概念说明"></a>基本概念说明</h1><ul>
+<li>C++预定义了运算符表示对数据的运算：<code>+, -, *, /, %, ^, &amp;, ~, !, |, =, &lt;&lt;, &gt;&gt;, !=</code> ；<ul>
+<li>但这些只能用于<strong>基本的数据类型</strong>：整型, 实型, 字符型, 逻辑型。</li>
+</ul>
 </li>
-<li><p>整个函数体出现在<strong>类定义内部</strong></p>
+<li>要想运用于自定义数据类型，就得进行运算符重载<ul>
+<li>对抽象数据类型也能够直接使用C++提供的运算符。</li>
+<li>使得程序更简洁；使得代码更容易理解。</li>
+</ul>
+</li>
+</ul>
 <a id="more"></a>
 
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下述两种都是内联成员函数</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">func2</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//func2 的实际实现</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">B::func1</span><span class="params">()</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>成员函数的重载及参数缺省</p>
 <ul>
-<li><p>重载成员函数</p>
-</li>
-<li><p>成员函数 – 带缺省参数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Location</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> x,y;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> x =<span class="number">0</span>,<span class="keyword">int</span> y=<span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">valueX</span><span class="params">(<span class="keyword">int</span> val)</span></span>&#123;x=val;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">valueX</span><span class="params">()</span></span>&#123;&#125;<span class="keyword">return</span> x;  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Location::init</span><span class="params">(<span class="keyword">int</span> X,<span class="keyword">int</span> Y)</span></span>&#123;</span><br><span class="line">    x = X;</span><br><span class="line">    y = Y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Location A;</span><br><span class="line">    A.init(<span class="number">5</span>);<span class="comment">//X=5,Y=0</span></span><br><span class="line">    A.valueX(<span class="number">5</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; A.valueX();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用缺省参数要注意避免有函数重载时的二义性</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Location</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> x,y;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> x =<span class="number">0</span>,<span class="keyword">int</span> y=<span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">valueX</span><span class="params">(<span class="keyword">int</span> val=<span class="number">0</span>)</span></span>&#123;x=val;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">valueX</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> x;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用时 </span></span><br><span class="line">Location A;</span><br><span class="line">A.valueX(); <span class="comment">//错误，编译器无法判断调用哪个valueX</span></span><br></pre></td></tr></table></figure>
-
+<li><strong>运算符重载</strong>：<ul>
+<li>对<strong>已有的运算符</strong>赋予多重的含义。</li>
+<li>使<strong>同一运算符</strong>作用于<strong>不同类型的数据</strong>时，有不同类型的行为。</li>
+<li>目的：扩展C++中提供的运算符的适用范围, 以用于类所表示的抽象数据类型。</li>
+<li>同一个运算符, 对不同类型的操作数, 所发生的行为不同。<ul>
+<li>如：<code>(5,10i) + (4,8i) = (9,18i)</code>表示复数运算；<code>5 + 4 = 9</code>表示正数运算。</li>
+</ul>
 </li>
 </ul>
 </li>
-</ol>
+<li>运算符重载的<strong>实质</strong>是<strong>函数重载</strong>，可以用如下写法</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">返回值类型 <span class="keyword">operator</span> 运算符（形参表）</span><br><span class="line">&#123;</span><br><span class="line">…</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运算符重载时，程序编译过程大概为：<ul>
+<li>把含运算符的表达式对应转换成为：对 <strong>运算符函数</strong>的调用。</li>
+<li>把运算符的操作数（a+b中的a、b）作为运算符函数的<strong>参数</strong>，来进行传递。</li>
+<li>运算符被多次重载时, 根据 <strong>实参的类型</strong> 决定调用哪个运算符函数。</li>
+</ul>
+</li>
+<li>运算符可以被重载成<strong>普通函数</strong>。</li>
+<li>也可以被重载成<strong>类的成员函数</strong>。</li>
+<li>运算符重载为<strong>普通函数</strong>：<ul>
+<li>重载为普通函数时, <strong>参数个数为运算符目数</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Complex(<span class="keyword">double</span> r=<span class="number">0.0</span>,<span class="keyword">double</span> i=<span class="number">0.0</span>)&#123;</span><br><span class="line">        real = r;</span><br><span class="line">        <span class="built_in">imaginary</span> = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">double</span> real;</span><br><span class="line">    <span class="keyword">double</span> <span class="built_in">imaginary</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Complex <span class="keyword">operator</span>+(<span class="keyword">const</span> Complex &amp;a,<span class="keyword">const</span> Complex &amp;b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> Complex(a.real + b.real, a.<span class="built_in">imaginary</span>+b.<span class="built_in">imaginary</span>);</span><br><span class="line">&#125;<span class="comment">// “类名(参数表)” 就代表一个对象</span></span><br><span class="line"></span><br><span class="line">Complex a(1,2), b(2,3), c;</span><br><span class="line">c = a+b;<span class="comment">//相当于 operator+(a,b);</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运算符重载为<strong>成员函数</strong><ul>
+<li>重载为成员函数时, <strong>参数个数为运算符目数减一</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Complex( <span class="keyword">double</span> r= <span class="number">0.0</span>, <span class="keyword">double</span> m = <span class="number">0.0</span> ):real(r), <span class="built_in">imaginary</span>(m) &#123; &#125; <span class="comment">// constructor</span></span><br><span class="line">    Complex <span class="keyword">operator</span>+ ( <span class="keyword">const</span> Complex &amp;a ); <span class="comment">// addition</span></span><br><span class="line">    Complex <span class="keyword">operator</span>- ( <span class="keyword">const</span> Complex &amp;b ); <span class="comment">// subtraction</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> real; <span class="comment">// real part</span></span><br><span class="line">    <span class="keyword">double</span> <span class="built_in">imaginary</span>; <span class="comment">// imaginary part</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//此时的 a+b 相当于 a.operator+(b),因此运算符重载参数只有一个。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Overloaded addition operator</span></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>+(<span class="keyword">const</span> Complex &amp;operand2)&#123;</span><br><span class="line">    <span class="keyword">return</span> Complex( real + operand2.real, <span class="built_in">imaginary</span> + operand2.<span class="built_in">imaginary</span> );</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Overloaded subtraction operator</span></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>- (<span class="keyword">const</span> Complex &amp;operand2)&#123;</span><br><span class="line">    <span class="keyword">return</span> Complex( real - operand2.real, <span class="built_in">imaginary</span> - operand2.<span class="built_in">imaginary</span> );</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Complex x, y(<span class="number">4.3</span>, <span class="number">8.2</span>), z(<span class="number">3.3</span>, <span class="number">1.1</span>);</span><br><span class="line">     x = y + z;<span class="comment">//相当于 y.operator+(z)</span></span><br><span class="line">     x = y - z;<span class="comment">//相当于 y.operator-(z)</span></span><br><span class="line">     <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -259,13 +285,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020-08-16/c++%E4%B8%AD%E7%9A%84%E5%8F%8C%E5%86%92%E5%8F%B7.html" rel="prev" title="c++中的双冒号">
-      <i class="fa fa-chevron-left"></i> c++中的双冒号
+    <a href="/2020-08-16/%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98.html" rel="prev" title="类的成员">
+      <i class="fa fa-chevron-left"></i> 类的成员
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020-08-16/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0.html" rel="next" title="构造函数与析构函数">
-      构造函数与析构函数 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -324,7 +347,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E8%81%94%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%92%8C%E9%87%8D%E8%BD%BD%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">内联成员函数和重载成员函数</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">基本概念说明</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

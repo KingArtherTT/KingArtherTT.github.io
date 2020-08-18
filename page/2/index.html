@@ -23,7 +23,7 @@
   <meta name="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lancelot的小站">
-<meta property="og:url" content="http://lt4hyl.top/index.html">
+<meta property="og:url" content="http://lt4hyl.top/page/2/index.html">
 <meta property="og:site_name" content="Lancelot的小站">
 <meta property="og:description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
 <meta property="og:locale" content="zh_CN">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://lt4hyl.top/">
+<link rel="canonical" href="http://lt4hyl.top/page/2/">
 
 
 <script id="page-configurations">
@@ -158,7 +158,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-18/STL%E7%AE%97%E6%B3%95.html">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-17/%E5%A4%9A%E6%80%81%E4%B8%8E%E8%99%9A%E5%87%BD%E6%95%B0.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -172,7 +172,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020-08-18/STL%E7%AE%97%E6%B3%95.html" class="post-title-link" itemprop="url">STL算法</a>
+            <a href="/2020-08-17/%E5%A4%9A%E6%80%81%E4%B8%8E%E8%99%9A%E5%87%BD%E6%95%B0.html" class="post-title-link" itemprop="url">多态与虚函数</a>
         </h2>
 
         <div class="post-meta">
@@ -181,13 +181,19 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-18 18:04:43 / 修改时间：18:10:37" itemprop="dateCreated datePublished" datetime="2020-08-18T18:04:43+08:00">2020-08-18</time>
+              <time title="创建时间：2020-08-17 16:26:51" itemprop="dateCreated datePublished" datetime="2020-08-17T16:26:51+08:00">2020-08-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-18 14:34:42" itemprop="dateModified" datetime="2020-08-18T14:34:42+08:00">2020-08-18</time>
+              </span>
 
           
-            <span id="/2020-08-18/STL%E7%AE%97%E6%B3%95.html" class="post-meta-item leancloud_visitors" data-flag-title="STL算法" title="阅读次数">
+            <span id="/2020-08-17/%E5%A4%9A%E6%80%81%E4%B8%8E%E8%99%9A%E5%87%BD%E6%95%B0.html" class="post-meta-item leancloud_visitors" data-flag-title="多态与虚函数" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -204,22 +210,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="基本认识"><a href="#基本认识" class="headerlink" title="基本认识"></a>基本认识</h1><ul>
-<li>STL中的方法具体可以干什么是取绝于你的想象力的，而不仅限于名字。（如：copy方法用于输出）；</li>
-<li>大多重载的算法都是有<strong>两个</strong>版本的：<ul>
-<li>用 <strong>“==”</strong> 判断元素是否相等, 或用 <strong>“&lt;”</strong> 来比较大小</li>
-<li>多出一个类型参数 <code>“Pred”</code> 和函数形参 <code>“Pred op”</code> ：通过表达式 <code>“op(x,y)”</code> 的返回值: <code>ture/false</code>，判断x是否 “等于” y，或者x是否 “小于” y。</li>
-<li>如：下面的有两个版本的<code>min_element</code><ul>
-<li><code>iterator min_element(iterator first, iterator last);</code></li>
-<li><code>iterator min_element(iterator first, iterator last, Pred op);</code></li>
+          <h1 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h1><ul>
+<li>概念：在类的定义中，使用 <code>virtual</code> 关键字修饰的成员函数就是虚函数。</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">base</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">()</span> </span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">base::get</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; &#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020-08-18/STL%E7%AE%97%E6%B3%95.html#more" rel="contents">
+              <a class="btn" href="/2020-08-17/%E5%A4%9A%E6%80%81%E4%B8%8E%E8%99%9A%E5%87%BD%E6%95%B0.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -243,7 +240,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-18/%E5%AE%B9%E5%99%A8%E9%80%82%E9%85%8D%E5%99%A8.html">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-17/%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -257,7 +254,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020-08-18/%E5%AE%B9%E5%99%A8%E9%80%82%E9%85%8D%E5%99%A8.html" class="post-title-link" itemprop="url">容器适配器</a>
+            <a href="/2020-08-17/%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F.html" class="post-title-link" itemprop="url">继承与派生</a>
         </h2>
 
         <div class="post-meta">
@@ -268,11 +265,11 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-18 18:02:24 / 修改时间：18:04:55" itemprop="dateCreated datePublished" datetime="2020-08-18T18:02:24+08:00">2020-08-18</time>
+              <time title="创建时间：2020-08-17 15:57:36 / 修改时间：16:26:32" itemprop="dateCreated datePublished" datetime="2020-08-17T15:57:36+08:00">2020-08-17</time>
             </span>
 
           
-            <span id="/2020-08-18/%E5%AE%B9%E5%99%A8%E9%80%82%E9%85%8D%E5%99%A8.html" class="post-meta-item leancloud_visitors" data-flag-title="容器适配器" title="阅读次数">
+            <span id="/2020-08-17/%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F.html" class="post-meta-item leancloud_visitors" data-flag-title="继承与派生" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -289,15 +286,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ul>
-<li>可以用某种顺序容器来实现，让已有的顺序容器以<strong>栈/队列</strong>的方式工作。</li>
-<li><strong>stack</strong>: <code>头文件 &lt;stack&gt;</code>，栈–后进先出。</li>
-<li><strong>queue</strong>: <code>头文件  &lt;queue&gt;</code>，队列–先进先出。</li>
-<li>priority_queue：<code>头文件 &lt;queue&gt;</code>，优先级队列–最高优先级元素总是第一个出列。</li>
+          <h1 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h1><ul>
+<li>在定义一个新的类B时，如果该类与某个已有的类A相似(<strong>指的是B拥有A的全部特点</strong>)， 那么就可以把A作为一个<strong>基类</strong>，而把B作为基类的一个**派生类(也称子类)**。</li>
+<li>派生类是通过对基类进行<strong>修改</strong>和<strong>扩充</strong>得到的。在派生类中，可以扩充新的成员变量和成员函数。</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020-08-18/%E5%AE%B9%E5%99%A8%E9%80%82%E9%85%8D%E5%99%A8.html#more" rel="contents">
+              <a class="btn" href="/2020-08-17/%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -321,7 +316,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-18/%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8.html">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-17/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -335,7 +330,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020-08-18/%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8.html" class="post-title-link" itemprop="url">关联容器</a>
+            <a href="/2020-08-17/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.html" class="post-title-link" itemprop="url">运算符重载</a>
         </h2>
 
         <div class="post-meta">
@@ -346,11 +341,11 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-18 17:54:44 / 修改时间：18:02:01" itemprop="dateCreated datePublished" datetime="2020-08-18T17:54:44+08:00">2020-08-18</time>
+              <time title="创建时间：2020-08-17 11:13:17 / 修改时间：15:57:23" itemprop="dateCreated datePublished" datetime="2020-08-17T11:13:17+08:00">2020-08-17</time>
             </span>
 
           
-            <span id="/2020-08-18/%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8.html" class="post-meta-item leancloud_visitors" data-flag-title="关联容器" title="阅读次数">
+            <span id="/2020-08-17/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.html" class="post-meta-item leancloud_visitors" data-flag-title="运算符重载" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -367,15 +362,179 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Set和Multiset"><a href="#Set和Multiset" class="headerlink" title="Set和Multiset"></a>Set和Multiset</h1><ul>
-<li><p>关联容器：<code>set, multiset, map, multimap；</code></p>
+          <h1 id="基本概念说明"><a href="#基本概念说明" class="headerlink" title="基本概念说明"></a>基本概念说明</h1><ul>
+<li>C++预定义了运算符表示对数据的运算：<code>+, -, *, /, %, ^, &amp;, ~, !, |, =, &lt;&lt;, &gt;&gt;, !=</code> ；<ul>
+<li>但这些只能用于<strong>基本的数据类型</strong>：整型, 实型, 字符型, 逻辑型。</li>
+</ul>
+</li>
+<li>要想运用于自定义数据类型，就得进行运算符重载<ul>
+<li>对抽象数据类型也能够直接使用C++提供的运算符。</li>
+<li>使得程序更简洁；使得代码更容易理解。</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020-08-17/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-16/%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘涛">
+      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lancelot的小站">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020-08-16/%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98.html" class="post-title-link" itemprop="url">类的成员</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-16 17:33:49" itemprop="dateCreated datePublished" datetime="2020-08-16T17:33:49+08:00">2020-08-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-17 11:22:15" itemprop="dateModified" datetime="2020-08-17T11:22:15+08:00">2020-08-17</time>
+              </span>
+
+          
+            <span id="/2020-08-16/%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98.html" class="post-meta-item leancloud_visitors" data-flag-title="类的成员" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="静态成员变量和静态成员函数"><a href="#静态成员变量和静态成员函数" class="headerlink" title="静态成员变量和静态成员函数"></a>静态成员变量和静态成员函数</h1><ul>
+<li>静态成员：在成员变量说明前面加了 <code>static</code> 关键字的成员。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020-08-16/%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-16/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘涛">
+      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lancelot的小站">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020-08-16/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0.html" class="post-title-link" itemprop="url">构造函数与析构函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-16 16:23:57 / 修改时间：17:33:24" itemprop="dateCreated datePublished" datetime="2020-08-16T16:23:57+08:00">2020-08-16</time>
+            </span>
+
+          
+            <span id="/2020-08-16/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0.html" class="post-meta-item leancloud_visitors" data-flag-title="构造函数与析构函数" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><ul>
+<li><p>概念：成员函数的一种。</p>
 <ul>
-<li><p>内部元素有序排列，新元素插入的位置取决于它的值，查找速度快。</p>
+<li><p>名字与类名相同，可以有参数（意味着可以重载），不能有返回值（void也不行）</p>
 </li>
-<li><p>除了各容器都有的函数外，还支持以下成员函数：</p>
+<li><p><strong>作用是对对象进行初始化，如给成员变量赋初值</strong>（不包括分配对象所占用的存储空间）</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020-08-18/%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8.html#more" rel="contents">
+              <a class="btn" href="/2020-08-16/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -399,7 +558,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-18/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.html">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-16/%E5%86%85%E8%81%94%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%92%8C%E9%87%8D%E8%BD%BD%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -413,7 +572,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020-08-18/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.html" class="post-title-link" itemprop="url">函数对象</a>
+            <a href="/2020-08-16/%E5%86%85%E8%81%94%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%92%8C%E9%87%8D%E8%BD%BD%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0.html" class="post-title-link" itemprop="url">内联成员函数和重载成员函数</a>
         </h2>
 
         <div class="post-meta">
@@ -424,11 +583,11 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-18 17:50:49 / 修改时间：17:54:53" itemprop="dateCreated datePublished" datetime="2020-08-18T17:50:49+08:00">2020-08-18</time>
+              <time title="创建时间：2020-08-16 16:21:51 / 修改时间：19:16:39" itemprop="dateCreated datePublished" datetime="2020-08-16T16:21:51+08:00">2020-08-16</time>
             </span>
 
           
-            <span id="/2020-08-18/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.html" class="post-meta-item leancloud_visitors" data-flag-title="函数对象" title="阅读次数">
+            <span id="/2020-08-16/%E5%86%85%E8%81%94%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%92%8C%E9%87%8D%E8%BD%BD%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0.html" class="post-meta-item leancloud_visitors" data-flag-title="内联成员函数和重载成员函数" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -445,98 +604,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ul>
-<li>概念：<strong>若一个类重载了运算符 “()”， 则该类的对象就成为函数对象</strong>。</li>
-<li>作用：对象可以像函数一样的被调用。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020-08-18/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-18/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lancelot的小站">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020-08-18/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8.html" class="post-title-link" itemprop="url">顺序容器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-18 17:45:19 / 修改时间：17:51:01" itemprop="dateCreated datePublished" datetime="2020-08-18T17:45:19+08:00">2020-08-18</time>
-            </span>
-
-          
-            <span id="/2020-08-18/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8.html" class="post-meta-item leancloud_visitors" data-flag-title="顺序容器" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="顺序容器Vector"><a href="#顺序容器Vector" class="headerlink" title="顺序容器Vector"></a>顺序容器Vector</h1><ul>
-<li><p>可变长的动态数组</p>
-</li>
-<li><p>必须包含头文件 <code>#include &lt;vector&gt;</code></p>
-</li>
-<li><p>支持 随机访问迭代器：</p>
+          <h1 id="内联成员函数和重载成员函数"><a href="#内联成员函数和重载成员函数" class="headerlink" title="内联成员函数和重载成员函数"></a>内联成员函数和重载成员函数</h1><ol>
+<li><p>内联成员函数</p>
 <ul>
-<li>根据下标随机访问某个元素时间为常数。</li>
-<li>在尾部添加速度很快。</li>
-<li>在中间插入慢。</li>
-</ul>
+<li><p><strong>inline</strong> + 成员函数</p>
 </li>
-</ul>
+<li><p>整个函数体出现在<strong>类定义内部</strong></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020-08-18/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8.html#more" rel="contents">
+              <a class="btn" href="/2020-08-16/%E5%86%85%E8%81%94%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%92%8C%E9%87%8D%E8%BD%BD%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -560,7 +636,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-18/%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93-STL.html">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-16/c++%E4%B8%AD%E7%9A%84%E5%8F%8C%E5%86%92%E5%8F%B7.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -574,7 +650,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020-08-18/%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93-STL.html" class="post-title-link" itemprop="url">标准模板库-STL</a>
+            <a href="/2020-08-16/c++%E4%B8%AD%E7%9A%84%E5%8F%8C%E5%86%92%E5%8F%B7.html" class="post-title-link" itemprop="url">c++中的双冒号</a>
         </h2>
 
         <div class="post-meta">
@@ -585,11 +661,11 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-18 15:57:01 / 修改时间：17:44:12" itemprop="dateCreated datePublished" datetime="2020-08-18T15:57:01+08:00">2020-08-18</time>
+              <time title="创建时间：2020-08-16 16:15:51 / 修改时间：17:19:50" itemprop="dateCreated datePublished" datetime="2020-08-16T16:15:51+08:00">2020-08-16</time>
             </span>
 
           
-            <span id="/2020-08-18/%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93-STL.html" class="post-meta-item leancloud_visitors" data-flag-title="标准模板库-STL" title="阅读次数">
+            <span id="/2020-08-16/c++%E4%B8%AD%E7%9A%84%E5%8F%8C%E5%86%92%E5%8F%B7.html" class="post-meta-item leancloud_visitors" data-flag-title="c++中的双冒号" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -606,265 +682,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="STL的引进"><a href="#STL的引进" class="headerlink" title="STL的引进"></a>STL的引进</h1><ol>
-<li>要进行软件的<strong>重用</strong>，减少重复工作：<ul>
-<li>可采用面向对象的思想：继承和多态，标准类库；</li>
-<li>可采用泛型程序设计(generic programming) 的思想： 模板机制，以及标准模板库 STL。</li>
-</ul>
-</li>
-<li>泛型程序设计：简单地说就是使用模板的程序设计法。<ul>
-<li>将一些常用的<strong>数据结构</strong>（比如链表，数组，二叉树） 和<strong>算法</strong>（比如排序，查找）写成模板，以后则不论数据 结构里放的是什么对象，算法针对什么样的对象，则都不必重新实现数据结构，重新编写算法。</li>
-<li><strong>标准模板库 (Standard Template Library)</strong> 就是一 些常用<strong>数据结构和算法的模板的集合</strong>。</li>
-<li>有了STL，不必再写大多的标准数据结构和算法， 并且可获得非常高的性能。</li>
-</ul>
-</li>
+          <h1 id="C-中的双冒号"><a href="#C-中的双冒号" class="headerlink" title="C++中的双冒号 ::"></a>C++中的双冒号 ::</h1><ol>
+<li>类作用域，用来标明类的变量、函数</li>
 </ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020-08-18/%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93-STL.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Human::setName(char* name);</span><br></pre></td></tr></table></figure>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+<ol start="2">
+<li>命名空间作用域，用来注明所使用的类、函数属于哪一个命名空间的；</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Hello World&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-18/%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lancelot的小站">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020-08-18/%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA.html" class="post-title-link" itemprop="url">输入与输出</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-18 15:40:49 / 修改时间：15:55:56" itemprop="dateCreated datePublished" datetime="2020-08-18T15:40:49+08:00">2020-08-18</time>
-            </span>
-
-          
-            <span id="/2020-08-18/%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA.html" class="post-meta-item leancloud_visitors" data-flag-title="输入与输出" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="基本类型说明"><a href="#基本类型说明" class="headerlink" title="基本类型说明"></a>基本类型说明</h1><p><img src="pictures/image-20200726103738916.png" alt="image-20200726103738916"></p>
+<ol start="3">
+<li><strong>全局作用域，用来区分局部、全局的。</strong></li>
+</ol>
 <ul>
-<li><code>istream</code>是用于输入的流类，<code>cin</code>就是该类的对象。</li>
-<li><code>ostream</code>是用于输出的流类，<code>cout</code>就是该类的对象。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020-08-18/%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+<li><p><strong>当【局部变量/函数】 与 【全局变量/函数】 的名字相同时，IDE无法区分，这时候加上 :: 就可以调用到全局函数，访问到全局变量了。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">::<span class="built_in">open</span>();<span class="comment">//调用全局的 open函数</span></span><br></pre></td></tr></table></figure>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-18/string%E7%B1%BB%E7%9B%B8%E5%85%B3.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lancelot的小站">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020-08-18/string%E7%B1%BB%E7%9B%B8%E5%85%B3.html" class="post-title-link" itemprop="url">string类相关</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-18 15:31:00 / 修改时间：15:40:17" itemprop="dateCreated datePublished" datetime="2020-08-18T15:31:00+08:00">2020-08-18</time>
-            </span>
-
-          
-            <span id="/2020-08-18/string%E7%B1%BB%E7%9B%B8%E5%85%B3.html" class="post-meta-item leancloud_visitors" data-flag-title="string类相关" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><strong>string 类</strong> 是一个<strong>模板类</strong>, 它的定义如下:<ul>
-<li><code>typedef basic_string&lt;char&gt; string;</code></li>
-</ul>
-</li>
-<li>使用string类要包含头文件 : <code>&lt;string&gt;</code></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020-08-18/string%E7%B1%BB%E7%9B%B8%E5%85%B3.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-18/%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E4%B8%8E%E7%B1%BB%E6%A8%A1%E6%9D%BF.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lancelot的小站">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020-08-18/%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E4%B8%8E%E7%B1%BB%E6%A8%A1%E6%9D%BF.html" class="post-title-link" itemprop="url">函数模板与类模板</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-18 15:08:21 / 修改时间：15:31:12" itemprop="dateCreated datePublished" datetime="2020-08-18T15:08:21+08:00">2020-08-18</time>
-            </span>
-
-          
-            <span id="/2020-08-18/%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E4%B8%8E%E7%B1%BB%E6%A8%A1%E6%9D%BF.html" class="post-meta-item leancloud_visitors" data-flag-title="函数模板与类模板" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="函数模板"><a href="#函数模板" class="headerlink" title="函数模板"></a>函数模板</h1><ul>
-<li>在理解模板之前，首先引进 <strong>泛型</strong>程序设计（Generic Programming）的概念：<ul>
-<li>算法实现时不指定具体要操作的数据的类型，在实际使用算法时再给出具体的数据类型；</li>
-<li><strong>泛型</strong>：算法实现一遍，可适用于多种数据结构；</li>
-<li>优势: 减少重复代码的编写；</li>
-<li>C++ 中实现泛型程序设计的工具，就是<strong>模板</strong>；</li>
-<li>大量编写模板, 使用基于模板的程序设计可以分为两类：<strong>函数模板</strong> 和 <strong>类模板</strong>。</li>
-</ul>
 </li>
 </ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020-08-18/%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E4%B8%8E%E7%B1%BB%E6%A8%A1%E6%9D%BF.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+
       
     </div>
 
@@ -883,7 +721,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-18/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C.html">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-14/c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%AB%98%E7%BA%A7%E5%86%85%E5%AE%B9.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -897,7 +735,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020-08-18/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C.html" class="post-title-link" itemprop="url">文件操作</a>
+            <a href="/2020-08-14/c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%AB%98%E7%BA%A7%E5%86%85%E5%AE%B9.html" class="post-title-link" itemprop="url">c语言中的高级内容</a>
         </h2>
 
         <div class="post-meta">
@@ -906,13 +744,19 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-18 14:35:46 / 修改时间：15:07:52" itemprop="dateCreated datePublished" datetime="2020-08-18T14:35:46+08:00">2020-08-18</time>
+              <time title="创建时间：2020-08-14 16:48:56" itemprop="dateCreated datePublished" datetime="2020-08-14T16:48:56+08:00">2020-08-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-16 16:25:45" itemprop="dateModified" datetime="2020-08-16T16:25:45+08:00">2020-08-16</time>
+              </span>
 
           
-            <span id="/2020-08-18/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C.html" class="post-meta-item leancloud_visitors" data-flag-title="文件操作" title="阅读次数">
+            <span id="/2020-08-14/c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%AB%98%E7%BA%A7%E5%86%85%E5%AE%B9.html" class="post-meta-item leancloud_visitors" data-flag-title="c语言中的高级内容" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -929,12 +773,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ul>
-<li>基本概念：<strong>顺序文件</strong>由数据构成，数据的层次可划分为：位（bit) –&gt;字节（byte） –&gt; 域/记录（学生记录：<code>int ID;char name[10];</code>）。将所有记录顺序地写入一个文件，得到<strong>顺序文件</strong>。</li>
+          <h1 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h1><ul>
+<li>概念：程序运行期间，每个函数都会占用一 段连续的内存空间。而函数名就是该函数所占内存区域的起始地址(也称“<strong>入口地址</strong>”)。我们可以将函数的<strong>入口地址</strong>赋给一个指针变量，使该指针变量指向该函数。然后通过指针变量就可以调用这个函数。这种指向函数的指针变量称为 “<strong>函数指针</strong>“  。</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020-08-18/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C.html#more" rel="contents">
+              <a class="btn" href="/2020-08-14/c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%AB%98%E7%BA%A7%E5%86%85%E5%AE%B9.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -957,7 +801,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 

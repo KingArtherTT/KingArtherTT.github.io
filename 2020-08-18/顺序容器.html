@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lt4hyl.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="顺序容器Vector 可变长的动态数组  必须包含头文件 #include &lt;vector&gt;  支持 随机访问迭代器：  根据下标随机访问某个元素时间为常数。 在尾部添加速度很快。 在中间插入慢。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="顺序容器">
+<meta property="og:url" content="http://lt4hyl.top/2020-08-18/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8.html">
+<meta property="og:site_name" content="Lancelot的小站">
+<meta property="og:description" content="顺序容器Vector 可变长的动态数组  必须包含头文件 #include &lt;vector&gt;  支持 随机访问迭代器：  根据下标随机访问某个元素时间为常数。 在尾部添加速度很快。 在中间插入慢。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lt4hyl.top/2020-08-18/pictures/image-20200727154508475.png">
+<meta property="article:published_time" content="2020-08-18T09:45:19.000Z">
+<meta property="article:modified_time" content="2020-08-18T09:51:01.148Z">
+<meta property="article:author" content="刘涛">
+<meta property="article:tag" content="编程工具">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://lt4hyl.top/2020-08-18/pictures/image-20200727154508475.png">
+
+<link rel="canonical" href="http://lt4hyl.top/2020-08-18/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>顺序容器 | Lancelot的小站</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43b02ed86a701dce319ff86325707452";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Lancelot的小站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-18/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘涛">
+      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lancelot的小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          顺序容器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-18 17:45:19 / 修改时间：17:51:01" itemprop="dateCreated datePublished" datetime="2020-08-18T17:45:19+08:00">2020-08-18</time>
+            </span>
+
+          
+            <span id="/2020-08-18/%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8.html" class="post-meta-item leancloud_visitors" data-flag-title="顺序容器" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="顺序容器Vector"><a href="#顺序容器Vector" class="headerlink" title="顺序容器Vector"></a>顺序容器Vector</h1><ul>
+<li><p>可变长的动态数组</p>
+</li>
+<li><p>必须包含头文件 <code>#include &lt;vector&gt;</code></p>
+</li>
+<li><p>支持 随机访问迭代器：</p>
+<ul>
+<li>根据下标随机访问某个元素时间为常数。</li>
+<li>在尾部添加速度很快。</li>
+<li>在中间插入慢。</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p><strong>所有STL算法</strong> 都能对vector操作</p>
+</li>
+<li><p>构造函数初始化：</p>
+<table>
+<thead>
+<tr>
+<th>成员函数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>vector();</code></td>
+<td>无参构造函数, 将容器初始化成空的</td>
+</tr>
+<tr>
+<td><code>vector(int n);</code></td>
+<td>将容器初始化成有n个元素</td>
+</tr>
+<tr>
+<td><code>vector(int n,const T &amp; val);</code></td>
+<td>假定元素类型是T, 将容器初始化成 有n个元素, 每个元素的值都是val</td>
+</tr>
+<tr>
+<td><code>vector(iterator first,iterator last);</code></td>
+<td>将容器初始化为与别的容器上区间 <code>[first, last)</code>一致的内容</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>其它常用函数</p>
+<table>
+<thead>
+<tr>
+<th>成员函数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>void pop_back();</code></td>
+<td>删除容器末尾的元素</td>
+</tr>
+<tr>
+<td><code>void push_back(const T &amp; val);</code></td>
+<td>将val添加到容器末尾</td>
+</tr>
+<tr>
+<td><code>int size();</code></td>
+<td>返回容器中元素的个数</td>
+</tr>
+<tr>
+<td><code>T &amp; front();</code></td>
+<td>返回容器中第一个元素的引用</td>
+</tr>
+<tr>
+<td><code>T &amp; back();</code></td>
+<td>返回容器中最后一个元素的引用</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>二维动态数组</p>
+<ul>
+<li><code>vector&lt; vector &gt; v(3);</code>v有3个元素，每个元素都是vector 容器。</li>
+</ul>
+</li>
+</ul>
+<h1 id="顺序容器list和deque"><a href="#顺序容器list和deque" class="headerlink" title="顺序容器list和deque"></a>顺序容器list和deque</h1><ul>
+<li>list容器：</li>
+</ul>
+<p><img src="pictures/image-20200727154508475.png" alt="image-20200727154508475"></p>
+<ul>
+<li><p>list支持的8个成员函数：</p>
+<table>
+<thead>
+<tr>
+<th>成员函数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>push_front</td>
+<td>在链表<strong>最前面插入</strong></td>
+</tr>
+<tr>
+<td>pop_front</td>
+<td>删除链表<strong>最前面</strong>的元素</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>排序 <strong>(list 不支持 STL 的算法 sort)</strong></td>
+</tr>
+<tr>
+<td>remove</td>
+<td>删除和指定值相等的所有元素</td>
+</tr>
+<tr>
+<td>unique</td>
+<td>删除所有和前一个元素相同的元素</td>
+</tr>
+<tr>
+<td>merge</td>
+<td>合并两个链表, 并清空被合并的链表</td>
+</tr>
+<tr>
+<td>reverse</td>
+<td>颠倒链表</td>
+</tr>
+<tr>
+<td>splice</td>
+<td>在指定位置前面插入另一链表中的一个或多个元素, 并在另一链表中删除被插入的元素</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>list容器之sort函数</p>
+<ul>
+<li>由于list容器的迭代器<strong>不支持完全随机访问</strong>，因此不能用标准库中sort函数对它进行排序。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//list自己的sort成员函数</span></span><br><span class="line"><span class="built_in">list</span>&lt;T&gt; classname</span><br><span class="line">classname.sort(compare); <span class="comment">//compare函数可以自己定义</span></span><br><span class="line">classname.sort(); <span class="comment">//无参数版本, 按从小到大（&lt;）排序</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>list容器只能使用双向迭代器：**<code>不支持大于/小于比较运算符, []运算符和随机移动</code>**（即类似 “list的迭代器+2” 的操作）。</li>
+</ul>
+</li>
+<li><p>举例：list容器的使用</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span> <span class="comment">//定义类A, 并以友元重载&lt;, ==和&lt;&lt;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    A( <span class="keyword">int</span> n_ ) &#123; n = n_; &#125;</span><br><span class="line">    <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;( <span class="keyword">const</span> A &amp; a1, <span class="keyword">const</span> A &amp; a2);</span><br><span class="line">    <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span>==( <span class="keyword">const</span> A &amp; a1, <span class="keyword">const</span> A &amp; a2);</span><br><span class="line">    <span class="keyword">friend</span> ostream &amp; <span class="keyword">operator</span> &lt;&lt;( ostream &amp; o, <span class="keyword">const</span> A &amp; a);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>&lt;( <span class="keyword">const</span> A &amp; a1, <span class="keyword">const</span> A &amp; a2) &#123;</span><br><span class="line">    <span class="keyword">return</span> a1.n &lt; a2.n;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>==( <span class="keyword">const</span> A &amp; a1, <span class="keyword">const</span> A &amp; a2) &#123;</span><br><span class="line">    <span class="keyword">return</span> a1.n == a2.n;</span><br><span class="line">&#125;</span><br><span class="line">ostream &amp; <span class="keyword">operator</span> &lt;&lt;( ostream &amp; o, <span class="keyword">const</span> A &amp; a) &#123;</span><br><span class="line">    o &lt;&lt; a.n;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义函数模板PrintList, 打印列表中的对象</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">PrintList</span>(<span class="title">const</span> <span class="title">list</span>&lt;T&gt; &amp; <span class="title">lst</span>) &#123;</span></span><br><span class="line">    <span class="keyword">int</span> tmp = lst.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">if</span>( tmp &gt; <span class="number">0</span> ) &#123;</span><br><span class="line">        <span class="keyword">typename</span> <span class="built_in">list</span>&lt;T&gt;::const_iterator i;<span class="comment">//typename用来说明 list&lt;T&gt;::const_iterator是个类型,在VS中不写也可以</span></span><br><span class="line">        i = lst.<span class="built_in">begin</span>();</span><br><span class="line">        <span class="keyword">for</span>(i = lst.<span class="built_in">begin</span>(); i != lst.<span class="built_in">end</span>(); i ++)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; * i &lt;&lt; <span class="string">&quot;,&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//与其他顺序容器不同, list容器只能使用双向迭代器,</span></span><br><span class="line"><span class="comment">//因此不支持大于/小于比较运算符, []运算符和随机移动</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="built_in">list</span>&lt;A&gt; lst1,lst2;</span><br><span class="line">lst1.push_back(<span class="number">1</span>); lst1.push_back(<span class="number">3</span>);</span><br><span class="line">lst1.push_back(<span class="number">2</span>); lst1.push_back(<span class="number">4</span>); lst1.push_back(<span class="number">2</span>);<span class="comment">// lst1:1,3,2,4,2</span></span><br><span class="line">lst2.push_back(<span class="number">10</span>); lst2.push_front(<span class="number">20</span>);</span><br><span class="line">lst2.push_back(<span class="number">30</span>); lst2.push_back(<span class="number">30</span>);</span><br><span class="line">lst2.push_back(<span class="number">30</span>); lst2.push_front(<span class="number">40</span>); lst2.push_back(<span class="number">40</span>);<span class="comment">//lst2：40,20,10,30,30,30</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;1) &quot;</span>; PrintList( lst1); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;2) &quot;</span>; PrintList( lst2); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">lst2.sort(); <span class="comment">//list容器的sort函数</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;3) &quot;</span>; PrintList( lst2); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//lst2:10,20,30,30,30,40</span></span><br><span class="line">lst2.pop_front();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;4) &quot;</span>; PrintList( lst2); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//lst2:20,30,30,30,40</span></span><br><span class="line">lst1.<span class="built_in">remove</span>(<span class="number">2</span>); <span class="comment">//删除所有和A(2)相等的元素</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;5) &quot;</span>; PrintList( lst1); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">lst2.unique(); <span class="comment">//删除所有和前一个元素相等的元素</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;6) &quot;</span>; PrintList( lst2); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">lst1.merge (lst2); <span class="comment">//合并 lst2到lst1并清空lst2</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;7) &quot;</span>; PrintList( lst1); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;8) &quot;</span>; PrintList( lst2); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">lst1.reverse();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;9) &quot;</span>; PrintList( lst1); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">lst2.push_back (<span class="number">100</span>); lst2.push_back (<span class="number">200</span>);</span><br><span class="line">lst2.push_back (<span class="number">300</span>); lst2.push_back (<span class="number">400</span>);</span><br><span class="line"><span class="built_in">list</span>&lt;A&gt;::iterator p1, p2, p3;</span><br><span class="line">p1 = <span class="built_in">find</span>(lst1.<span class="built_in">begin</span>(), lst1.<span class="built_in">end</span>(), <span class="number">3</span>);</span><br><span class="line">p2 = <span class="built_in">find</span>(lst2.<span class="built_in">begin</span>(), lst2.<span class="built_in">end</span>(), <span class="number">200</span>);</span><br><span class="line">p3 = <span class="built_in">find</span>(lst2.<span class="built_in">begin</span>(), lst2.<span class="built_in">end</span>(), <span class="number">400</span>);</span><br><span class="line">lst1.splice(p1, lst2, p2, p3); <span class="comment">//将[p2,p3)插入p1之前，</span></span><br><span class="line"><span class="comment">//并从lst2中删除[p2, p3)</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;11) &quot;</span>; PrintList( lst1); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;12) &quot;</span>; PrintList( lst2); <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">输出:</span><br><span class="line"><span class="number">1</span>) <span class="number">1</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>,</span><br><span class="line"><span class="number">2</span>) <span class="number">40</span>,<span class="number">20</span>,<span class="number">10</span>,<span class="number">30</span>,<span class="number">30</span>,<span class="number">30</span>,<span class="number">40</span>,</span><br><span class="line"><span class="number">3</span>) <span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">30</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">40</span>,</span><br><span class="line"><span class="number">4</span>) <span class="number">20</span>,<span class="number">30</span>,<span class="number">30</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">40</span>,</span><br><span class="line"><span class="number">5</span>) <span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,</span><br><span class="line"><span class="number">6</span>) <span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,</span><br><span class="line"><span class="number">7</span>) <span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,</span><br><span class="line"><span class="number">8</span>)</span><br><span class="line"><span class="number">9</span>) <span class="number">40</span>,<span class="number">30</span>,<span class="number">20</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">1</span>,</span><br><span class="line"><span class="number">11</span>) <span class="number">40</span>,<span class="number">30</span>,<span class="number">20</span>,<span class="number">4</span>,<span class="number">200</span>,<span class="number">300</span>,<span class="number">3</span>,<span class="number">1</span>,</span><br><span class="line"><span class="number">12</span>) <span class="number">100</span>,<span class="number">400</span>,</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><strong>deque 容器</strong>：<ul>
+<li><strong>双向队列</strong>，必须包含头文件 <code>#include &lt;deque&gt;</code></li>
+<li>所有适用于vector的操作，都适用于deque。</li>
+<li>deque还有 <code>push_front</code> (将元素插入到容器的头部) 和 <code>pop_front</code> (删除头部的元素) 操作。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" rel="tag"># 编程工具</a>
+              <a href="/tags/c/" rel="tag"># c++</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020-08-18/%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93-STL.html" rel="prev" title="标准模板库-STL">
+      <i class="fa fa-chevron-left"></i> 标准模板库-STL
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020-08-18/%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.html" rel="next" title="函数对象">
+      函数对象 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8Vector"><span class="nav-number">1.</span> <span class="nav-text">顺序容器Vector</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8list%E5%92%8Cdeque"><span class="nav-number">2.</span> <span class="nav-text">顺序容器list和deque</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">刘涛</p>
+  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          //console.log(error);
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"MxrUXwts7rlzq762NfLCiSVk-gzGzoHsz","app_key":"bqlnUht41VcOv8c5hK8DrOyz","server_url":"http://lt4hyl.top/","security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

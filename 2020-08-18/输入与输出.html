@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lt4hyl.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="基本类型说明  istream是用于输入的流类，cin就是该类的对象。 ostream是用于输出的流类，cout就是该类的对象。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="输入与输出">
+<meta property="og:url" content="http://lt4hyl.top/2020-08-18/%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA.html">
+<meta property="og:site_name" content="Lancelot的小站">
+<meta property="og:description" content="基本类型说明  istream是用于输入的流类，cin就是该类的对象。 ostream是用于输出的流类，cout就是该类的对象。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lt4hyl.top/2020-08-18/pictures/image-20200726103738916.png">
+<meta property="article:published_time" content="2020-08-18T07:40:49.000Z">
+<meta property="article:modified_time" content="2020-08-18T07:55:56.157Z">
+<meta property="article:author" content="刘涛">
+<meta property="article:tag" content="编程工具">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://lt4hyl.top/2020-08-18/pictures/image-20200726103738916.png">
+
+<link rel="canonical" href="http://lt4hyl.top/2020-08-18/%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>输入与输出 | Lancelot的小站</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43b02ed86a701dce319ff86325707452";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Lancelot的小站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-18/%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘涛">
+      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lancelot的小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          输入与输出
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-18 15:40:49 / 修改时间：15:55:56" itemprop="dateCreated datePublished" datetime="2020-08-18T15:40:49+08:00">2020-08-18</time>
+            </span>
+
+          
+            <span id="/2020-08-18/%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA.html" class="post-meta-item leancloud_visitors" data-flag-title="输入与输出" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="基本类型说明"><a href="#基本类型说明" class="headerlink" title="基本类型说明"></a>基本类型说明</h1><p><img src="pictures/image-20200726103738916.png" alt="image-20200726103738916"></p>
+<ul>
+<li><code>istream</code>是用于输入的流类，<code>cin</code>就是该类的对象。</li>
+<li><code>ostream</code>是用于输出的流类，<code>cout</code>就是该类的对象。</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><code>ifstream</code>是用于从文件读取数据的类。 </li>
+<li><code>ofstream</code>是用于向文件写入数据的类。 </li>
+<li><code>iostream</code>是既能用于输入，又能用于输出的类。</li>
+<li><code>fstream</code> 是既能从文件读取数据，又能向文件写入数据的类。</li>
+</ul>
+<h1 id="标准流对象"><a href="#标准流对象" class="headerlink" title="标准流对象"></a>标准流对象</h1><ul>
+<li>输入流对象：<code>cin</code> 与标准输入设备相连</li>
+<li>输出流对象：<code>cout</code> 与标准输出设备相连；<code>cerr</code> 与标准错误输出设备相连；<code>clog</code> 与标准错误输出设备相连</li>
+<li>缺省情况下：<code>cerr &lt;&lt; &quot;Hello,world&quot; &lt;&lt; endl;</code><br><code>clog &lt;&lt; &quot;Hello,world&quot; &lt;&lt; endl;</code> 和<code>cout &lt;&lt; “Hello,world” &lt;&lt; endl;</code> 一样。</li>
+<li><code>cin</code>对应于标准输入流，用于从键盘读取数据，也可以被<strong>重定向</strong>为从<strong>文件</strong>中读取数据。</li>
+<li><code>cout</code>对应于标准输出流，用于向屏幕输出数据，也可以被<strong>重定向</strong>为向<strong>文件</strong>写入数据。</li>
+<li><code>cerr/clog</code>对应于标准错误输出流，用于向屏幕输出出错信息。<code>cerr和clog</code>的区别在于<code>cerr</code>不使用缓冲区,直接向显示器输出信息；而输出到<code>clog</code>中的信息先会被存放在缓冲区,缓冲区满或者刷新时才输出到屏幕。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输出重定向</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x,y;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; x &gt;&gt; y;</span><br><span class="line">    freopen(<span class="string">&quot;test.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,<span class="built_in">stdout</span>); <span class="comment">//将标准输出重定向到 test.txt文件</span></span><br><span class="line">    <span class="keyword">if</span>(y == <span class="number">0</span>) <span class="comment">//除数为0则在屏幕上输出错误信息</span></span><br><span class="line">        <span class="built_in">cerr</span> &lt;&lt; <span class="string">&quot;error.&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; x /y ; <span class="comment">//输出结果到test.txt</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//输入重定向</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream &gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> f; <span class="keyword">int</span> n;</span><br><span class="line">    freopen(“t.txt”,“r”,<span class="built_in">stdin</span>); <span class="comment">//cin被改为从 t.txt中读取数据</span></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; f &gt;&gt; n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; f &lt;&lt; <span class="string">&quot;,&quot;</span> &lt;&lt;n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">t.txt:</span><br><span class="line"><span class="number">3.14</span> <span class="number">123</span></span><br><span class="line">输出:</span><br><span class="line"><span class="number">3.14</span>,<span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>判断输入流结束</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可以用如下方法判输入流结束:</span></span><br><span class="line"> <span class="keyword">int</span> x;</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;x)&#123; <span class="comment">//istream类中 有类型强制转换运算符的重载 使得 cin&gt;&gt;x 可以转换为 bool类型的变量</span></span><br><span class="line"> …..</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果是从文件输入，比如前面有 <code>freopen(“some.txt”,”r”,stdin);</code> 那么，读到文件尾部，输入流就算结束 。如果从键盘输入，则在单独一行输入<code>Ctrl+Z</code>代表输入流结束。</li>
+</ul>
+<h1 id="istream类的部分成员函数"><a href="#istream类的部分成员函数" class="headerlink" title="istream类的部分成员函数"></a><code>istream</code>类的部分成员函数</h1><ul>
+<li><code>istream &amp; getline(char * buf, int bufSize);</code><ul>
+<li>从输入流中读取<code>bufSize-1</code>个字符到缓冲区<code>buf</code>，或读着碰到<code>‘\n’</code> 为止（哪个先到算哪个）。</li>
+</ul>
+</li>
+<li><code>istream &amp; getline(char * buf, int bufSize,char delim);</code><ul>
+<li>从输入流中读取<code>bufSize-1</code>个字符到缓冲区<code>buf</code>，或读着碰到<code>delim</code>字 符为止（哪个先到算哪个）。</li>
+</ul>
+</li>
+<li><strong>两个函数都会自动在<code>buf</code>中读入数据的结尾添加<code>\0’</code>。</strong></li>
+<li><strong><code>‘\n’</code>或 <code>delim</code>都不会被读入<code>buf</code>，但会被从输入流中取走。</strong></li>
+<li>如果输入流中 <code>‘\n’</code>或<code>delim</code>之前的字符个数达到或超过了<code>bufSize</code>个，就导致读入出错，其结果就是：虽然本次读入已经完成，但是之后的读入就都会失败了。</li>
+<li><code>bool eof();</code> 判断输入流是否结束。</li>
+<li><code>int peek();</code> 返回下一个字符,但不从输入流中去掉。</li>
+<li><code>istream &amp; putback(char c);</code> 将字符<code>ch</code>放回输入流。</li>
+<li><code>istream &amp; ignore( int nCount = 1, int delim = EOF );</code>从流中删掉最多<code>nCount</code>个字符，遇到<code>EOF</code>时结束。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream &gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">char</span> buf[<span class="number">100</span>];</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; x;</span><br><span class="line">    <span class="built_in">cin</span>.getline(buf,<span class="number">90</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; buf &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输入：</span><br><span class="line"><span class="number">12</span> abcd↙</span><br><span class="line">输出：</span><br><span class="line">abcd (空格+abcd)</span><br><span class="line">    </span><br><span class="line">输入</span><br><span class="line"><span class="number">12</span>↙</span><br><span class="line">程序立即结束，输出：</span><br><span class="line"><span class="number">12</span></span><br><span class="line">    </span><br><span class="line">因为getline读到留在流中的’\n’就会返回  并在数据的结尾添加`\<span class="number">0</span>’`。   </span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h1><ul>
+<li>格式化输出有两种方式：<ul>
+<li>用于与 <code>cout</code> 搭配使用的各种<strong>流操作算子</strong>，用于格式化的输出，使用时要包含头文件 <code>&lt;iomanip&gt;;</code></li>
+<li>以流成员函数的方式。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="comment">//宽度控制</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; setw(<span class="number">10</span>) &lt;&lt; n &lt;&lt; <span class="string">&#x27;#&#x27;</span> &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//默认右对齐</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以流成员函数的方式 (不用包含iomanip头文件)</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>.<span class="built_in">width</span>(<span class="number">10</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="string">&#x27;#&#x27;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" rel="tag"># 编程工具</a>
+              <a href="/tags/c/" rel="tag"># c++</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020-08-18/string%E7%B1%BB%E7%9B%B8%E5%85%B3.html" rel="prev" title="string类相关">
+      <i class="fa fa-chevron-left"></i> string类相关
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020-08-18/%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93-STL.html" rel="next" title="标准模板库-STL">
+      标准模板库-STL <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">基本类型说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E6%B5%81%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.</span> <span class="nav-text">标准流对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#istream%E7%B1%BB%E7%9A%84%E9%83%A8%E5%88%86%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">istream类的部分成员函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA"><span class="nav-number">4.</span> <span class="nav-text">格式化输出</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">刘涛</p>
+  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘涛</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          //console.log(error);
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"MxrUXwts7rlzq762NfLCiSVk-gzGzoHsz","app_key":"bqlnUht41VcOv8c5hK8DrOyz","server_url":"http://lt4hyl.top/","security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

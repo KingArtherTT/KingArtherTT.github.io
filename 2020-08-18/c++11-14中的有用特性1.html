@@ -28,7 +28,7 @@
 <meta property="og:description" content="被弃用的主要特性 弃用不等于废弃，只是用于暗示程序员这些特性将从未来的标准中消失，应该尽量避免使用。 但是，已弃用的特性依然是标准库的一部分，并且出于兼容性的考虑，这些特性其实会『永久』保留。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-18T13:43:36.000Z">
-<meta property="article:modified_time" content="2020-08-18T14:22:17.856Z">
+<meta property="article:modified_time" content="2020-08-20T10:42:30.079Z">
 <meta property="article:author" content="刘涛">
 <meta property="article:tag" content="编程工具">
 <meta property="article:tag" content="c++">
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-18 21:43:36 / 修改时间：22:22:17" itemprop="dateCreated datePublished" datetime="2020-08-18T21:43:36+08:00">2020-08-18</time>
+              <time title="创建时间：2020-08-18 21:43:36" itemprop="dateCreated datePublished" datetime="2020-08-18T21:43:36+08:00">2020-08-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-20 18:42:30" itemprop="dateModified" datetime="2020-08-20T18:42:30+08:00">2020-08-20</time>
+              </span>
 
           
             <span id="/2020-08-18/c++11-14%E4%B8%AD%E7%9A%84%E6%9C%89%E7%94%A8%E7%89%B9%E6%80%A71.html" class="post-meta-item leancloud_visitors" data-flag-title="c++11-14中的有用特性1" title="阅读次数">
@@ -226,27 +232,41 @@
 <li><p>不再允许字符串字面值常量赋值给一个 <code>char *</code>。</p>
 <ul>
 <li><p>如果需要用字符串字面值常量<strong>赋值和初始化</strong>一个 <code>char *</code>，应该使用 <code>const char *</code> 或者 <code>auto</code>。</p>
-</li>
-<li><pre><code class="c++">char *str = &quot;hello world!&quot;; // 将出现弃用警告
-&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3. &amp;#96;bool&amp;#96; 类型的 &amp;#96;++&amp;#96; 操作被弃用&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4. C 语言风格的类型转换被弃用，应该使用 &amp;#96;static_cast&amp;#96;、&amp;#96;reinterpret_cast&amp;#96;、&amp;#96;const_cast&amp;#96; 来进行类型转换.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5. &amp;#96;auto_ptr&amp;#96; 被弃用，应使用 &amp;#96;unique_ptr&amp;#96;。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6. &amp;#96;register&amp;#96; 关键字被弃用。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7. C++98 异常说明、 &amp;#96;unexpected_handler&amp;#96;、&amp;#96;set_unexpected()&amp;#96; 等相关特性被弃用，应该使用 &amp;#96;noexcept&amp;#96;。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 与C的兼容性&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 在编写 C++ 时，也应该尽可能的避免使用诸如 &amp;#96;void*&amp;#96; 之类的程序风格&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 而在不得不使用 C 时，应该注意使用 &amp;#96;extern &amp;quot;C&amp;quot;&amp;#96; 这种特性，将 C 语言的代码与 C++ 代码进行分离编译，再统一链接这种做法。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
-// 头文件 foo.h
-#ifdef __cplusplus
-extern &quot;C&quot; &#123;
-#endif
-</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *str = <span class="string">&quot;hello world!&quot;</span>; <span class="comment">// 将出现弃用警告</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
+<li><p><code>bool</code> 类型的 <code>++</code> 操作被弃用</p>
+</li>
+<li><p>C 语言风格的类型转换被弃用，应该使用 <code>static_cast</code>、<code>reinterpret_cast</code>、<code>const_cast</code> 来进行类型转换.</p>
+</li>
+<li><p><code>auto_ptr</code> 被弃用，应使用 <code>unique_ptr</code>。</p>
+</li>
+<li><p><code>register</code> 关键字被弃用。</p>
+</li>
+<li><p>C++98 异常说明、 <code>unexpected_handler</code>、<code>set_unexpected()</code> 等相关特性被弃用，应该使用 <code>noexcept</code>。</p>
+</li>
 </ol>
-<p>int add(int x, int y);</p>
-<p>#ifdef __cplusplus<br>}<br>#endif</p>
-<p>//源文件 foo.c<br>int add(int x, int y) {<br>    return x+y;<br>}</p>
-<p>//源文件 main.cpp<br>// main.cpp<br>#include “foo.h”<br>int main() {<br>    add(1, 2);<br>    return 0;<br>}</p>
-<p>//在编译时：应先使用 gcc 编译 C 语言的代码<br>gcc -c foo.c<br>//编译出 foo.o 文件，再使用 g++ 将 C++代码和 .o 文件链接起来（或者都编译为 .o 再统一链接）：<br>g++ main.cpp foo.o -o main</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># &#96;nullptr&#96; 与 &#96;constexpr&#96;</span><br><span class="line"></span><br><span class="line">- &#96;nullptr&#96;：专门用来区分空指针、0，目的是为了替代 &#96;NULL&#96;。</span><br><span class="line"></span><br><span class="line">  - &#96;nullptr&#96; 的类型为 &#96;nullptr_t&#96;，能够隐式的转换为任何指针或成员指针的类型，也能和他们进行相等或者不等的比较。</span><br><span class="line">  - 传统 C++ 会把 &#96;NULL&#96;、&#96;0&#96; 视为同一种东西，这取决于编译器如何定义 NULL，这将导致了 &#96;C++&#96; 中重载特性会发生混乱。</span><br><span class="line"></span><br><span class="line">  &#96;&#96;&#96;c++</span><br><span class="line">  void foo(char *);</span><br><span class="line">  </span><br><span class="line">  void foo(int);</span><br><span class="line">  </span><br><span class="line">  &#x2F;&#x2F;如果 NULL 又被定义为了 0 那么 </span><br><span class="line">  foo(NULL);</span><br><span class="line">  &#x2F;&#x2F;会去调用 foo(int)</span><br><span class="line">  &#x2F;&#x2F;从而导致代码违反直观</span><br></pre></td></tr></table></figure>
+<h1 id="与C的兼容性"><a href="#与C的兼容性" class="headerlink" title="与C的兼容性"></a>与C的兼容性</h1><ul>
+<li>在编写 C++ 时，也应该尽可能的避免使用诸如 <code>void*</code> 之类的程序风格</li>
+<li>而在不得不使用 C 时，应该注意使用 <code>extern &quot;C&quot;</code> 这种特性，将 C 语言的代码与 C++ 代码进行分离编译，再统一链接这种做法。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 头文件 foo.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//源文件 foo.c</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//源文件 main.cpp</span></span><br><span class="line"><span class="comment">// main.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;foo.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    add(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//在编译时：应先使用 gcc 编译 C 语言的代码</span></span><br><span class="line">gcc -c foo.c</span><br><span class="line"><span class="comment">//编译出 foo.o 文件，再使用 g++ 将 C++代码和 .o 文件链接起来（或者都编译为 .o 再统一链接）：</span></span><br><span class="line">g++ main.cpp foo.o -o main</span><br></pre></td></tr></table></figure>
 
 
 
+<h1 id="nullptr-与-constexpr"><a href="#nullptr-与-constexpr" class="headerlink" title="nullptr 与 constexpr"></a><code>nullptr</code> 与 <code>constexpr</code></h1><ul>
+<li><p><code>nullptr</code>：专门用来区分空指针、0，目的是为了替代 <code>NULL</code>。</p>
+<ul>
+<li><code>nullptr</code> 的类型为 <code>nullptr_t</code>，能够隐式的转换为任何指针或成员指针的类型，也能和他们进行相等或者不等的比较。</li>
+<li>传统 C++ 会把 <code>NULL</code>、<code>0</code> 视为同一种东西，这取决于编译器如何定义 NULL，这将导致了 <code>C++</code> 中重载特性会发生混乱。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">char</span> *)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果 NULL 又被定义为了 0 那么 </span></span><br><span class="line">foo(<span class="literal">NULL</span>);</span><br><span class="line"><span class="comment">//会去调用 foo(int)</span></span><br><span class="line"><span class="comment">//从而导致代码违反直观</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
 <ul>
 <li><code>constexpr</code>：让用户显式的声明函数或对象构造函数在编译器中会成为常数，用于定义数组等工作；<ul>
 <li>这个关键字明确的告诉编译器应该去验证增加了该关键字的函数，在编译时就应该是一个常数。</li>
@@ -475,7 +495,7 @@ extern &quot;C&quot; &#123;
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A2%AB%E5%BC%83%E7%94%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">被弃用的主要特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC%EF%BC%9Aauto-%E5%92%8C-decltype"><span class="nav-number">2.</span> <span class="nav-text">类型推导：auto 和 decltype</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E8%BF%AD%E4%BB%A3"><span class="nav-number">3.</span> <span class="nav-text">区间迭代</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8"><span class="nav-number">4.</span> <span class="nav-text">初始化列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E5%A2%9E%E5%BC%BA"><span class="nav-number">5.</span> <span class="nav-text">模板增强</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%A2%9E%E5%BC%BA"><span class="nav-number">6.</span> <span class="nav-text">面向对象增强</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A2%AB%E5%BC%83%E7%94%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">被弃用的主要特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8EC%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">与C的兼容性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nullptr-%E4%B8%8E-constexpr"><span class="nav-number">3.</span> <span class="nav-text">nullptr 与 constexpr</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%8E%A8%E5%AF%BC%EF%BC%9Aauto-%E5%92%8C-decltype"><span class="nav-number">4.</span> <span class="nav-text">类型推导：auto 和 decltype</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E8%BF%AD%E4%BB%A3"><span class="nav-number">5.</span> <span class="nav-text">区间迭代</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8"><span class="nav-number">6.</span> <span class="nav-text">初始化列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E5%A2%9E%E5%BC%BA"><span class="nav-number">7.</span> <span class="nav-text">模板增强</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%A2%9E%E5%BC%BA"><span class="nav-number">8.</span> <span class="nav-text">面向对象增强</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -489,13 +509,13 @@ extern &quot;C&quot; &#123;
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -571,7 +591,6 @@ extern &quot;C&quot; &#123;
       var title = visitors.dataset.flagTitle;
       
       
-      //Counter('get', `/classes/Counter?where=${encodeURIComponent(JSON.stringify({ url }))}&limit=1`)
       Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
         .then(response => response.json())
         .then(({ results }) => {
@@ -604,7 +623,6 @@ extern &quot;C&quot; &#123;
         return decodeURI(element.id);
       });
 
-      //Counter('get', `?where=${encodeURIComponent(JSON.stringify({ url: { '$in': entries } }))}`)
       Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
         .then(response => response.json())
         .then(({ results }) => {

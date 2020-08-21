@@ -249,7 +249,10 @@
     <a href="/2020-08-19/c++11-14%E4%B8%AD%E7%9A%84%E6%9C%89%E7%94%A8%E7%89%B9%E6%80%A72.html" rel="prev" title="c++11-14中的有用特性2">
       <i class="fa fa-chevron-left"></i> c++11-14中的有用特性2
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020-08-20/%E4%BA%8ECentos7%E4%B8%8A%E9%83%A8%E7%BD%B2%E5%9F%BA%E4%BA%8EHexo%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%AB%99%E7%82%B9.html" rel="next" title="于Centos7上部署基于Hexo的博客站点">
+      于Centos7上部署基于Hexo的博客站点 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -321,13 +324,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -403,7 +406,6 @@
       var title = visitors.dataset.flagTitle;
       
       
-      //Counter('get', `/classes/Counter?where=${encodeURIComponent(JSON.stringify({ url }))}&limit=1`)
       Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
         .then(response => response.json())
         .then(({ results }) => {
@@ -436,7 +438,6 @@
         return decodeURI(element.id);
       });
 
-      //Counter('get', `?where=${encodeURIComponent(JSON.stringify({ url: { '$in': entries } }))}`)
       Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
         .then(response => response.json())
         .then(({ results }) => {

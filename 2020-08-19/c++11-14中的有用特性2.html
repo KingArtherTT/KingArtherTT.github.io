@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="Lancelot的小站">
 <meta property="og:description" content="Lambda 表达式 Lambda表达式：实际上就是提供了一个类似匿名函数的特性。  而匿名函数则是在需要一个函数，但是又不想费力去命名一个函数的情况下去使用的。  基本语法：">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://lt4hyl.top/2020-08-19/pictures/image-20200802101900429.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200802101900429.png">
 <meta property="article:published_time" content="2020-08-19T01:53:17.000Z">
-<meta property="article:modified_time" content="2020-08-19T03:38:53.329Z">
+<meta property="article:modified_time" content="2020-08-20T10:37:38.077Z">
 <meta property="article:author" content="刘涛">
 <meta property="article:tag" content="编程工具">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://lt4hyl.top/2020-08-19/pictures/image-20200802101900429.png">
+<meta name="twitter:image" content="http://lt4hyl.top/pictures/image-20200802101900429.png">
 
 <link rel="canonical" href="http://lt4hyl.top/2020-08-19/c++11-14%E4%B8%AD%E7%9A%84%E6%9C%89%E7%94%A8%E7%89%B9%E6%80%A72.html">
 
@@ -186,10 +186,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-19 09:53:17 / 修改时间：11:38:53" itemprop="dateCreated datePublished" datetime="2020-08-19T09:53:17+08:00">2020-08-19</time>
+              <time title="创建时间：2020-08-19 09:53:17" itemprop="dateCreated datePublished" datetime="2020-08-19T09:53:17+08:00">2020-08-19</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-20 18:37:38" itemprop="dateModified" datetime="2020-08-20T18:37:38+08:00">2020-08-20</time>
+              </span>
 
           
             <span id="/2020-08-19/c++11-14%E4%B8%AD%E7%9A%84%E6%9C%89%E7%94%A8%E7%89%B9%E6%80%A72.html" class="post-meta-item leancloud_visitors" data-flag-title="c++11-14中的有用特性2" title="阅读次数">
@@ -482,9 +488,8 @@
 <li><p>高级程序语言如：C#，Java，在进行垃圾回收时，都会有一个概念，叫做<strong>引用计数</strong>，用于明晰变量的生命周期。现在C++中也有了。</p>
 </li>
 <li><p>引用计数：目的在于防止内存泄露。</p>
-<ul>
-<li>基本想法：对于动态分配的对象，进行引用计数，每当增加一次对同一个对象的引用，那么引用对象的引用计数就会增加一次，每删除一次引用，引用计数就会减一，当一个对象的引用计数减为零时，就自动删除指向的堆内存。</li>
-</ul>
+</li>
+<li><p>基本想法：对于动态分配的对象，进行引用计数，每当增加一次对同一个对象的引用，那么引用对象的引用计数就会增加一次，每删除一次引用，引用计数就会减一，当一个对象的引用计数减为零时，就自动删除指向的堆内存。</p>
 </li>
 <li><p>C++11中引入智能指针的概念：使用了引用计数的想法，让程序员不再需要关心手动释放内存。这些智能指针就包括 <code>std::shared_ptr</code>/<code>std::unique_ptr</code>/<code>std::weak_ptr</code>，使用它们需要包含头文件 <code>&lt;memory&gt;</code>。</p>
 </li>
@@ -519,7 +524,7 @@
 <li><code>std::weak_ptr</code> 没有 <code>*</code> 运算符和 <code>-&gt;</code> 运算符，所以不能够对资源进行操作，它的唯一作用就是用于检查 <code>std::shared_ptr</code> 是否存在，<code>expired()</code> 方法在资源未被释放时，会返回 <code>true</code>，否则返回 <code>false</code>。</li>
 <li>弱引用指针使用的必要性在于：强引用指针指向的对象之间可能有相互的引用，导致内存不能释放，如下图：</li>
 </ul>
-<p><img src="pictures/image-20200802101900429.png" alt="image-20200802101900429"></p>
+<p><img src="/pictures/image-20200802101900429.png" alt="image-20200802101900429"></p>
 <ul>
 <li>此时需要将A/B中至少有一个使用 <code>std::weak_ptr</code>才行。</li>
 </ul>
@@ -808,13 +813,13 @@ void no_throw() noexcept;   // 不可能抛出异常
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -890,7 +895,6 @@ void no_throw() noexcept;   // 不可能抛出异常
       var title = visitors.dataset.flagTitle;
       
       
-      //Counter('get', `/classes/Counter?where=${encodeURIComponent(JSON.stringify({ url }))}&limit=1`)
       Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
         .then(response => response.json())
         .then(({ results }) => {
@@ -923,7 +927,6 @@ void no_throw() noexcept;   // 不可能抛出异常
         return decodeURI(element.id);
       });
 
-      //Counter('get', `?where=${encodeURIComponent(JSON.stringify({ url: { '$in': entries } }))}`)
       Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
         .then(response => response.json())
         .then(({ results }) => {

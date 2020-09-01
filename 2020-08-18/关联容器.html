@@ -110,7 +110,7 @@
       <h1 class="site-title">Lancelot的小站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
   </div>
 
   <div class="site-nav-right">
@@ -127,6 +127,11 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -167,7 +172,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -196,13 +201,20 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
+                <i class="far fa-file-word"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -221,7 +233,6 @@
 </li>
 <li><p>除了各容器都有的函数外，还支持以下成员函数：</p>
 <a id="more"></a>
-
 <ul>
 <li><code>find</code>: 查找等于某个值 的元素(x小于y和y小于x同时不成立即为相等)</li>
 <li><code>lower_bound</code> : 查找某个下界 </li>
@@ -237,7 +248,6 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">Key</span>, <span class="title">class</span> <span class="title">Pred</span> = <span class="title">less</span>&lt;Key&gt;,<span class="title">class</span> <span class="title">A</span> = <span class="title">allocator</span>&lt;Key&gt; &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">multiset</span> &#123;</span> …… &#125;;</span><br><span class="line"><span class="comment">// Pred类型的变量决定了multiset 中的元素，“一个比另一个小”是怎么定义的。</span></span><br><span class="line"><span class="comment">// multiset运行过程中，比较两个元素x,y的大小的做法，就是生成一个 Pred类型的变量</span></span><br><span class="line"><span class="comment">// 假定为 op,若表达式op(x,y) 返回值为true,则 x比y小。</span></span><br><span class="line"><span class="comment">// Pred的缺省类型是 less&lt;Key&gt;。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// less 模板的定义：</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">less</span> :</span> <span class="keyword">public</span> binary_function&lt;T, T, <span class="keyword">bool</span>&gt;</span><br><span class="line">&#123; <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> T&amp; x, <span class="keyword">const</span> T&amp; y)</span> </span>&#123; <span class="keyword">return</span> x &lt; y ; &#125; <span class="keyword">const</span>; &#125;;</span><br><span class="line"><span class="comment">//less模板是靠 &lt; 来比较大小的 这意味着 class T 必须得重载运算符 &lt;</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>multiset的成员函数:<ul>
 <li><code>iterator find(const T &amp; val);</code> 在容器中查找值为<code>val</code>的元素，返回其迭代器。如果找不到，返回end()。</li>
@@ -253,13 +263,8 @@
 <li><strong>set</strong>：</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">Key</span>, <span class="title">class</span> <span class="title">Pred</span> = <span class="title">less</span>&lt;Key&gt;,<span class="title">class</span> <span class="title">A</span> = <span class="title">allocator</span>&lt;Key&gt; &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">set</span> &#123;</span> … &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//插入set中已有的元素时，忽略插入。</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="预备知识：-pair-模板"><a href="#预备知识：-pair-模板" class="headerlink" title="预备知识： pair 模板"></a>预备知识： pair 模板</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> _<span class="title">T1</span>, <span class="title">class</span> _<span class="title">T2</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">pair</span>&#123;</span></span><br><span class="line">    <span class="keyword">typedef</span> _T1 first_type;</span><br><span class="line">    <span class="keyword">typedef</span> _T2 second_type;</span><br><span class="line">    _T1 first;</span><br><span class="line">    _T2 second;</span><br><span class="line">    <span class="built_in">pair</span>(): first(), second() &#123; &#125;</span><br><span class="line">    <span class="built_in">pair</span>(<span class="keyword">const</span> _T1&amp; __a, <span class="keyword">const</span> _T2&amp; __b): first(__a), second(__b) &#123; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> _<span class="title">U1</span>, <span class="title">class</span> _<span class="title">U2</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="title">pair</span>(<span class="title">const</span> <span class="title">pair</span>&lt;_U1, _U2&gt;&amp; __<span class="title">p</span>):</span> first(__p.first), second(__p.second) &#123; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第三个构造函数用法示例：</span></span><br><span class="line"><span class="built_in">pair</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; p;</span><br><span class="line">p(<span class="built_in">pair</span>&lt;<span class="keyword">double</span>,<span class="keyword">double</span>&gt;(<span class="number">5.5</span>,<span class="number">4.6</span>));</span><br><span class="line"><span class="comment">// p.first = 5, p.second = 4</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><strong>map/multimap 容器里放着的都是 pair模版类的对象，且按first从小到大排序</strong></li>
 </ul>
@@ -267,7 +272,6 @@
 <li><strong>map/multimap 容器里放着的都是 pair模版类的对象，且按first从小到大排序</strong></li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">Key</span>, <span class="title">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Pred</span> = <span class="title">less</span>&lt;Key&gt;,<span class="title">class</span> <span class="title">A</span> = <span class="title">allocator</span>&lt;T&gt; &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">multimap</span> &#123;</span></span><br><span class="line">….</span><br><span class="line">    <span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;<span class="keyword">const</span> Key, T&gt; value_type;</span><br><span class="line">…….</span><br><span class="line">&#125;; <span class="comment">//Key 代表关键字的类型</span></span><br><span class="line"><span class="comment">//multimap中的元素由 &lt;关键字,值&gt;组成，每个元素是一个pair对象，关键字就是first成员变量,其类型是Key</span></span><br><span class="line"><span class="comment">//multimap 中允许多个元素的关键字相同。元素按照first成员变量从小到大排列，缺省情况下用 less&lt;Key&gt; 定义关键字的“小于”关系。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">Key</span>, <span class="title">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Pred</span> = <span class="title">less</span>&lt;Key&gt;,<span class="title">class</span> <span class="title">A</span> = <span class="title">allocator</span>&lt;T&gt; &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">map</span> &#123;</span></span><br><span class="line">….</span><br><span class="line">    <span class="keyword">typedef</span> <span class="built_in">pair</span>&lt;<span class="keyword">const</span> Key, T&gt; value_type;</span><br><span class="line">…….</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//map 中的元素都是pair模板类对象。关键字(first成员变量)各不相同。</span></span><br><span class="line"><span class="comment">//元素按照关键字从小到大排列，缺省情况下用 less&lt;Key&gt;,即“&lt;” 定义“小于”。</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>可以使用函数<code>make_pair</code>生成一个<code>pair</code>对象</p>
 </li>
@@ -277,7 +281,6 @@
 <li><code>pairs[key]</code>：返回对关键字等于<code>key</code>的元素的值(<code>second</code>成员变量）的引用。若没有关键字为<code>key</code>的元素，则会往<code>pairs</code>里插入一个关键字为<code>key</code>的元素，其值用无参构造函数初始化，并返回其值的引用。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">map&lt;int,double&gt; pairs;</span><br><span class="line">pairs[50] &#x3D; 5; </span><br><span class="line">&#x2F;&#x2F;会修改pairs中关键字为50的元素，使其值变成5。</span><br><span class="line">&#x2F;&#x2F;若不存在关键字等于50的元素，则插入此元素，并使其值变为5。</span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 
@@ -286,6 +289,43 @@
     
     
     
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-18/%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8.html" title="关联容器">http://lt4hyl.top/2020-08-18/关联容器.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -371,14 +411,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘涛</p>
-  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -389,6 +429,9 @@
       </div>
   </nav>
 </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -407,6 +450,8 @@
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
 
 <div class="copyright">
   
@@ -416,6 +461,18 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

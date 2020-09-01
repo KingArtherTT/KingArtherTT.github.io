@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"lt4hyl.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="基本概念：顺序文件由数据构成，数据的层次可划分为：位（bit) –&gt;字节（byte） –&gt; 域&#x2F;记录（学生记录：int ID;char name[10];）。将所有记录顺序地写入一个文件，得到顺序文件。">
+  <meta name="description" content="基本概念：顺序文件由数据构成，数据的层次可划分为：位（bit) —&gt;字节（byte） —&gt; 域&#x2F;记录（学生记录：int ID;char name[10];）。将所有记录顺序地写入一个文件，得到顺序文件。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件操作">
 <meta property="og:url" content="http://lt4hyl.top/2020-08-18/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C.html">
 <meta property="og:site_name" content="Lancelot的小站">
-<meta property="og:description" content="基本概念：顺序文件由数据构成，数据的层次可划分为：位（bit) –&gt;字节（byte） –&gt; 域&#x2F;记录（学生记录：int ID;char name[10];）。将所有记录顺序地写入一个文件，得到顺序文件。">
+<meta property="og:description" content="基本概念：顺序文件由数据构成，数据的层次可划分为：位（bit) —&gt;字节（byte） —&gt; 域&#x2F;记录（学生记录：int ID;char name[10];）。将所有记录顺序地写入一个文件，得到顺序文件。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://lt4hyl.top/pictures/image-20200723171243323.png">
 <meta property="og:image" content="http://lt4hyl.top/pictures/image-20200723171326359.png">
@@ -113,7 +113,7 @@
       <h1 class="site-title">Lancelot的小站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
   </div>
 
   <div class="site-nav-right">
@@ -130,6 +130,11 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -170,7 +175,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -205,13 +210,20 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
+                <i class="far fa-file-word"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -224,15 +236,12 @@
 
       
         <ul>
-<li>基本概念：<strong>顺序文件</strong>由数据构成，数据的层次可划分为：位（bit) –&gt;字节（byte） –&gt; 域/记录（学生记录：<code>int ID;char name[10];</code>）。将所有记录顺序地写入一个文件，得到<strong>顺序文件</strong>。</li>
+<li>基本概念：<strong>顺序文件</strong>由数据构成，数据的层次可划分为：位（bit) —&gt;字节（byte） —&gt; 域/记录（学生记录：<code>int ID;char name[10];</code>）。将所有记录顺序地写入一个文件，得到<strong>顺序文件</strong>。</li>
 </ul>
 <a id="more"></a>
-
 <h1 id="顺序文件和流"><a href="#顺序文件和流" class="headerlink" title="顺序文件和流"></a>顺序文件和流</h1><ul>
-<li><p><strong>顺序文件</strong> ：一个有限字符构成的顺序字符流。</p>
-</li>
-<li><p>C++标准库中: <code>ifstream, ofstream和fstream</code>共3个类 用于文件操作 — 统称为<strong>文件流类</strong></p>
-</li>
+<li><strong>顺序文件</strong> ：一个有限字符构成的顺序字符流。</li>
+<li>C++标准库中: <code>ifstream, ofstream和fstream</code>共3个类 用于文件操作 — 统称为<strong>文件流类</strong></li>
 <li><p>继承关系如下图：</p>
 <p><img src="/pictures/image-20200723171243323.png" alt="image-20200723171243323"></p>
 </li>
@@ -242,9 +251,6 @@
 </ul>
 <p><img src="/pictures/image-20200723171326359.png" alt="image-20200723171326359"></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;  // 包含头文件</span></span></span><br><span class="line"><span class="function">ofstream <span class="title">outFile</span><span class="params">(“clients.dat”, ios::out|ios::binary)</span></span>;  <span class="comment">//打开文件</span></span><br><span class="line"><span class="comment">// ofstream 是文件fstream中定义的类</span></span><br><span class="line"><span class="comment">// “clients.dat”  是将要建立的文件的文件名</span></span><br><span class="line"><span class="comment">// 打开并建立文件的选项：</span></span><br><span class="line"><span class="comment">//• ios::out 输出到文件, 删除原有内容</span></span><br><span class="line"><span class="comment">//• ios::app 输出到文件, 保留原有内容, 总是在尾部添加</span></span><br><span class="line"><span class="comment">//• ios::binary 以二进制文件格式打开文件</span></span><br><span class="line"><span class="comment">// ios::out|ios::binary 中间以 | 连接，表示同时包含两种操作</span></span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li><p>建立顺序文件的流程：</p>
 <ul>
@@ -264,17 +270,12 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文件的读写指针</span></span><br><span class="line"><span class="function">ofstream <span class="title">fout</span><span class="params">(“a1.out”, ios::app)</span></span>;</span><br><span class="line"><span class="keyword">long</span> location = fout.tellp(); <span class="comment">//tellp() 取得写指针的当前位置</span></span><br><span class="line">location = <span class="number">10L</span>;</span><br><span class="line">fout.seekp(location); <span class="comment">// 将写指针移动到第10个字节处</span></span><br><span class="line">fout.seekp(location, ios::beg); <span class="comment">//ios::beg 从头数location</span></span><br><span class="line">fout.seekp(location, ios::cur); <span class="comment">//ios::cur 从当前位置数location</span></span><br><span class="line">fout.seekp(location, ios::<span class="built_in">end</span>); <span class="comment">//ios::end 从尾部数location</span></span><br><span class="line"><span class="comment">//location 可以为负值</span></span><br><span class="line"></span><br><span class="line"><span class="function">ifstream <span class="title">fin</span><span class="params">(“a1.in”,ios::in)</span></span>;</span><br><span class="line"><span class="keyword">long</span> location = fin.tellg(); <span class="comment">//取得读指针的位置</span></span><br><span class="line">location = <span class="number">10L</span>;</span><br><span class="line">fin.seekg(location); <span class="comment">//将读指针移动到第10个字节处</span></span><br><span class="line">fin.seekg(location, ios::beg); <span class="comment">//从头数location</span></span><br><span class="line">fin.seekg(location, ios::cur); <span class="comment">//从当前位置数location</span></span><br><span class="line">fin.seekg(location, ios::<span class="built_in">end</span>); <span class="comment">//从尾部数location</span></span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>二进制文件读写</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x=<span class="number">10</span>;</span><br><span class="line">fout.seekp(<span class="number">20</span>, ios::beg);<span class="comment">//seekp 对应 ofstream</span></span><br><span class="line">fout.<span class="built_in">write</span>( (<span class="keyword">const</span> <span class="keyword">char</span>*)(&amp;x), <span class="keyword">sizeof</span>(<span class="keyword">int</span>) );</span><br><span class="line"></span><br><span class="line">fin.seekg(<span class="number">0</span>, ios::beg); <span class="comment">// seekg 对应 ifstream</span></span><br><span class="line">fin.<span class="built_in">read</span>( (<span class="keyword">char</span>*)(&amp;x), <span class="keyword">sizeof</span>(<span class="keyword">int</span>) );</span><br><span class="line"><span class="comment">//注意这里将读取内容进行了强制类型转化</span></span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p>为什么不论是 <code>read</code> 还是 <code>wirte</code> 都要强制转化成 <code>char*</code> 类型？</p>
-<ul>
+<li>为什么不论是 <code>read</code> 还是 <code>wirte</code> 都要强制转化成 <code>char*</code> 类型？<ul>
 <li>首先这是二进制写入，即需要一个Byte一个Byte的把当前对象在内存中的实际值写入到文件中。</li>
 <li>其次char类型是一个byte的，而一个byte是内存中最小的单元，任何其他的c++的基本类型都可以转化为一个byte或者几个byte,也就说可以转化为一个char类型或者几个char。</li>
 <li>再根据size 参数计算上述的<code>x</code>有多少个byte,就可以所有的byte都写入文件了。</li>
@@ -286,9 +287,8 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面的程序从键盘输入几个学生的姓名的成绩,并以二进制, 文件形式存起来</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CStudent</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">char</span> szName[<span class="number">20</span>];</span><br><span class="line">    <span class="keyword">int</span> nScore;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    CStudent s;</span><br><span class="line">    <span class="function">ofstream <span class="title">OutFile</span><span class="params">( “c:\\tmp\\students.dat”, ios::out|ios::binary )</span></span>;</span><br><span class="line">    <span class="keyword">while</span>( <span class="built_in">cin</span> &gt;&gt; s.szName &gt;&gt; s.nScore ) &#123;</span><br><span class="line">        <span class="keyword">if</span>( stricmp(s.szName,“<span class="built_in">exit</span>” ) == <span class="number">0</span>) <span class="comment">//名字为exit则结束</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        OutFile.<span class="built_in">write</span>( (<span class="keyword">char</span> *) &amp; s, <span class="keyword">sizeof</span>(s) );</span><br><span class="line"> &#125;</span><br><span class="line"> OutFile.<span class="built_in">close</span>();</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//输入:</span></span><br><span class="line"><span class="comment">//Tom 60</span></span><br><span class="line"><span class="comment">//Jack 80</span></span><br><span class="line"><span class="comment">//Jane 40</span></span><br><span class="line"><span class="comment">// exit 0</span></span><br><span class="line"><span class="comment">// 则形成的 students.dat 为 72字节</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//下面的程序将 students.dat 文件的内容读出并显示</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CStudent</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">char</span> szName[<span class="number">20</span>];</span><br><span class="line">    <span class="keyword">int</span> nScore;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    CStudent s;</span><br><span class="line">    <span class="function">ifstream <span class="title">inFile</span><span class="params">(<span class="string">&quot;students.dat&quot;</span>, ios::in | ios::binary )</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(!inFile) &#123;</span><br><span class="line">         <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;error&quot;</span> &lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>( inFile.<span class="built_in">read</span>( (<span class="keyword">char</span>* ) &amp; s, <span class="keyword">sizeof</span>(s) ) ) &#123;</span><br><span class="line">        <span class="keyword">int</span> nReadedBytes = inFile.gcount(); <span class="comment">//看刚才读了多少字节</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; s.szName &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; s.score &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    inFile.<span class="built_in">close</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="comment">//Tom 60</span></span><br><span class="line"><span class="comment">//Jack 80</span></span><br><span class="line"><span class="comment">//Jane 40</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//下面的程序将 students.dat 文件的Jane的名字改成Mike</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CStudent</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">char</span> szName[<span class="number">20</span>];</span><br><span class="line">    <span class="keyword">int</span> nScore;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    CStudent s;</span><br><span class="line">    <span class="function">fstream <span class="title">iofile</span><span class="params">( “c:\\tmp\\students.dat”, ios::in|ios::out|ios::binary)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(!iofile) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;error&quot;</span> ;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    iofile.seekp( <span class="number">2</span> * <span class="keyword">sizeof</span>(s), ios::beg); <span class="comment">//定位写指针到第三个记录</span></span><br><span class="line">    iofile.<span class="built_in">write</span>( “Mike”, <span class="built_in">strlen</span>(<span class="string">&quot;Mike&quot;</span>)+<span class="number">1</span>);</span><br><span class="line">    iofile.seekg(<span class="number">0</span>, ios::beg); <span class="comment">//定位读指针到开头</span></span><br><span class="line">    <span class="keyword">while</span>( iofile.<span class="built_in">read</span>( (<span class="keyword">char</span>* ) &amp; s, <span class="keyword">sizeof</span>(s)) )</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; s.szName &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; s.nScore &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    iofile.<span class="built_in">close</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="comment">//Tom 60</span></span><br><span class="line"><span class="comment">//Jack 80</span></span><br><span class="line"><span class="comment">//Mike 40</span></span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p>Note – 文本文件/二进制文件打开文件的 区别：</p>
+<li><p>Note — 文本文件/二进制文件打开文件的 区别：</p>
 <ul>
 <li>在Unix/Linux下，二者一致, 没有区别。</li>
 <li>在Windows下， 文本文件是以 “\r\n”（回车符）作为 换行符<ul>
@@ -298,22 +298,56 @@
 </li>
 </ul>
 </li>
-<li><p><strong>注意：一定要显式关闭文件。</strong></p>
-</li>
+<li><strong>注意：一定要显式关闭文件。</strong></li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ifstream <span class="title">fin</span><span class="params">(“test.dat”, ios::in)</span></span>;</span><br><span class="line">fin.<span class="built_in">close</span>();</span><br><span class="line"><span class="function">ofstream <span class="title">fout</span><span class="params">(“test.dat”, ios::out)</span></span>;</span><br><span class="line">fout.<span class="built_in">close</span>();</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>举例：mycopy程序，进行文件拷贝</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用法示例：</span></span><br><span class="line"><span class="comment">//mycopy src.dat dest.dat</span></span><br><span class="line"><span class="comment">//即将 src.dat 拷贝到 dest.dat</span></span><br><span class="line"><span class="comment">//如果 dest.dat 原来就有, 则原来的文件会被覆盖</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(argc != <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;File name missing!&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">     &#125;</span><br><span class="line">    <span class="function">ifstream <span class="title">inFile</span><span class="params">(argv[<span class="number">1</span>], ios::binary|ios::in)</span></span>; <span class="comment">//打开文件用于读</span></span><br><span class="line">    <span class="keyword">if</span>(! inFile) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; “Source file <span class="built_in">open</span> error.” &lt;&lt; <span class="built_in">endl</span>;    </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ofstream <span class="title">outFile</span><span class="params">(argv[<span class="number">2</span>], ios::binary|ios::out)</span></span>; <span class="comment">//打开文件用于写</span></span><br><span class="line">    <span class="keyword">if</span>(!outFile) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; “New file <span class="built_in">open</span> error.” &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        inFile.<span class="built_in">close</span>(); <span class="comment">//打开的文件一定要关闭</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">char</span> c;</span><br><span class="line">    <span class="keyword">while</span>(inFile.<span class="built_in">get</span>(c)) <span class="comment">//每次读取一个字符</span></span><br><span class="line">        outFile.<span class="built_in">put</span>(c); <span class="comment">//每次写入一个字符</span></span><br><span class="line">    outFile.<span class="built_in">close</span>();</span><br><span class="line">    inFile.<span class="built_in">close</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
     
     
     
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-18/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C.html" title="文件操作">http://lt4hyl.top/2020-08-18/文件操作.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -399,14 +433,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘涛</p>
-  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -417,6 +451,9 @@
       </div>
   </nav>
 </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -435,6 +472,8 @@
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
 
 <div class="copyright">
   
@@ -444,6 +483,18 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

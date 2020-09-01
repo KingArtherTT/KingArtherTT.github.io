@@ -113,7 +113,7 @@
       <h1 class="site-title">Lancelot的小站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
   </div>
 
   <div class="site-nav-right">
@@ -130,6 +130,11 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -170,7 +175,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -205,13 +210,20 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
+                <i class="far fa-file-word"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
             </span>
 
         </div>
@@ -227,9 +239,7 @@
 <li>概念：在类的定义中，使用 <code>virtual</code> 关键字修饰的成员函数就是虚函数。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">base</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">()</span> </span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">base::get</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; &#125;</span><br></pre></td></tr></table></figure>
-
 <a id="more"></a>
-
 <ul>
 <li><code>virtual</code> 关键字只用在类定义里的函数声明中， 写函数体时不用。</li>
 <li><strong>虚函数</strong>跟<strong>普通函数</strong>的本质差别实际上就在于虚函数可以参与<strong>多态</strong>， 而普通的成员函数不能。</li>
@@ -238,22 +248,19 @@
 <h1 id="多态的两种表现形式"><a href="#多态的两种表现形式" class="headerlink" title="多态的两种表现形式"></a>多态的两种表现形式</h1><ol>
 <li><p>多态的表现形式一：</p>
 <ul>
-<li><p>派生类的指针可以赋给基类指针。</p>
-</li>
+<li>派生类的指针可以赋给基类指针。</li>
 <li><p>通过<strong>基类指针</strong>调用基类和派生类中的<strong>同名虚函数</strong>时：</p>
 <ul>
 <li>若该指针指向一个<strong>基类的对象</strong>，那么被调用是基类的虚函数；</li>
 <li>若该指针指向一个<strong>派生类的对象</strong>，那么被调用的是派生类的虚函数。</li>
 </ul>
 </li>
-<li><p>这种机制就叫做<strong>“多态”</strong>。</p>
-</li>
+<li>这种机制就叫做<strong>“多态”</strong>。</li>
 </ul>
 </li>
 </ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CBase</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">SomeVirtualFunction</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CDerived</span>:</span><span class="keyword">public</span> CBase &#123;</span><br><span class="line"><span class="keyword">public</span> :</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">SomeVirtualFunction</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    CDerived ODerived;</span><br><span class="line">    CBase * p = &amp; ODerived;</span><br><span class="line">    p -&gt; SomeVirtualFunction(); <span class="comment">//调用哪个虚函数取决于p指向哪种类型的对象</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
+<ol>
 <li>多态的表现形式二:<ul>
 <li>派生类的对象可以赋给基类引用</li>
 <li>通过<strong>基类引用</strong>调用基类和派生类中的同名虚函数时：<ul>
@@ -266,12 +273,10 @@
 </li>
 </ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CBase</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">SomeVirtualFunction</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CDerived</span>:</span><span class="keyword">public</span> CBase &#123;</span><br><span class="line"><span class="keyword">public</span> :</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">SomeVirtualFunction</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    CDerived ODerived;</span><br><span class="line">    CBase &amp; r = ODerived;</span><br><span class="line">    r.SomeVirtualFunction(); <span class="comment">//调用哪个虚函数取决于r引用哪种类型的对象</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>多态的简单举例：</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span> :</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Print</span><span class="params">( )</span></span></span><br><span class="line"><span class="function">        </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;A::Print&quot;</span>&lt;&lt;<span class="built_in">endl</span> ; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span> <span class="keyword">public</span> A &#123;</span><br><span class="line"><span class="keyword">public</span> :</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Print</span><span class="params">( )</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;B::Print&quot;</span> &lt;&lt;<span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span>:</span> <span class="keyword">public</span> A &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Print</span><span class="params">( )</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;D::Print&quot;</span> &lt;&lt; <span class="built_in">endl</span> ; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">E</span>:</span> <span class="keyword">public</span> B &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Print</span><span class="params">( )</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;E::Print&quot;</span> &lt;&lt; <span class="built_in">endl</span> ; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     A a; B b; E e; D d;</span><br><span class="line">     A * pa = &amp;a; B * pb = &amp;b;</span><br><span class="line">     D * pd = &amp;d ; E * pe = &amp;e;</span><br><span class="line">     pa-&gt;Print(); <span class="comment">// a.Print()被调用，输出：A::Print</span></span><br><span class="line">     pa = pb;</span><br><span class="line">     pa -&gt; Print(); <span class="comment">//b.Print()被调用，输出：B::Print</span></span><br><span class="line">    pa = pd;</span><br><span class="line">     pa -&gt; Print(); <span class="comment">//d. Print ()被调用,输出：D::Print</span></span><br><span class="line">     pa = pe;</span><br><span class="line">     pa -&gt; Print(); <span class="comment">//e.Print () 被调用,输出：E::Print</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>多态的作用：</p>
 <ul>
@@ -297,9 +302,7 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Sample Input: <span class="number">3</span></span><br><span class="line">R <span class="number">3</span> <span class="number">5</span></span><br><span class="line">C <span class="number">9</span></span><br><span class="line">T <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line"></span><br><span class="line">Sample Output</span><br><span class="line">Triangle:<span class="number">6</span></span><br><span class="line">Rectangle:<span class="number">15</span></span><br><span class="line">Circle:<span class="number">254.34</span></span><br></pre></td></tr></table></figure>
-
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CShape</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Area</span><span class="params">()</span> </span>= <span class="number">0</span>; <span class="comment">//纯虚函数，连函数体都没有的函数</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">PrintInfo</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CRectangle</span>:</span><span class="keyword">public</span> CShape</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> w,h;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Area</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">PrintInfo</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CCircle</span>:</span><span class="keyword">public</span> CShape &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> r;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Area</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">PrintInfo</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CTriangle</span>:</span><span class="keyword">public</span> CShape &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> a,b,c;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Area</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">PrintInfo</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体实现不写了</span></span><br><span class="line"></span><br><span class="line">CShape * pShapes[<span class="number">100</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MyCompare</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> * s1, <span class="keyword">const</span> <span class="keyword">void</span> * s2)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MyCompare</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> * s1, <span class="keyword">const</span> <span class="keyword">void</span> * s2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> a1,a2;</span><br><span class="line">    CShape * * p1 ; <span class="comment">// s1,s2 是 void * ，不可写 “* s1”来取得s1指向的内容</span></span><br><span class="line">    CShape * * p2;</span><br><span class="line">    p1 = ( CShape * * ) s1; <span class="comment">//s1,s2指向pShapes数组中的元素，数组元素的类型是CShape *</span></span><br><span class="line">    p2 = ( CShape * * ) s2; <span class="comment">// 故 p1,p2都是指向指针的指针，类型为 CShape **</span></span><br><span class="line">    a1 = (*p1)-&gt;Area(); <span class="comment">// * p1 的类型是 Cshape * ,是基类指针，故此句为多态</span></span><br><span class="line">    a2 = (*p2)-&gt;Area();</span><br><span class="line">     <span class="keyword">if</span>( a1 &lt; a2 )</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ( a2 &lt; a1 )</span><br><span class="line">         <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">         <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">int</span> i; <span class="keyword">int</span> n;</span><br><span class="line">     CRectangle * pr; CCircle * pc; CTriangle * pt;</span><br><span class="line">     <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">     <span class="keyword">for</span>( i = <span class="number">0</span>;i &lt; n;i ++ ) &#123;</span><br><span class="line">     <span class="keyword">char</span> c;</span><br><span class="line">     <span class="built_in">cin</span> &gt;&gt; c;</span><br><span class="line">     <span class="keyword">switch</span>(c) &#123;</span><br><span class="line">         <span class="keyword">case</span> <span class="string">&#x27;R&#x27;</span>:</span><br><span class="line">             pr = <span class="keyword">new</span> CRectangle();</span><br><span class="line">             <span class="built_in">cin</span> &gt;&gt; pr-&gt;w &gt;&gt; pr-&gt;h;</span><br><span class="line">            pShapes[i] = pr;</span><br><span class="line">             <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;C&#x27;</span>:</span><br><span class="line">            pc = <span class="keyword">new</span> CCircle();</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; pc-&gt;r;</span><br><span class="line">            pShapes[i] = pc;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;T&#x27;</span>:</span><br><span class="line">            pt = <span class="keyword">new</span> CTriangle();</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; pt-&gt;a &gt;&gt; pt-&gt;b &gt;&gt; pt-&gt;c;</span><br><span class="line">            pShapes[i] = pt;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">     &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    qsort(pShapes,n,<span class="keyword">sizeof</span>( CShape*),MyCompare);</span><br><span class="line">    <span class="keyword">for</span>( i = <span class="number">0</span>;i &lt;n;i ++)</span><br><span class="line">         pShapes[i]-&gt;PrintInfo();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>如果添加新的几何形体，比如五边形，则只需要从<code>CShape</code>派生出 <code>CPentagon</code>，以及 在main中的 switch语句中增 加一个case，其余部分不变有木有！</li>
 <li>用<strong>基类指针数组</strong>存放指向各种派生类对象的指针，然后遍历该数组，就能对各个派生类对象做各种操作，是很常用的做法。</li>
@@ -311,20 +314,16 @@
 <li><strong>派生类中与基类中虚函数同名同参数表的函数，不加virtual也自动成为虚函数</strong></li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun1</span><span class="params">()</span> </span>&#123; <span class="keyword">this</span>-&gt;fun2(); &#125; <span class="comment">//this是基类指针，fun2是虚函数，所以是多态</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun2</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Base::fun2()&quot;</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun2</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Derived:fun2()&quot;</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Derived d;</span><br><span class="line">    Base * pBase = &amp; d;</span><br><span class="line">    pBase-&gt;fun1();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出： Derived:fun2()</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="多态实现原理-动态联编"><a href="#多态实现原理-动态联编" class="headerlink" title="多态实现原理-动态联编"></a>多态实现原理-动态联编</h1><ul>
 <li><p>多态实现的关键在于<strong>动态联编</strong>：</p>
 <ul>
-<li>“多态”的关键在于通过基类指针或引用调用 一个虚函数时，<strong>编译时</strong>不确定到底调用的是基类还是派生类的函数，<strong>运行时</strong>才确定 —- 这叫“动态联编”。</li>
+<li>“多态”的关键在于通过基类指针或引用调用 一个虚函数时，<strong>编译时</strong>不确定到底调用的是基类还是派生类的函数，<strong>运行时</strong>才确定 —— 这叫“动态联编”。</li>
 </ul>
 </li>
 <li><p>示例，下属程序中，每个类都多出了四个字节（虚函数占用的空间没有被算进去，因为多出了一个虚函数表的指针）</p>
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Print</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Base:Print&quot;</span> ; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span> :</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Print</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt;<span class="string">&quot;Drived:Print&quot;</span> &lt;&lt; <span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Derived d;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>( Base) &lt;&lt; <span class="string">&quot;,&quot;</span>&lt;&lt; <span class="keyword">sizeof</span>( Derived ) ;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">//程序输出结果：</span></span><br><span class="line"><span class="comment">//8，12</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>多态与动态联编实现的关键在于：<strong>虚函数表</strong>（编译器创建）<ul>
 <li>每一个有虚函数的类（或有虚函数的类的派生类） 都有一个<strong>虚函数表</strong>，该类的<strong>任何对象</strong>中都放着虚函数表的指针。虚函数表中列出了该类的虚函数地址。<strong>多出来的4个字节就是用来放虚函数表的地址的</strong>。</li>
@@ -339,7 +338,6 @@
 <li>多态有的一个问题：通过 <strong>基类的指针</strong> 删除 <strong>派生类对象</strong> 时 会只调用<strong>基类</strong>的析构函数，无法正常的删除派生类对象。如下例所示：</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">son</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ~son() &#123; <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;bye from son&quot;</span>&lt;&lt;<span class="built_in">endl</span>; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">grandson</span> :</span> <span class="keyword">public</span> son&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ~grandson()&#123; <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;bye from grandson&quot;</span>&lt;&lt;<span class="built_in">endl</span>; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    son *pson;</span><br><span class="line">    pson=<span class="keyword">new</span> grandson;</span><br><span class="line">    <span class="keyword">delete</span> pson;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出结果：</span></span><br><span class="line"><span class="comment">// bye from son</span></span><br><span class="line"><span class="comment">//没有执行grandson::~grandson()!!!</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>而正确的情况：删除一个 <strong>派生类的对象</strong> 时，先调用<strong>派生类</strong>的析构函数，再调用<strong>基类</strong>的析构函数。</li>
 <li>因此提出虚析构函数，作为解决办法：即把<strong>基类</strong>的析构函数声明为<strong>virtual</strong><ul>
@@ -351,16 +349,10 @@
 <li>但要注意：<strong>不允许以虚函数作为构造函数</strong>。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">son</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~son() &#123; <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;bye from son&quot;</span>&lt;&lt;<span class="built_in">endl</span>; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">grandson</span> :</span> <span class="keyword">public</span> son&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ~grandson()&#123; <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;bye from grandson&quot;</span>&lt;&lt;<span class="built_in">endl</span>; &#125;;<span class="comment">//编译时 会转化为虚函数</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    son *pson;</span><br><span class="line">    pson= <span class="keyword">new</span> grandson;</span><br><span class="line">    <span class="keyword">delete</span> pson;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出结果</span></span><br><span class="line"><span class="comment">// bye from grandson</span></span><br><span class="line"><span class="comment">// bye from son</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//执行grandson::~grandson(),引起执行son::~son()！！！</span></span><br><span class="line"><span class="comment">//派生类析构函数的执行，会引起基类析构函数的执行。    </span></span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="纯虚函数和抽象类"><a href="#纯虚函数和抽象类" class="headerlink" title="纯虚函数和抽象类"></a>纯虚函数和抽象类</h1><ul>
 <li><strong>纯虚函数</strong>: 没有函数体的虚函数。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span><span class="comment">//抽象类</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">Print</span><span class="params">( )</span> </span>= <span class="number">0</span> ; <span class="comment">//纯虚函数</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123; <span class="built_in">cout</span> &lt;&lt; “fun”; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li><p><strong>抽象类</strong>: 包含纯虚函数的类：</p>
 <ul>
@@ -369,9 +361,6 @@
 <li>抽象类的指针和引用 <strong>只能指向</strong>由抽象类派生出来的类的对象。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A a; <span class="comment">// 错, A 是抽象类, 不能创建对象</span></span><br><span class="line">A * pa; <span class="comment">// ok, 可以定义抽象类的指针和引用</span></span><br><span class="line">pa = <span class="keyword">new</span> A; <span class="comment">//错误, A 是抽象类, 不能创建对象</span></span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 <ul>
@@ -387,12 +376,48 @@
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>= <span class="number">0</span>; <span class="comment">//纯虚函数</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">g</span><span class="params">( )</span> </span>&#123; <span class="keyword">this</span>-&gt;f( ); &#125; <span class="comment">//ok</span></span><br><span class="line">    A( )&#123; &#125; <span class="comment">//在A中调用f( ); 会显示错误</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">public</span> A&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span>&#123; <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;B: f()&quot;</span>&lt;&lt;<span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">B b;</span><br><span class="line">b.g();</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出结果:</span></span><br><span class="line"><span class="comment">//B: f()</span></span><br></pre></td></tr></table></figure>
 
-
     </div>
 
     
     
     
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-17/%E5%A4%9A%E6%80%81%E4%B8%8E%E8%99%9A%E5%87%BD%E6%95%B0.html" title="多态与虚函数">http://lt4hyl.top/2020-08-17/多态与虚函数.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -478,14 +503,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘涛</p>
-  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -496,6 +521,9 @@
       </div>
   </nav>
 </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -514,6 +542,8 @@
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
 
 <div class="copyright">
   
@@ -523,6 +553,18 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

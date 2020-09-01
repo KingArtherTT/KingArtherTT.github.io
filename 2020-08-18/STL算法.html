@@ -110,7 +110,7 @@
       <h1 class="site-title">Lancelot的小站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
   </div>
 
   <div class="site-nav-right">
@@ -127,6 +127,11 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -167,7 +172,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -196,13 +201,20 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
+                <i class="far fa-file-word"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -228,27 +240,20 @@
 </li>
 </ul>
 <a id="more"></a>
-
 <h1 id="不变序列算法"><a href="#不变序列算法" class="headerlink" title="不变序列算法"></a>不变序列算法</h1><ul>
 <li>该类算法不会修改算法所作用的容器或对象；</li>
 <li>适用于顺序容器和关联容器；</li>
 <li>时间复杂度都是<code>O(n)</code>。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//find:</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">InIt</span>, <span class="title">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">InIt</span> <span class="title">find</span>(<span class="title">InIt</span> <span class="title">first</span>, <span class="title">InIt</span> <span class="title">last</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">val</span>);</span> </span><br><span class="line"><span class="comment">//返回区间 [first,last) 中的迭代器 i ,使得 * i == val</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//find_if:</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">InIt</span>, <span class="title">class</span> <span class="title">Pred</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">InIt</span> <span class="title">find_if</span>(<span class="title">InIt</span> <span class="title">first</span>, <span class="title">InIt</span> <span class="title">last</span>, <span class="title">Pred</span> <span class="title">pr</span>);</span> </span><br><span class="line"><span class="comment">//返回区间 [first,last) 中的迭代器 i, 使得 pr(*i) == true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//for_each:</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">InIt</span>, <span class="title">class</span> <span class="title">Fun</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">Fun</span> <span class="title">for_each</span>(<span class="title">InIt</span> <span class="title">first</span>, <span class="title">InIt</span> <span class="title">last</span>, <span class="title">Fun</span> <span class="title">f</span>);</span> </span><br><span class="line"><span class="comment">//对[first, last)中的每个元素e, 执行f(e), 要求 f(e)不能改变e</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//count:</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">InIt</span>, <span class="title">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">size_t</span> <span class="title">count</span>(<span class="title">InIt</span> <span class="title">first</span>, <span class="title">InIt</span> <span class="title">last</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">val</span>);</span> </span><br><span class="line"><span class="comment">//计算[first, last) 中等于val的元素个数(x==y为true算等于)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//count_if:</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">InIt</span>, <span class="title">class</span> <span class="title">Pred</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">size_t</span> <span class="title">count_if</span>(<span class="title">InIt</span> <span class="title">first</span>, <span class="title">InIt</span> <span class="title">last</span>, <span class="title">Pred</span> <span class="title">pr</span>);</span> </span><br><span class="line"><span class="comment">//计算[first, last) 中符合pr(e) == true 的元素e的个数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//min_element:</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">FwdIt</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">FwdIt</span> <span class="title">min_element</span>(<span class="title">FwdIt</span> <span class="title">first</span>, <span class="title">FwdIt</span> <span class="title">last</span>);</span> </span><br><span class="line"><span class="comment">//返回[first,last) 中最小元素的迭代器, 以 “&lt;” 作比较器</span></span><br><span class="line"><span class="comment">//最小指没有元素比它小, 而不是它比别的不同元素都小</span></span><br><span class="line"><span class="comment">//因为即便a!= b, a&lt;b 和b&lt;a有可能都不成立</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//max_element:</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">FwdIt</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">FwdIt</span> <span class="title">max_element</span>(<span class="title">FwdIt</span> <span class="title">first</span>, <span class="title">FwdIt</span> <span class="title">last</span>);</span> </span><br><span class="line"><span class="comment">//返回[first,last) 中  最大元素(不小于任何其他元素)  的迭代器</span></span><br><span class="line"><span class="comment">//以 “&lt;” 作比较器</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="变值算法"><a href="#变值算法" class="headerlink" title="变值算法"></a>变值算法</h1><ul>
 <li>此类算法会修改源区间或目标区间元素的值</li>
 <li>值被修改的那个区间, 不可以是属于<strong>关联容器</strong>的</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//transform</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">InIt</span>, <span class="title">class</span> <span class="title">OutIt</span>, <span class="title">class</span> <span class="title">Unop</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">OutIt</span> <span class="title">transform</span>(<span class="title">InIt</span> <span class="title">first</span>, <span class="title">InIt</span> <span class="title">last</span>, <span class="title">OutIt</span> <span class="title">x</span>, <span class="title">Unop</span> <span class="title">uop</span>);</span></span><br><span class="line"><span class="comment">//对[first,last)中的每个迭代器I，执行 uop( * I ); 并将结果依次放入从 x 开始的地方，要求 uop( * I ) 不得改变 * I 的值。</span></span><br><span class="line"><span class="comment">//本模板返回值是个迭代器, 即 x + (last-first) ,x可以和 first相等</span></span><br><span class="line"></span><br><span class="line"><span class="function">ostream_iterator&lt;<span class="keyword">int</span>&gt; <span class="title">output</span><span class="params">(<span class="built_in">cout</span> ,<span class="string">&quot; &quot;</span>)</span></span>;</span><br><span class="line"><span class="comment">// 定义了一个 ostream_iterator&lt;int&gt; 对象，可以通过cout输出以 “ ”(空格) 分隔的一个个整数。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a1[] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span> &#125;;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">v</span><span class="params">(a1,a1+<span class="number">10</span>)</span></span>;</span><br><span class="line">copy (v.<span class="built_in">begin</span>(), v.<span class="built_in">end</span>(), output);</span><br><span class="line"><span class="comment">//导致v的内容在 cout 上输出</span></span><br><span class="line"><span class="comment">//根据 copy函数的源码</span></span><br><span class="line"><span class="comment">//ostream_iterator 类模板中 需要 重载 ++运算符  *运算符（返回自身引用） =运算符（进行不同类型变量的赋值）</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="删除算法"><a href="#删除算法" class="headerlink" title="删除算法"></a>删除算法</h1><ul>
 <li>删除一个容器里的某些元素。</li>
-<li>删除 – 不会使容器里的元素减少：<ul>
+<li>删除 — 不会使容器里的元素减少：<ul>
 <li>将所有应该被删除的元素看做空位子；</li>
 <li>用留下的元素从后往前移, 依次去填空位子 ；</li>
 <li>元素往前移后, 它原来的位置也就算是空位子 ；</li>
@@ -260,25 +265,18 @@
 <li>算法复杂度都是<code>O(n)</code>的。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//unique:删除区间中连续相等的元素, 只留下一个(可自定义比较器)</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">FwdIt</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">FwdIt</span> <span class="title">unique</span>(<span class="title">FwdIt</span> <span class="title">first</span>, <span class="title">FwdIt</span> <span class="title">last</span>);</span> </span><br><span class="line"><span class="comment">//用 == 比较是否等</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">FwdIt</span>, <span class="title">class</span> <span class="title">Pred</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">FwdIt</span> <span class="title">unique</span>(<span class="title">FwdIt</span> <span class="title">first</span>, <span class="title">FwdIt</span> <span class="title">last</span>, <span class="title">Pred</span> <span class="title">pr</span>);</span></span><br><span class="line"><span class="comment">//用 pr (x,y)为 true说明x和y相等</span></span><br><span class="line"><span class="comment">//对[first,last) 这个序列中连续相等的元素, 只留下第一个</span></span><br><span class="line"><span class="comment">//返回值是迭代器, 指向元素删除后的区间的最后一个元素的后面</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="变序算法"><a href="#变序算法" class="headerlink" title="变序算法"></a>变序算法</h1><ul>
 <li>变序算法改变容器中元素的顺序，但是不改变元素的值。</li>
 <li><strong>变序算法不适用于关联容器</strong>。</li>
 <li>算法复杂度都是<code>O(n)</code>的。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">stable_patition</span><br><span class="line"><span class="comment">//把区间内满足某个条件的元素移到前面</span></span><br><span class="line"><span class="comment">//不满足该条件的移到后面</span></span><br><span class="line"><span class="comment">//而对这两部分元素, 分别保持它们原来的先后次序不变</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//random_shuffle</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">RanIt</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">random_shuffle</span>(<span class="title">RanIt</span> <span class="title">first</span>, <span class="title">RanIt</span> <span class="title">last</span>);</span></span><br><span class="line"><span class="comment">//随机打乱[first,last) 中的元素, 适用于能随机访问的容器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//reverse：颠倒区间[first,last)顺序</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">BidIt</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">reverse</span>(<span class="title">BidIt</span> <span class="title">first</span>, <span class="title">BidIt</span> <span class="title">last</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//next_permutation：求下一个排列</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">InIt</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">next_permutaion</span> (<span class="title">Init</span> <span class="title">first</span>,<span class="title">Init</span> <span class="title">last</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//prev_permutation：将区间改为上一个排列(可自定义比较器)</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><ul>
 <li>比前面的变序算法复杂度更高, 一般是<strong>O(nlog(n))</strong></li>
 <li>排序算法需要随机访问迭代器的支持</li>
 <li><strong>不适用于关联容器和list</strong></li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sort 快速排序</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">RanIt</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">sort</span>(<span class="title">RanIt</span> <span class="title">first</span>, <span class="title">RanIt</span> <span class="title">last</span>);</span> </span><br><span class="line"><span class="comment">//按升序排序 从小到大。</span></span><br><span class="line"><span class="comment">//判断x是否应比y靠前, 就看 x &lt; y 是否为true</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">RanIt</span>, <span class="title">class</span> <span class="title">Pred</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">sort</span>(<span class="title">RanIt</span> <span class="title">first</span>, <span class="title">RanIt</span> <span class="title">last</span>, <span class="title">Pred</span> <span class="title">pr</span>);</span></span><br><span class="line"><span class="comment">//按升序排序 </span></span><br><span class="line"><span class="comment">//判断x是否应比y靠前, 就看 pr(x,y) 是否为true</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><code>sort</code> 实际上是<strong>快速排序</strong>, 时间复杂度 <code>O(n*log(n))</code><ul>
 <li>平均性能最优</li>
@@ -300,12 +298,48 @@
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//binary_search：折半查找</span></span><br><span class="line"><span class="comment">//要求容器已经有序且支持随机访问迭代器, 返回是否找到</span></span><br><span class="line"><span class="comment">//该版本, 比较两个元素x, y 大小时, 看 x &lt; y</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">FwdIt</span>, <span class="title">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">binary_search</span>(<span class="title">FwdIt</span> <span class="title">first</span>, <span class="title">FwdIt</span> <span class="title">last</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">val</span>);</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">//该版本, 比较两个元素x, y 大小时, 若 pr(x,y) 为true, 则认为x小于y</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">FwdIt</span>, <span class="title">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">Pred</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">bool</span> <span class="title">binary_search</span>(<span class="title">FwdIt</span> <span class="title">first</span>, <span class="title">FwdIt</span> <span class="title">last</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">val</span>, <span class="title">Pred</span> <span class="title">pr</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//lower_bound：要求[first,last)是有序的；</span></span><br><span class="line"><span class="comment">//查找[first,last)中的, 最大的位置 FwdIt, 使得[first,FwdIt)中所有的元素都比 val 小</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">FwdIt</span>, <span class="title">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">FwdIt</span> <span class="title">lower_bound</span>(<span class="title">FwdIt</span> <span class="title">first</span>, <span class="title">FwdIt</span> <span class="title">last</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">val</span>);</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">//upper_bound：要求[first,last)是有序的</span></span><br><span class="line"><span class="comment">//查找[first,last)中的, 最小的位置 FwdIt, 使得[FwdIt,last)中所有的元素都比 val 大</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">FwdIt</span>, <span class="title">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">FwdIt</span> <span class="title">upper_bound</span>(<span class="title">FwdIt</span> <span class="title">first</span>, <span class="title">FwdIt</span> <span class="title">last</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">val</span>);</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">//equal_range：要求[first,last)是有序的</span></span><br><span class="line"><span class="comment">//返回值是一个pair, 假设为 p, 则：</span></span><br><span class="line"><span class="comment">//• [first,p.first) 中的元素都比 val 小</span></span><br><span class="line"><span class="comment">//• [p.second,last)中的所有元素都比 val 大</span></span><br><span class="line"><span class="comment">//• p.first 就是lower_bound的结果</span></span><br><span class="line"><span class="comment">//• p.last 就是 upper_bound的结果</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">FwdIt</span>, <span class="title">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">pair</span>&lt;FwdIt, FwdIt&gt; <span class="title">equal_range</span>(<span class="title">FwdIt</span> <span class="title">first</span>, <span class="title">FwdIt</span> <span class="title">last</span>,<span class="title">const</span> <span class="title">T</span>&amp; <span class="title">val</span>);</span> </span><br></pre></td></tr></table></figure>
 
-
     </div>
 
     
     
     
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-18/STL%E7%AE%97%E6%B3%95.html" title="STL算法">http://lt4hyl.top/2020-08-18/STL算法.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -391,14 +425,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘涛</p>
-  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -409,6 +443,9 @@
       </div>
   </nav>
 </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -427,6 +464,8 @@
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
 
 <div class="copyright">
   
@@ -436,6 +475,18 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

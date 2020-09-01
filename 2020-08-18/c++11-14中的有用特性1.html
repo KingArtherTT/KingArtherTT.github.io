@@ -110,7 +110,7 @@
       <h1 class="site-title">Lancelot的小站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
   </div>
 
   <div class="site-nav-right">
@@ -127,6 +127,11 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -167,7 +172,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -202,13 +207,20 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
+                <i class="far fa-file-word"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -225,7 +237,6 @@
 <li>但是，已弃用的特性依然是标准库的一部分，并且出于兼容性的考虑，这些特性其实会『永久』保留。</li>
 </ul>
 <a id="more"></a>
-
 <ol>
 <li><p>如果一个类有析构函数，为其生成拷贝构造函数和拷贝赋值运算符的特性被弃用了。</p>
 </li>
@@ -252,9 +263,6 @@
 <li>而在不得不使用 C 时，应该注意使用 <code>extern &quot;C&quot;</code> 这种特性，将 C 语言的代码与 C++ 代码进行分离编译，再统一链接这种做法。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 头文件 foo.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//源文件 foo.c</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//源文件 main.cpp</span></span><br><span class="line"><span class="comment">// main.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;foo.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    add(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//在编译时：应先使用 gcc 编译 C 语言的代码</span></span><br><span class="line">gcc -c foo.c</span><br><span class="line"><span class="comment">//编译出 foo.o 文件，再使用 g++ 将 C++代码和 .o 文件链接起来（或者都编译为 .o 再统一链接）：</span></span><br><span class="line">g++ main.cpp foo.o -o main</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="nullptr-与-constexpr"><a href="#nullptr-与-constexpr" class="headerlink" title="nullptr 与 constexpr"></a><code>nullptr</code> 与 <code>constexpr</code></h1><ul>
 <li><p><code>nullptr</code>：专门用来区分空指针、0，目的是为了替代 <code>NULL</code>。</p>
 <ul>
@@ -262,9 +270,6 @@
 <li>传统 C++ 会把 <code>NULL</code>、<code>0</code> 视为同一种东西，这取决于编译器如何定义 NULL，这将导致了 <code>C++</code> 中重载特性会发生混乱。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">char</span> *)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果 NULL 又被定义为了 0 那么 </span></span><br><span class="line">foo(<span class="literal">NULL</span>);</span><br><span class="line"><span class="comment">//会去调用 foo(int)</span></span><br><span class="line"><span class="comment">//从而导致代码违反直观</span></span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 <ul>
@@ -274,26 +279,18 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">len_foo1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span>  <span class="keyword">int</span> <span class="title">len_foo2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> arr_5[len_foo1()+<span class="number">5</span>];  <span class="comment">// 非法    C2131: 表达式的计算结果不是常数 </span></span><br><span class="line">    <span class="keyword">char</span> arr_6[len_foo2()+<span class="number">5</span>]; <span class="comment">//合法</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//constexpr 的函数可以使用递归</span></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">fibonacci</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n == <span class="number">1</span> || n == <span class="number">2</span> ? <span class="number">1</span> : fibonacci(n<span class="number">-1</span>)+fibonacci(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//从 C++ 14 开始，constexptr 函数可以在内部使用局部变量、循环和分支等简单语句</span></span><br><span class="line"><span class="comment">//但 C++ 11 中是不可以的</span></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">int</span> <span class="title">fibonacci</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> fibonacci(n<span class="number">-1</span>)+fibonacci(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="类型推导：auto-和-decltype"><a href="#类型推导：auto-和-decltype" class="headerlink" title="类型推导：auto 和 decltype"></a>类型推导：<code>auto</code> 和 <code>decltype</code></h1><ul>
 <li>auto 的使用：</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原有的写法</span></span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator itr = vec.cbegin(); itr != vec.cend(); ++itr)</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用auto后</span></span><br><span class="line"><span class="comment">// 由于 cbegin() 将返回 vector&lt;int&gt;::const_iterator </span></span><br><span class="line"><span class="comment">// 所以 itr 也应该是 vector&lt;int&gt;::const_iterator 类型</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> itr = vec.cbegin(); itr != vec.cend(); ++itr);</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>要注意的点：<code>auto</code> 不能用于函数传参。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">auto</span> x, <span class="keyword">auto</span> y)</span></span>;<span class="comment">//无法通过编译的（考虑重载的问题，我们应该使用模板）</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>要注意的点：<code>auto</code> 还不能用于推导数组类型。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">auto</span> auto_arr = arr;<span class="comment">//编译报错： 数组不能具有其中包含“auto”的元素类型</span></span><br><span class="line"><span class="keyword">auto</span> auto_arr2[<span class="number">10</span>] = arr;<span class="comment">// error C2075 数组初始化需要带括号的初始值设定项列表</span></span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li><p><code>decltype</code> 关键字是为了解决 <code>auto</code> 关键字只能对<strong>变量</strong>进行类型推导的缺陷而出现的。</p>
 <ul>
@@ -308,86 +305,64 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">add</span><span class="params">(T x, U y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="区间迭代"><a href="#区间迭代" class="headerlink" title="区间迭代"></a>区间迭代</h1><ul>
 <li>区间迭代是指基于范围的 for 循环，对于数组容器的遍历可以用如下写法实现：</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">array</span>[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> &amp;x : <span class="built_in">array</span>) &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//原有的vector遍历如下：</span></span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">arr</span><span class="params">(<span class="number">5</span>, <span class="number">100</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator i = arr.<span class="built_in">begin</span>(); i != arr.<span class="built_in">end</span>(); ++i) &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; *i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以简化成：</span></span><br><span class="line"><span class="comment">// &amp; 启用了引用, 如果没有则对 arr 中的元素只能读取不能修改</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> &amp;i : arr) &#123;    </span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="初始化列表"><a href="#初始化列表" class="headerlink" title="初始化列表"></a>初始化列表</h1><ul>
 <li>c++11 把初始化列表的概念绑定到了类型上：<code>std::initializer_list</code>允许构造函数或其他函数像参数一样使用初始化列表。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;initializer_list&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Magic</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//用于构造函数</span></span><br><span class="line">    Magic(<span class="built_in">std</span>::<span class="built_in">initializer_list</span>&lt;<span class="keyword">int</span>&gt; <span class="built_in">list</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Magic magic = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以用作普通函数的形参</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">initializer_list</span>&lt;<span class="keyword">int</span>&gt; <span class="built_in">list</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func(&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;);</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="模板增强"><a href="#模板增强" class="headerlink" title="模板增强"></a>模板增强</h1><ul>
 <li>传统 C++ 中，模板只有在使用时才会被编译器实例化。</li>
 <li>换句话说，只要在每个编译单元（文件）中编译的代码中遇到了被完整定义（给与了实际类型的）的模板，都会实例化。</li>
 <li>这就产生了<strong>重复实例化</strong>而导致的编译时间的增加，并且，我们没有办法通知编译器不要触发模板实例化。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">std</span>:</span>:<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;;            <span class="comment">// 强行实例化</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">template</span> <span class="class"><span class="keyword">class</span> <span class="title">std</span>:</span>:<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;;  <span class="comment">// 不在该编译文件中实例化模板 </span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><code>typedef</code> 关键字无法用于模板，而是用<code>using</code>关键字就可以</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*<span class="built_in">process</span>)</span><span class="params">(<span class="keyword">void</span> *)</span></span>;  <span class="comment">// 定义了一个返回类型为 int，参数为 void* 的函数指针类型，名字叫做 process</span></span><br><span class="line"><span class="keyword">using</span> <span class="built_in">process</span> = <span class="keyword">int</span>(*)(<span class="keyword">void</span> *); <span class="comment">// 同上, 更加直观</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="keyword">typename</span> T, <span class="keyword">typename</span> U, <span class="keyword">int</span> value&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SuckType</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    T a;    U b;    SuckType():a(value),b(value)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt; <span class="keyword">typename</span> U&gt;</span><br><span class="line"><span class="keyword">typedef</span> SuckType&lt;<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;, U, <span class="number">1</span>&gt; NewType; <span class="comment">// 不合法 error C2823: typedef 模板 非法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">using</span> NewType = SuckType&lt;<span class="keyword">int</span>, T, <span class="number">1</span>&gt;;    <span class="comment">// 合法</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>可以指定模板的默认参数（用于实例化模板时传入的参数类型）：</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T = <span class="keyword">int</span>, <span class="keyword">typename</span> U = <span class="keyword">int</span>&gt;</span><br><span class="line"><span class="keyword">auto</span> add(T x, U y) -&gt; <span class="keyword">decltype</span>(x+y)&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>可以使用<strong>变长参数模板</strong>：允许任意个数、任意类别的模板参数，同时也不需要在定义时将参数的个数固定。（适用于模板类和模板函数）</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 变长参数的 模板类</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Ts&gt; <span class="class"><span class="keyword">class</span> <span class="title">Magic</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Magic</span>&lt;int, std::vector&lt;int&gt;, std::map&lt;std::string, std::vector&lt;int&gt;&gt;&gt; <span class="title">darkMagic</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//个数为 0 的模板参数也是可以的</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Magic</span>&lt;&gt; <span class="title">nothing</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果不希望产生的模板参数个数为 0，可以手动的定义至少一个模板参数</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Require, <span class="keyword">typename</span>... Args&gt; <span class="class"><span class="keyword">class</span> <span class="title">Magic</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以用于模板函数</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Args&gt; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printf</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;str, Args... args)</span></span>;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>使用变长参数模板的关键在于如何<strong>对变长参数进行解包</strong>（也就是获取变长参数），有如下方式：</p>
 <ul>
 <li>使用<code>sizeof...</code> 来计算参数的个数。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">magic</span><span class="params">(Args... args)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>...(args) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><strong>递归模板函数</strong>：不断递归的向函数传递模板参数，进而达到递归遍历所有模板参数的目的。缺点显而易见的在于必须定义一个<strong>终止递归</strong>的函数。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printf</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;printf(T value) &quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printf</span><span class="params">(T value, Args... args)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;printf(T value, Args... args) &quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">printf</span>(args...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="string">&quot;123&quot;</span>, <span class="number">1.1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><strong>初始化列表展开</strong>：使用了 C++11 中提供的初始化列表以及 Lambda 表达式的特性</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//额外使用了 C++11 中提供的初始化列表以及 Lambda 表达式的特性</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">print</span><span class="params">(T value, Args... args)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; value &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::<span class="built_in">initializer_list</span>&lt;T&gt;&#123;([&amp;] &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; args &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    &#125;(), value)...&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span>, <span class="number">2.1</span>, <span class="string">&quot;123&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 <h1 id="面向对象增强"><a href="#面向对象增强" class="headerlink" title="面向对象增强"></a>面向对象增强</h1><ul>
 <li>引入了<strong>委托构造</strong>：使得可以在同一个类中由一个构造函数调用另一个构造函数。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> value1;<span class="keyword">int</span> value2;</span><br><span class="line">    Base() &#123; value1 = <span class="number">1</span>;&#125;</span><br><span class="line">    Base(<span class="keyword">int</span> value) : Base() &#123;  <span class="comment">// 委托 Base() 构造函数</span></span><br><span class="line">        value2 = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">Base <span class="title">b</span><span class="params">(<span class="number">2</span>)</span></span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b.value1 &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; b.value2 &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>使用<code>using</code> 关键字引入<strong>继承构造函数</strong>概念：传统写法中派生类的构造函数如果需要继承是需要将参数一一传递的，也就是重新写一遍派生类自己的构造函数。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Subclass</span> :</span> <span class="keyword">public</span> Base &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> Base::Base;  <span class="comment">// 继承构造函数</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">Subclass <span class="title">s</span><span class="params">(<span class="number">3</span>)</span></span>;<span class="comment">//就像 Subclass类 有了  Subclass(int value):Base::Base(value) 这个构造函数一样</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; s.value1 &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; s.value2 &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>引入了 <code>override</code> ，进行显示虚函数重载，避免派生类具有与基类虚函数同名的成员函数，而该派生类成员函数被隐式编译为虚函数。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//当重载虚函数时，引入 override 关键字将显式的告知编译器进行重载</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SubClass</span>:</span> Base &#123;</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">int</span>)</span> <span class="keyword">override</span></span>; <span class="comment">// 合法</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">float</span>)</span> <span class="keyword">override</span></span>; <span class="comment">// 非法, 父类没有此虚函数</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//编译器将检查基函数是否存在这样的虚函数，否则将无法通过编译</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>引入了<code>final</code> 则是为了防止<strong>类被继续继承</strong>以及<strong>终止虚函数继续重载</strong>引入的。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Base</span> &#123;</span> <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> <span class="keyword">final</span></span>;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SubClass1</span> <span class="title">final</span>:</span> Base &#123;&#125;; <span class="comment">// 合法</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SubClass2</span> :</span> SubClass1 &#123;&#125;; <span class="comment">// 非法, SubClass 已 final ；SubClass不能在被继承</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SubClass3</span>:</span> Base &#123; <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>;&#125;; <span class="comment">// 非法, foo 已 final；foo不能再被重载</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>显示禁用默认函数：</p>
 <ul>
@@ -402,11 +377,6 @@
 </li>
 <li><p>希望获得枚举值时，必须进行显示的类型转换，不过可以通过重载 &lt;&lt; 运算符进行输出：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="built_in">std</span>::ostream&amp; <span class="keyword">operator</span>&lt;&lt;(<span class="keyword">typename</span> <span class="built_in">std</span>::enable_if&lt;<span class="built_in">std</span>::is_enum&lt;T&gt;::value, <span class="built_in">std</span>::ostream&gt;::type&amp; stream, <span class="keyword">const</span> T&amp; e)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> stream &lt;&lt; <span class="keyword">static_cast</span>&lt;<span class="keyword">typename</span> <span class="built_in">std</span>::underlying_type&lt;T&gt;::type&gt;(e);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//可以编译通过</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; new_enum::value3 &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
 </li>
 </ul>
 </li>
@@ -417,6 +387,43 @@
     
     
     
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-18/c++11-14%E4%B8%AD%E7%9A%84%E6%9C%89%E7%94%A8%E7%89%B9%E6%80%A71.html" title="c++11-14中的有用特性1">http://lt4hyl.top/2020-08-18/c++11-14中的有用特性1.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -502,14 +509,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘涛</p>
-  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -520,6 +527,9 @@
       </div>
   </nav>
 </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -538,6 +548,8 @@
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
 
 <div class="copyright">
   
@@ -547,6 +559,18 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

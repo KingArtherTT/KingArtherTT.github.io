@@ -110,7 +110,7 @@
       <h1 class="site-title">Lancelot的小站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
   </div>
 
   <div class="site-nav-right">
@@ -127,6 +127,11 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -167,7 +172,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -196,13 +201,20 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
+                <i class="far fa-file-word"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -219,23 +231,16 @@
 <li>四种风险等级分别为：<code>static_cast、reinterpret_cast、const_cast 和 dynamic_cast</code>。</li>
 </ul>
 <a id="more"></a>
-
 <h1 id="static-cast"><a href="#static-cast" class="headerlink" title="static_cast"></a>static_cast</h1><ul>
 <li><code>static_cast</code>用来<strong>进行比较“自然”和低风险的转换</strong>， 比如整型和实数型、字符型之间互相转换。</li>
 <li><code>static_cast</code><strong>不能</strong>来在<strong>不同类型的指针</strong>之间互相转换，也 不能用于<strong>整型和指针</strong>之间的互相转换，也不能用于<strong>不同类型的引用</strong>之间的转换。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//static_cast示例</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br><span class="line">    <span class="keyword">operator</span> <span class="keyword">char</span> * ()&#123; <span class="keyword">return</span> <span class="literal">NULL</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A a;</span><br><span class="line">    <span class="keyword">int</span> n; <span class="keyword">char</span> * p = <span class="string">&quot;New Dragon Inn&quot;</span>;</span><br><span class="line">    n = <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">3.14</span>); <span class="comment">// n 的值变为 3</span></span><br><span class="line">    n = <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(a); <span class="comment">//调用a.operator int, n的值变为 1</span></span><br><span class="line">    p = <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>*&gt;(a); <span class="comment">//调用a.operator char *,p的值变为 NULL</span></span><br><span class="line">    n = <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt; (p); <span class="comment">//编译错误，static_cast不能将指针转换成整型</span></span><br><span class="line">    p = <span class="keyword">static_cast</span>&lt;<span class="keyword">char</span>*&gt;(n); <span class="comment">//编译错误，static_cast不能将整型转换成指针</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="reinterpret-cast"><a href="#reinterpret-cast" class="headerlink" title="reinterpret_cast"></a>reinterpret_cast</h1><ul>
 <li><code>reinterpret_cast</code>用来进行<strong>各种不同类型的指针之间</strong>的转换、<strong>不同类型的引用</strong>之间转换、以及<strong>指针和能容纳得下指针的整数类型</strong>之间的转换。</li>
 <li>转换的时候， 执行的是<strong>逐个比特拷贝</strong>的操作。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//reinterpret_cast示例</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span> j;</span><br><span class="line">    A(<span class="keyword">int</span> n):i(n),j(n) &#123; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function">A <span class="title">a</span><span class="params">(<span class="number">100</span>)</span></span>;</span><br><span class="line">    <span class="keyword">int</span> &amp; r = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">int</span>&amp;&gt;(a); <span class="comment">//强行让 r 引用 a</span></span><br><span class="line">    r = <span class="number">200</span>; <span class="comment">//把 a.i 变成了 200</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a.i &lt;&lt; <span class="string">&quot;,&quot;</span> &lt;&lt; a.j &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 输出 200,100</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> n = <span class="number">300</span>;</span><br><span class="line">    A * pa = <span class="keyword">reinterpret_cast</span>&lt;A*&gt; ( &amp; n); <span class="comment">//强行让 pa 指向 n</span></span><br><span class="line">    pa-&gt;i = <span class="number">400</span>; <span class="comment">// n 变成 400</span></span><br><span class="line">    pa-&gt;j = <span class="number">500</span>; <span class="comment">//此条语句不安全，很可能导致程序崩溃</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 输出 400</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> la = <span class="number">0x12345678abcd</span>LL;</span><br><span class="line">    pa = <span class="keyword">reinterpret_cast</span>&lt;A*&gt;(la); <span class="comment">// la太长，只取低32位0x5678abcd拷贝给pa</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> u = <span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">unsigned</span> <span class="keyword">int</span>&gt;(pa); <span class="comment">//pa逐个比特拷贝到u</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; hex &lt;&lt; u &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//输出 5678abcd</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//void (* PF1) (int) 定义了一个返回值是 void 形参有一个int类型的 函数指针</span></span><br><span class="line">    <span class="comment">// 任何声明变量的语句前面加上typedef之后，原来是变量的都变成一种类型。不管这个声明中的标识符号出现在中间还是最后. typedef可以给现有的类型起个别名</span></span><br><span class="line">    <span class="comment">//因此 PF1 可以当作类型使用 用于定义变量</span></span><br><span class="line">    <span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(* PF1)</span> <span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(* PF2)</span> <span class="params">(<span class="keyword">int</span>,<span class="keyword">char</span> *)</span></span>;</span><br><span class="line">    PF1 pf1; PF2 pf2;</span><br><span class="line">    pf2 = <span class="keyword">reinterpret_cast</span>&lt;PF2&gt;(pf1); <span class="comment">//两个不同类型的函数指针之间可以互相转换</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="const-cast"><a href="#const-cast" class="headerlink" title="const_cast"></a>const_cast</h1><ul>
 <li>用来进行去除<code>const</code>属性的转换。</li>
 <li>将<code>const引用</code>转换成<strong>同类型</strong>的<code>非const引用</code>， 将<code>const指针</code>转换为<strong>同类型</strong>的<code>非const指针</code>时用它。</li>
@@ -252,6 +257,43 @@
     
     
     
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-18/%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.html" title="强制类型转换">http://lt4hyl.top/2020-08-18/强制类型转换.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -337,14 +379,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘涛</p>
-  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -355,6 +397,9 @@
       </div>
   </nav>
 </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -373,6 +418,8 @@
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
 
 <div class="copyright">
   
@@ -382,6 +429,18 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

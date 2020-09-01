@@ -115,7 +115,7 @@
       <h1 class="site-title">Lancelot的小站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
   </div>
 
   <div class="site-nav-right">
@@ -132,6 +132,11 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -172,7 +177,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -201,13 +206,20 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
+                <i class="far fa-file-word"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -231,7 +243,6 @@
 </li>
 </ul>
 <a id="more"></a>
-
 <h1 id="服务器相关配置"><a href="#服务器相关配置" class="headerlink" title="服务器相关配置"></a>服务器相关配置</h1><ol>
 <li><p>配置云服务器的安全组策略，添加入站规则，需要登陆云服务商的控制台：</p>
 <ul>
@@ -241,7 +252,6 @@
 </li>
 <li><p>本地连接云服务器，进行远程操作，首先是安装<code>Nginx</code>作为服务器：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装执行命令如下</span></span><br><span class="line">yum install -y nginx</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动服务器：</span></span><br><span class="line">systemctl start nginx</span><br><span class="line">systemctl enable nginx</span><br><span class="line"><span class="meta">#</span><span class="bash"> 我们要记住的是/etc/nginx/是nginx默认的配置路径，一会要用到。</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>安装完成后浏览器通过访问服务器的<strong>公网IP</strong>来验证上述安装以及配置是否正确。只要浏览器出现了<code>nginx</code>的默认网页，就算是成功。</p>
 </li>
@@ -254,9 +264,8 @@
 </li>
 <li><p>编辑 blog.conf文件内容：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    listen    80;</span><br><span class="line">    root /home/www/lt4hyl.top;这里填博客目录存放的地址</span><br><span class="line">    server_name 这里填域名如(lt4hyl.top) 如果暂时没有域名就填云服务器的公网ip，以后有了再改回来;</span><br><span class="line">    location /&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p>保存并退出：<code>ESC</code>–&gt;<code>:wq</code></p>
+<li><p>保存并退出：<code>ESC</code>—&gt;<code>:wq</code></p>
 </li>
 <li><p>打开nginx的配置文件，如：打开/etc/nginx/目录下的nginx.conf文件：<code>vim /etc/nginx/nginx.conf</code>。</p>
 <p><img src="/pictures/image-20200819192057794.png" alt="image-20200819192057794"></p>
@@ -282,10 +291,8 @@
 </li>
 <li><p>云服务器上新增用户，用于后续本地Git提交，并配置仓库</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 配置git用户</span></span><br><span class="line">adduser git</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改新用户git的权限</span></span><br><span class="line">chmod 740 /etc/sudoers</span><br><span class="line">vi /etc/sudoers</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如下图所示，在sudoers中要添加一句话：</span></span><br><span class="line">git ALL=(ALL) ALL</span><br></pre></td></tr></table></figure>
-
 <p><img src="/pictures/20190815132257287.png" alt="20190815132257287.png"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ：wq 保存退出后，将sudoers文件权限改回原样</span></span><br><span class="line">chmod 400 /etc/sudoers</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置git用户的密码</span></span><br><span class="line">sudo passwd git</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切换到git用户，然后在~目录下创建.ssh文件夹，配置公钥私钥文件</span></span><br><span class="line">su git</span><br><span class="line">cd ~</span><br><span class="line">mkdir .ssh</span><br><span class="line">cd .ssh</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 生成密钥文件</span></span><br><span class="line">ssh-keygen</span><br><span class="line"><span class="meta">#</span><span class="bash"> 后续可以一路回车：分别是确认密钥文件路径，要不要输入密码保护等</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 此时在目录下就会有两个文件，分别是 id_rsa 和 id_rsa.pub</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> id_rsa 对应私钥，id_rsa.pub对应公钥</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 此时还需要将 公钥放入 git授权的文件中，使得这对密钥可用，如同github上配置ssh的公钥，后续就可以通过私钥加密访问GitHub上的仓库</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 复制出来authorized_keys文件，它和id_rsa.pub相同</span></span><br><span class="line">cp id_rsa.pub authorized_keys</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改文件权限和文件夹权限</span></span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br><span class="line">chmod 700 ~/.ssh</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果本地已经设置好了SSH key也就是存在 C:\Users\liuta\.ssh\路径下存在文件id_rsa.pub</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 用记事本打开 id_rsa.pub文件，将其中的公钥内容复制到服务器的 authorized_keys文件中，要注意不是覆盖，而是在文件末尾新起一行，进行新增。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这样后续本地每次访问服务器时就不需要输入密码了，可以直接连接并进行操作</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>验证用户是否已设置好：在自己的电脑打开<code>cmd</code>，使用<code>ssh</code>方式连接我们的云服务器。</p>
 <p><img src="/pictures/20190815132324323.png" alt="在这里插入图片描述"></p>
@@ -314,9 +321,6 @@
 </li>
 <li><p>通过浏览器访问配置好的站点时，如果还是出现nginx的默认页面，则需要重启一下nginx，并检查相应目录下是否有文件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果报错，可以尝试切换到 root用户再输入命令</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 检查目录 /home/www/lt4hyl.top 下是否有通过Git同步过来的静态文件。</span></span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 </li>
@@ -327,6 +331,43 @@
     
     
     
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-20/%E4%BA%8ECentos7%E4%B8%8A%E9%83%A8%E7%BD%B2%E5%9F%BA%E4%BA%8EHexo%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%AB%99%E7%82%B9.html" title="于Centos7上部署基于Hexo的博客站点">http://lt4hyl.top/2020-08-20/于Centos7上部署基于Hexo的博客站点.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -412,14 +453,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘涛</p>
-  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -430,6 +471,9 @@
       </div>
   </nav>
 </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -448,6 +492,8 @@
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
 
 <div class="copyright">
   
@@ -457,6 +503,18 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

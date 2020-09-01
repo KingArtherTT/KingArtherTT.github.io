@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lt4hyl.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="机器学习策略(ML Strategy) 假设我们正在训练一个识别图像中是否包含猫咪的网络，为了提升网络的表现，我们可能会产生如下的想法： 收集更多的数据； 收集更多不同种类猫的训练集； 使用梯度下降算法训练更长的时间 使用不同的优化算法，如：Adam代替原有的梯度下降算法。 尝试更大的&#x2F;更小的网络； 使用 dropout&#x2F;L2正则化 等； 尝试不同的网络架构； ……..等等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习笔记（3）">
+<meta property="og:url" content="http://lt4hyl.top/2020-08-27/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89.html">
+<meta property="og:site_name" content="Lancelot的小站">
+<meta property="og:description" content="机器学习策略(ML Strategy) 假设我们正在训练一个识别图像中是否包含猫咪的网络，为了提升网络的表现，我们可能会产生如下的想法： 收集更多的数据； 收集更多不同种类猫的训练集； 使用梯度下降算法训练更长的时间 使用不同的优化算法，如：Adam代替原有的梯度下降算法。 尝试更大的&#x2F;更小的网络； 使用 dropout&#x2F;L2正则化 等； 尝试不同的网络架构； ……..等等">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200702183730887.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200702215809011.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200702215903942.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200702220408473.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200702222011786.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703094108985.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703095105203.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703103520027.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703114706718.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703152438455.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703154422007.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703154517504.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703160903918.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703163529715.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703164911501.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703171759286.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703173800561.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703175433953.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200703180607422.png">
+<meta property="article:published_time" content="2020-08-27T08:25:34.000Z">
+<meta property="article:modified_time" content="2020-08-28T07:20:29.264Z">
+<meta property="article:author" content="刘涛">
+<meta property="article:tag" content="基础知识，深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://lt4hyl.top/pictures/image-20200702183730887.png">
+
+<link rel="canonical" href="http://lt4hyl.top/2020-08-27/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>深度学习笔记（3） | Lancelot的小站</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43b02ed86a701dce319ff86325707452";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Lancelot的小站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-27/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘涛">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lancelot的小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          深度学习笔记（3）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-27 16:25:34" itemprop="dateCreated datePublished" datetime="2020-08-27T16:25:34+08:00">2020-08-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-28 15:20:29" itemprop="dateModified" datetime="2020-08-28T15:20:29+08:00">2020-08-28</time>
+              </span>
+
+          
+            <span id="/2020-08-27/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89.html" class="post-meta-item leancloud_visitors" data-flag-title="深度学习笔记（3）" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="机器学习策略-ML-Strategy"><a href="#机器学习策略-ML-Strategy" class="headerlink" title="机器学习策略(ML Strategy)"></a>机器学习策略(ML Strategy)</h1><ul>
+<li>假设我们正在训练一个识别图像中是否包含猫咪的网络，为了提升网络的表现，我们可能会产生如下的想法：<ul>
+<li>收集更多的数据；</li>
+<li>收集更多不同种类猫的训练集；</li>
+<li>使用梯度下降算法训练更长的时间</li>
+<li>使用不同的优化算法，如：Adam代替原有的梯度下降算法。</li>
+<li>尝试更大的/更小的网络；</li>
+<li>使用 dropout/L2正则化 等；</li>
+<li>尝试不同的网络架构；</li>
+<li>……..等等</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<p><img src="/pictures/image-20200702183730887.png" alt="image-20200702183730887"></p>
+<ul>
+<li>提升系统性能的点子/想法很多，有没有快捷高效的方法分辨出哪些方法值得尝试，哪些方法应该放弃？</li>
+<li>因此我们需要学习机器学习基本的套路：分析机器学习问题的方法。</li>
+</ul>
+<h2 id="Orthogonalization（正交化）"><a href="#Orthogonalization（正交化）" class="headerlink" title="Orthogonalization（正交化）"></a>Orthogonalization（正交化）</h2><ul>
+<li>做调整决策时，从拟合 <code>train sets</code> 到 拟合 <code>dev sets</code> 到拟合 <code>test sets</code> 到最终能应用于现实世界，这是大的四个步骤。</li>
+<li>在其中每个步骤进行调整时，要保证执行的动作，<strong>影响面单一</strong>，即有很强的正交化，同时只影响一件事。</li>
+<li>通过正交控制能与你真正想要控制的事物保持一致，从而较好的估计方法是否有效，应该往哪方面调整。</li>
+</ul>
+<h2 id="FN、FP、TN、TP的解释"><a href="#FN、FP、TN、TP的解释" class="headerlink" title="FN、FP、TN、TP的解释"></a>FN、FP、TN、TP的解释</h2><ul>
+<li>首先需要引入几个缩写的解释，如：FN、FP、TN、TP。<ul>
+<li><code>FN：False Negative</code>，被判定为负样本，但事实上是正样本。</li>
+<li><code>FP：False Positive</code>，被判定为正样本，但事实上是负样本。</li>
+<li><code>TN：True Negative</code>，被判定为负样本，事实上也是负样本。</li>
+<li><code>TP：True Positive</code>，被判定为正样本，事实上也是证样本。</li>
+</ul>
+</li>
+<li>这里的四个缩写曾经一度让我很难记住，经过细想和资料查找，发现这样比较好记忆：<ul>
+<li>把缩写分为两个部分，第一个字母（F,T）和第二个字母（P,N）。</li>
+<li>首先搞清楚第二个字母，即它是你认为该样本的归属应该是怎样（Positive or Negative）；</li>
+<li>第一个字母即是对你的判断进行的评价（False or True）。</li>
+<li>这里也许中文可能会有不好理解的地方，所以我想用英文来描述，可能更清晰：<ul>
+<li>第二个字母：What is your judgement about the sample?；</li>
+<li>第一个字母：Is your judgement right(true) or not(false)?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>上述四个术语会高频得出现在论文的实验部分，它是对实验结果的描述。</li>
+<li>接着是对 <code>Percision</code> 和 <code>Recall</code>的定义：<ul>
+<li><code>Percision</code> ：查准率，即在检索后返回的结果中，真正正确的个数占整个结果的比例。</li>
+<li><code>Recall</code>：查全率，即在检索结果中真正正确的个数 占整个数据集（检索到的和未检索到的）中真正正确个数的比例。</li>
+<li>在该解释中：这里的<strong>正样本</strong>和<strong>负样本</strong>与检索的关系就是：你认为为正样本的应该都出现在检索结果中，而你认为为负样本的应该都不出现在检索结果中，但是你认为的和事实上的会有不一样。</li>
+<li><code>Percision = TP/(TP+FP)</code> 即，检索结果中，都是你认为应该为正的样本（第二个字母都是P），但是其中有你判断正确的和判断错误的（第一个字母有T ，F）。</li>
+<li><code>Recall = TP/(TP+FN)</code>即，检索结果中，你判断为正的样本也确实为正的，以及那些没在检索结果中被你判断为负但是事实上是正的（FN）。</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用单一的量化评估指标"><a href="#使用单一的量化评估指标" class="headerlink" title="使用单一的量化评估指标"></a>使用单一的量化评估指标</h2><ul>
+<li><p>接着进入正题：Using  a <strong>single number evaluation metric</strong>。</p>
+</li>
+<li><p>如：<code>Percision</code> 和 <code>Recall</code>。若同时使用“<code>Percision</code>”和“<code>Recall</code>”来评价分类器，可能不太好进行区分，此时可以使用<code>F1 Score</code>。</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+F_1 \quad score是 Percision 和Recall的调和平均数(Harmonic\,mean)：\\\\ 
+F_1 score=\frac{2}{\frac{1}{p}+\frac{1}{R}}</script><ul>
+<li>如下图所示例子，用<code>F1 Score</code>来衡量可能更合适</li>
+</ul>
+<p><img src="/pictures/image-20200702215809011.png" alt="image-20200702215809011"></p>
+<ul>
+<li>假设某一系列算法在世界不同地区的表现如下图所示，此时需要<strong>单一评价指标</strong>：</li>
+</ul>
+<p><img src="/pictures/image-20200702215903942.png" alt="image-20200702215903942"></p>
+<h3 id="区分满足指标和优化指标"><a href="#区分满足指标和优化指标" class="headerlink" title="区分满足指标和优化指标"></a>区分满足指标和优化指标</h3><ul>
+<li>满足指标(satisficing metrics)和优化指标(optimizing metrics) <ul>
+<li>有时，单一的量化评估指标不好找，就需要分别建立 <strong>满足指标(satisficing matrics)和优化指标(optimizing matrics)</strong> 。</li>
+<li>如：模型检测单张图片的运行时间必须&lt;100ms（满足指标）满足过后不再优化，在此基础上，尽可能的提升准确率（优化指标）。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200702220408473.png" alt="image-20200702220408473"></p>
+<h3 id="建立-Train-dev-test-distributions-的准则"><a href="#建立-Train-dev-test-distributions-的准则" class="headerlink" title="建立 Train/dev/test distributions 的准则"></a>建立 Train/dev/test distributions 的准则</h3><ul>
+<li>可以参照：深度学习笔记（2）的 <code>Train/dev/test sets</code></li>
+<li>dev/test sets distributions，也就是两个数据集的数据分布：<ul>
+<li>dev sets：development set（开发集） /或者有些时候被称为 Cross validation set （交叉验证集）</li>
+<li>dev/test sets 要来自同一个分布。</li>
+<li>未来期望用到的数据和认为重要的数据，都放到 dev set 和 test set中。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200702222011786.png" alt="image-20200702222011786"></p>
+<ul>
+<li>size of dev/test sets，开发集和测试集的大小问题：<ul>
+<li>深度学习中数据量足够大，因此 train/dev/test 按照 98%/1%/1% 的分配方式是合理的.</li>
+<li>对于测试集（test set）是在系统开发完成后，用于帮助我们评估最终系统的性能，因此测试集的大小只要足够能保证对系统整体性能评估的高置信度即可。</li>
+</ul>
+</li>
+<li><p>经验法则中：</p>
+<ul>
+<li>确保开发集的大小足以达到其目的 ：也就是帮我们<strong>评估不同的想法</strong>，让我们能更好地从A或B中做出选择 。</li>
+<li>而测试集的目的，是对<strong>最终的模型</strong>进行评估，你只需要让测试集的大小足以满足这一目的即可。</li>
+</ul>
+</li>
+<li><p>需要记住的是：当我们发现评估指标，无法对算法的优劣给出正确的排序时，那么就需要考虑定义一个新的评估指标；</p>
+<ul>
+<li>如果我们对原有的误差指标不满意，那就不要将就着使用这个你不满意的指标，而是定义一个新的指标，使其能够更好地反应你的偏好，以符合你对更好的算法的定义。</li>
+</ul>
+</li>
+<li>在考虑整个大问题时，要应用到正交化思想：<ul>
+<li>将机器学习的任务分成独立的步骤；</li>
+<li>第一步先定义评估指标；第二步再独立的考虑如何在这个指标上做的更好。</li>
+</ul>
+</li>
+<li>评估指标修改的指导方针是：如果基于当前的指标，在当前开发集和测试集的上算法表现得很好，但并不能对应于在你真正关心的应用场景上也表现得很好（甚至实际使用时，效果很差），这时就需要修改指标或修改开发集和测试集。</li>
+<li>在开发之前先要确定<strong>评价指标</strong>和<strong>开发集</strong>，这样才能更好进行迭代，驱动团队进行开发。</li>
+</ul>
+<h2 id="对-Human-level-performance-的理解"><a href="#对-Human-level-performance-的理解" class="headerlink" title="对 Human-level performance 的理解"></a>对 Human-level performance 的理解</h2><ul>
+<li><p>先引入<strong>贝叶斯最优误差</strong>：从 X 映射到 Y的最好的理论函数。可能永远无法超越。无论是现在还是未来，最终能达到的最小的误差值 。</p>
+</li>
+<li><p>可以将人类水准的错误率，看成是贝叶斯最优误差的代理变量或是估计值；在计算机视觉任务中，这个代理变量的选取是合理的，因为人类擅长视觉的任务，所以人类能达到的水准也许离贝叶斯误差相差不大。</p>
+</li>
+<li><code>Human-level error as a proxy for Bayes error</code></li>
+<li>人类水准的错误率的选择上：可以选择人工标准中错误了最低的，也可以根据系统的实际使用场景去进行选择。</li>
+<li>人类水平表现的错误率给我们提供了对贝叶斯误差的估计，这可以让我们更快速的决定我的算法，是更应该降低偏差还是方差。</li>
+</ul>
+<p><img src="/pictures/image-20200703094108985.png" alt="image-20200703094108985"></p>
+<ul>
+<li>根据下图，Andrew Ng提出了 <code>Avoidable bias</code>的概念，也就是可避免误差：表示训练集的错误率与人类水准的错误率之间的差值。<ul>
+<li>当有了人类水准的错误率后，根据不同情况，就可以采取消减偏差还是方差的策略。</li>
+<li>当算法的水平超过了人类水准之后，再想提升就很困难了。（基于没有了参考的方向，以往的工具集可能失效等）</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200703095105203.png" alt="image-20200703095105203"></p>
+<ul>
+<li>根据得到的  <code>Human-level performance</code> 、<code>Training error</code> 和 <code>Dev error</code> 就可以更好的改进模型。<ul>
+<li>当然据此进行分析有两个前提：<ul>
+<li>模型在训练集上拟合的很好， avoidable bias 减小到合适的值；</li>
+<li>训练集上的性能可以很好的推广到 dev/test set上，有合适的 variance 值。</li>
+</ul>
+</li>
+<li>然后如下图所述，进行分析比较：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200703103520027.png" alt="image-20200703103520027"></p>
+<ul>
+<li>根据上图进行模型性能改进时有如下的经验教训：<ul>
+<li>有时，我们需要在可用数据上训练模型，这些数据的分布可能与生产中将出现的数据不同。</li>
+<li>此外，添加与开发集不同的训练数据仍可能有助于模型提高开发集的性能。 </li>
+<li>其中重要的是<strong>开发集和测试集具有相同的分布</strong>，而训练集与开发集的分布并不一定需要保持一致。</li>
+</ul>
+</li>
+</ul>
+<h2 id="错误分析-Error-analysis"><a href="#错误分析-Error-analysis" class="headerlink" title="错误分析(Error analysis)"></a>错误分析(Error analysis)</h2><ul>
+<li><strong>错误分析</strong>的引入：如果你想得到一个训练算法，来做人类可以做的任务，而且你所训练的算法，还没有达到人类的效果，那么你需要手动地检查算法中的错误，来得到你下一步该做什么，这个过程叫做错误分析。</li>
+<li>错误分析做的事情：<ul>
+<li>手动分析一下，错误的地方主要在哪儿？</li>
+<li>改进这些错误的地方，可能达到的上限是多少？</li>
+<li>是否值得花费大部分精力去改进这方面？</li>
+</ul>
+</li>
+<li>错误分析注意事项：<ul>
+<li><strong>分析错误时，是针对 dev set（开发集）</strong>；</li>
+<li>在训练集上训练是为了拟合好开发集。训练集和开发集的数据分布可能不一样，但开发集和测试集的分布必须保持一致，并要与实际应用的分布保持一致。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>假设现在有一个<strong>猫狗分类器</strong>，分类精确度已经达到了90%，但还有10%的错误率，此时想要进一步提升模型性能，就要进行错误分析：</p>
+<ul>
+<li>手动拿出 大概100个 分类错误的 开发集样本；</li>
+<li><p>人工标注一下这些分类错误的样本的可能错误原因：猫狗太像了；图片有模糊的；猫的主体与背景融合了；其它猫科动物被识别成猫了等等。</p>
+</li>
+<li><p>大概的情形如下述两幅图所描述的：</p>
+<ol>
+<li>先是知道了错误类型；</li>
+<li>然后评估每一类错误类型可能的改进潜力；</li>
+<li>最后再做决策是否要投入精力改进这方面（成本/收益的比较）：</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200703114706718.png" alt="image-20200703114706718"></p>
+<p><img src="/pictures/image-20200703152438455.png" alt="image-20200703152438455"></p>
+<h3 id="Cleaning-up-incorrectly-labeled-data"><a href="#Cleaning-up-incorrectly-labeled-data" class="headerlink" title="Cleaning up incorrectly labeled data"></a>Cleaning up incorrectly labeled data</h3><ul>
+<li>对于人工标准错误的数据的处理，要根据情况进行区分。</li>
+<li>对于训练集中的被错误标记的数据，如果能修改当然更好；如果不修改，DL 算法对训练集的<strong>随机误差（random errors）</strong>具有很好的鲁棒性，可以不修改。</li>
+<li>也就是训练集的标签错误率是很小的并且接近于随机误差时可以不修改，但如果是某种<strong>系统误差（systematic error）</strong>,也就是针对某一方面的数据，老是出现错误标签，则需要进行手动修改以矫正系统误差。</li>
+<li>对于开发集中的错误标签，根据影响程度进行判断，是否需要花费精力去改正。</li>
+<li>此时要明确开发集的目标：帮助你在不同的分类器：A,B,C之间做出选择，如下图所示：</li>
+</ul>
+<p><img src="/pictures/image-20200703154422007.png" alt="image-20200703154422007"></p>
+<p><img src="/pictures/image-20200703154517504.png" alt="image-20200703154517504"></p>
+<h3 id="Build-your-first-system-quickly-then-iterate"><a href="#Build-your-first-system-quickly-then-iterate" class="headerlink" title="Build your first system quickly, then iterate"></a>Build your first system quickly, then iterate</h3><ul>
+<li>当开始一个新问题时：<ul>
+<li>首先：建立 dev/test set 和 量化评估指标（metric）</li>
+<li>快速的建立初始的系统</li>
+<li>使用 Bias/Variance analysis &amp; Error analysis 要确定下一步应该做什么。</li>
+</ul>
+</li>
+<li>当开始的不是一个新问题，有很多参考文献/论文时，可以从一开始打造一个复杂的系统。</li>
+</ul>
+<h3 id="Mismatched-training-and-dev-test-set"><a href="#Mismatched-training-and-dev-test-set" class="headerlink" title="Mismatched training and dev/test set"></a>Mismatched training and dev/test set</h3><ul>
+<li>训练集与开发集和测试集可以来自不同分布；但要记住开发集是用于确认目标的，因此开发集的分布一定要跟实际系统使用场景的数据保持一致；</li>
+<li>如下图示，举个例子：</li>
+</ul>
+<p><img src="/pictures/image-20200703160903918.png" alt="image-20200703160903918"></p>
+<ul>
+<li><p>这里重点要注意的：当训练集与开发集/测试集的数据分布不一致时，Bias/Variance 的分析方法要做出改变：</p>
+<ul>
+<li>此时由于训练集和开发集来自不同的数据分布，因此不好直接通过 Train Error 和 Dev Error的比较来判断出，模型的 Bias/Variance 问题；</li>
+<li>这时需要从原始的训练集中，抽取一部分数据组成 Training-dev set：与训练集具有相同的分布，但却没有用于训练的过程；</li>
+<li>通过比较 Train Error 和  Training-dev Error 来判断模型的Bias/Variance 问题；</li>
+<li>最终调试过后，若 Train Error 和  Training-dev Error 都很接近于  human-level 了，但 Dev Error 仍旧很大，这时可以认为是 <strong>失配问题（Mismatch Problem）</strong>：算法并未在我所关心的分布上训练的很好。</li>
+</ul>
+</li>
+<li><p>对 Mismatch问题的严重性通过下图的分析得出：</p>
+</li>
+</ul>
+<p><img src="/pictures/image-20200703163529715.png" alt="image-20200703163529715"></p>
+<ul>
+<li>解决数据不匹配问题(Addressing data mismatch)：<ul>
+<li>首先通过手工的错误分析，试着弄清楚训练集与开发集之间的不同。</li>
+<li>尝试通过人工数据合成（Artificial data synthesis）、收集更多数据等，使得训练集与开发集更加相似。</li>
+<li>不过要注意的是，人工合成数据时，可能合成的数据只能代表实际数据的一个很小的子集，使用这部分数据训练时，可能很容易会造成模型在这部分子集上的过拟合问题，因此要尽量的收集真实数据。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200703164911501.png" alt="image-20200703164911501"></p>
+<h2 id="其它的学习方式"><a href="#其它的学习方式" class="headerlink" title="其它的学习方式"></a>其它的学习方式</h2><h3 id="迁移学习简介-Transfer-learning"><a href="#迁移学习简介-Transfer-learning" class="headerlink" title="迁移学习简介(Transfer learning)"></a>迁移学习简介(Transfer learning)</h3><ul>
+<li>在计算机视觉任务中，常见的作法：采用 <code>Pre-trained</code> 的主干网络；<code>fine-tune</code> 后几个输出层。</li>
+<li>也就是基于A任务的所学习到的特征也可以应用于B任务上。</li>
+<li>什么时候可以使用迁移学习，如下图示：</li>
+</ul>
+<p><img src="/pictures/image-20200703171759286.png" alt="image-20200703171759286"></p>
+<h3 id="Multi-task-learning"><a href="#Multi-task-learning" class="headerlink" title="Multi-task learning"></a>Multi-task learning</h3><ul>
+<li>即通过训练一个神经网络同时完成多项任务，如：对一张图片进行多标签的分类（一张图，进行是否包含人、车、狗的判别等）。这可以使你的性能比单独执行任务时更好。</li>
+<li>在不同输出之间，神经网络前面的特征可以共享，那么你会发现训练一个神经网络做多件事的结果比训练多个完全独立的神经网络的结果要好。</li>
+<li>什么时候使用多任务学习？如下图示：</li>
+</ul>
+<p><img src="/pictures/image-20200703173800561.png" alt="image-20200703173800561"></p>
+<h3 id="End-to-end-deep-learning"><a href="#End-to-end-deep-learning" class="headerlink" title="End-to-end deep learning"></a>End-to-end deep learning</h3><ul>
+<li>端到端的学习可以真正的让数据发挥主导作用：<ul>
+<li>通过单纯的使用机器学习方法，你的神经网络能够更好从输入的X-&gt;Y中，学习到数据内在的统计学特性，而不是被迫去反映人的先见。</li>
+</ul>
+</li>
+<li>学习算法有两个主要的知识来源：一个是<strong>数据</strong>，另一个是<strong>你手工设计的组件</strong>。通过手工设计的组件，将人工知识融入到算法中，这不是一个坏主意，而是一条可行之路。如果你没有足够的数据，那么你的学习算法就不能够洞悉你数据中的规律。</li>
+<li>以语音识别举例：<ul>
+<li>多步骤的学习方式，会先从原始语音中提取特征，转换成设计好的<code>“phonemes”</code>，再转化成单词，最后组合成文本。</li>
+<li>而端到端的学习就是，输入语音直接输出文本。</li>
+<li>如下图所示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200703175433953.png" alt="image-20200703175433953"></p>
+<ul>
+<li>端到端学习的优势与劣势：</li>
+</ul>
+<p><img src="/pictures/image-20200703180607422.png" alt="image-20200703180607422"></p>
+<h2 id="Ruslan-Salakhutdinov-interview"><a href="#Ruslan-Salakhutdinov-interview" class="headerlink" title="Ruslan Salakhutdinov interview"></a>Ruslan Salakhutdinov interview</h2><ul>
+<li>Ruslan看好的方向以及现在的趋势：<ul>
+<li>深度强化学习领域</li>
+<li>推理和自然语言理解领域</li>
+<li>小样本学习</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-27/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89.html" title="深度学习笔记（3）">http://lt4hyl.top/2020-08-27/深度学习笔记（3）.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 基础知识，深度学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020-08-24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89.html" rel="prev" title="深度学习笔记（2）">
+      <i class="fa fa-chevron-left"></i> 深度学习笔记（2）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020-08-28/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%884%EF%BC%89.html" rel="next" title="深度学习笔记（4）">
+      深度学习笔记（4） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AD%96%E7%95%A5-ML-Strategy"><span class="nav-number">1.</span> <span class="nav-text">机器学习策略(ML Strategy)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Orthogonalization%EF%BC%88%E6%AD%A3%E4%BA%A4%E5%8C%96%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">Orthogonalization（正交化）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FN%E3%80%81FP%E3%80%81TN%E3%80%81TP%E7%9A%84%E8%A7%A3%E9%87%8A"><span class="nav-number">1.2.</span> <span class="nav-text">FN、FP、TN、TP的解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%8D%95%E4%B8%80%E7%9A%84%E9%87%8F%E5%8C%96%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="nav-number">1.3.</span> <span class="nav-text">使用单一的量化评估指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E5%88%86%E6%BB%A1%E8%B6%B3%E6%8C%87%E6%A0%87%E5%92%8C%E4%BC%98%E5%8C%96%E6%8C%87%E6%A0%87"><span class="nav-number">1.3.1.</span> <span class="nav-text">区分满足指标和优化指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B-Train-dev-test-distributions-%E7%9A%84%E5%87%86%E5%88%99"><span class="nav-number">1.3.2.</span> <span class="nav-text">建立 Train&#x2F;dev&#x2F;test distributions 的准则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9-Human-level-performance-%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-number">1.4.</span> <span class="nav-text">对 Human-level performance 的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90-Error-analysis"><span class="nav-number">1.5.</span> <span class="nav-text">错误分析(Error analysis)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cleaning-up-incorrectly-labeled-data"><span class="nav-number">1.5.1.</span> <span class="nav-text">Cleaning up incorrectly labeled data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Build-your-first-system-quickly-then-iterate"><span class="nav-number">1.5.2.</span> <span class="nav-text">Build your first system quickly, then iterate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mismatched-training-and-dev-test-set"><span class="nav-number">1.5.3.</span> <span class="nav-text">Mismatched training and dev&#x2F;test set</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E7%9A%84%E5%AD%A6%E4%B9%A0%E6%96%B9%E5%BC%8F"><span class="nav-number">1.6.</span> <span class="nav-text">其它的学习方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E7%AE%80%E4%BB%8B-Transfer-learning"><span class="nav-number">1.6.1.</span> <span class="nav-text">迁移学习简介(Transfer learning)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-task-learning"><span class="nav-number">1.6.2.</span> <span class="nav-text">Multi-task learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#End-to-end-deep-learning"><span class="nav-number">1.6.3.</span> <span class="nav-text">End-to-end deep learning</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ruslan-Salakhutdinov-interview"><span class="nav-number">1.7.</span> <span class="nav-text">Ruslan Salakhutdinov interview</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">刘涛</p>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+      
+      
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          //console.log(error);
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"MxrUXwts7rlzq762NfLCiSVk-gzGzoHsz","app_key":"bqlnUht41VcOv8c5hK8DrOyz","server_url":"https://mxruxwts.lc-cn-n1-shared.com","security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

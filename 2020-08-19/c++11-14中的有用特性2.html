@@ -112,7 +112,7 @@
       <h1 class="site-title">Lancelot的小站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
   </div>
 
   <div class="site-nav-right">
@@ -129,6 +129,11 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -169,7 +174,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -204,13 +209,20 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
+                <i class="far fa-file-word"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>20k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>18 分钟</span>
             </span>
 
         </div>
@@ -231,9 +243,7 @@
 </li>
 </ul>
 <a id="more"></a>
-
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[捕获列表](参数列表) mutable(可选) 异常属性 -&gt; 返回类型 &#123;</span><br><span class="line">    &#x2F;&#x2F; 函数体</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;一般函数的函数名被略去</span><br><span class="line">[ caputrue ] ( params ) opt -&gt; ret &#123; body; &#125;;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>捕获列表：可以理解为参数的一种类型。</p>
 <ul>
@@ -245,7 +255,6 @@
 <li><strong>值捕获</strong>：与参数传值类似，不同之处则在于，被捕获的变量在 lambda 表达式<strong>被创建时</strong>拷贝，而<strong>非调用时</strong>才拷贝。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">learn_lambda_func_1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> value_1 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">auto</span> copy_value_1 = [value_1] &#123;</span><br><span class="line">        <span class="keyword">return</span> value_1;</span><br><span class="line">    &#125;;</span><br><span class="line">    value_1 = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">auto</span> stored_value_1 = copy_value_1();</span><br><span class="line">    <span class="comment">// 这时, stored_value_1 == 1, 而 value_1 == 100.</span></span><br><span class="line">    <span class="comment">// 因为 copy_value_1 在创建时就保存了一份 value_1 的拷贝</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;value_1 = &quot;</span> &lt;&lt; value_1 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;stored_value_1 = &quot;</span> &lt;&lt; stored_value_1 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><strong>引用捕获</strong>：与引用传参类似，引用捕获保存的是引用，值会发生变化。</li>
 </ul>
@@ -275,9 +284,6 @@
 </li>
 <li><p>从 C++14 开始，Lambda 函数的形式参数可以使用 <code>auto</code> 关键字来产生有一定意义的泛型：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">learn_lambda_func_4</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> generic = [](<span class="keyword">auto</span> x, <span class="keyword">auto</span> y) &#123;</span><br><span class="line">        <span class="keyword">return</span> x+y;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;generic(1,2) = &quot;</span> &lt;&lt; generic(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;generic(1.1,2.2) = &quot;</span> &lt;&lt; generic(<span class="number">1.1</span>, <span class="number">2.2</span>) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 <h1 id="函数对象包装器"><a href="#函数对象包装器" class="headerlink" title="函数对象包装器"></a>函数对象包装器</h1><ul>
@@ -297,28 +303,24 @@
 <li>解决的需求：有时候可能并不一定能够一次性获得调用某个函数的全部参数，通过这个函数，我们可以将部分调用参数提前绑定到函数身上成为一个新的对象，然后在参数齐全后，完成调用。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">foo</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">    ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 将参数1,2绑定到函数 foo 上，但是使用 std::placeholders::_1 来对第一个参数进行占位</span></span><br><span class="line">    <span class="keyword">auto</span> bindFoo = <span class="built_in">std</span>::bind(foo, <span class="built_in">std</span>::placeholders::_1, <span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="comment">// 这时调用 bindFoo 时，只需要提供第一个参数即可</span></span><br><span class="line">    bindFoo(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// auto 关键字的妙用，不太熟悉一个函数的返回值类型，可以通过 auto 的使用来规避这一问题的出现</span></span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 <h1 id="右值引用"><a href="#右值引用" class="headerlink" title="右值引用"></a>右值引用</h1><ul>
-<li><p>**左值(lvalue, left value)**，顾名思义就是赋值符号左边的值。准确来说，左值是表达式计算后（不一定是赋值表达式）依然存在的持久对象。</p>
+<li><p><strong>左值(lvalue, left value)</strong>，顾名思义就是赋值符号左边的值。准确来说，左值是表达式计算后（不一定是赋值表达式）依然存在的持久对象。</p>
 </li>
-<li><p>**右值(rvalue, right value)**，右边的值，是指表达式结束后就不再存在的临时对象。</p>
+<li><p><strong>右值(rvalue, right value)</strong>，右边的值，是指表达式结束后就不再存在的临时对象。</p>
 </li>
 <li><p>为了引入强大的右值引用，将右值的概念进行了进一步的划分，分为：<strong>纯右值、将亡值</strong>。</p>
 </li>
-<li><p>**纯右值(prvalue, pure rvalue)**，纯粹的右值。</p>
+<li><p><strong>纯右值(prvalue, pure rvalue)</strong>，纯粹的右值。</p>
 <ul>
 <li>要么是纯粹的字面量，例如 <code>10</code>, <code>true</code>；</li>
 <li>要么是<strong>求值结果</strong>相当于<strong>字面量</strong>或<strong>匿名临时对象</strong>，例如 <code>1+2</code>;</li>
 <li>非引用返回的临时变量、运算表达式产生的临时变量、原始字面量、Lambda 表达式都属于纯右值。</li>
 </ul>
 </li>
-<li><p>**将亡值(xvalue, expiring value)**，是 C++11 为了引入右值引用而提出的概念，也就是即将被销毁、却能够被移动的值。</p>
+<li><p><strong>将亡值(xvalue, expiring value)</strong>，是 C++11 为了引入右值引用而提出的概念，也就是即将被销毁、却能够被移动的值。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; temp = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = foo();</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>函数 <code>foo</code> 的返回值 <code>temp</code> 在内部创建然后被赋值给 <code>v</code>，然而 <code>v</code> 获得这个对象时，会将整个 temp 拷贝一份，然后把 <code>temp</code> 销毁，如果这个 <code>temp</code> 非常大，这将造成大量额外的开销（传统C++中）。</li>
 <li><code>v</code> 是左值、<code>foo()</code> 返回的值就是右值（也是纯右值）。</li>
@@ -344,44 +346,13 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//涉及标准库的例子</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt; // std::cout</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;utility&gt;  // std::move</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;   // std::vector</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;   // std::string</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> str = <span class="string">&quot;Hello world.&quot;</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; v;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 将使用 push_back(const T&amp;), 即产生拷贝行为</span></span><br><span class="line">    v.push_back(str);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 将输出 &quot;str: Hello world.&quot;</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;str: &quot;</span> &lt;&lt; str &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将使用 push_back(const T&amp;&amp;), 不会出现拷贝行为</span></span><br><span class="line">    <span class="comment">// 而整个字符串会被移动到 vector 中，所以有时候 std::move 会用来减少拷贝出现的开销</span></span><br><span class="line">    <span class="comment">// 这步操作后, str 中的值会变为空</span></span><br><span class="line">    v.push_back(<span class="built_in">std</span>::<span class="built_in">move</span>(str));</span><br><span class="line">    <span class="comment">// 将输出 &quot;str: &quot;</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;str: &quot;</span> &lt;&lt; str &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="完美转发（-std-forward-）"><a href="#完美转发（-std-forward-）" class="headerlink" title="完美转发（ std::forward ）"></a>完美转发（ <code>std::forward</code> ）</h1><ul>
 <li><p>完美转发概念的引出：</p>
 <ul>
 <li><p>若实参传递给形参时：一个声明的右值引用（形参）其实是一个左值（实参），这就为我们进行参数转发（传递）造成了问题，因此会有一个自动转换的过程，这基于<strong>引用坍缩规则</strong>。</p>
 </li>
 <li><p><strong>引用坍缩规则</strong>：在传统 C++ 中，我们不能够对一个引用类型继续进行引用，但 C++ 11 由于右值引用的出现而放宽了这一做法，从而产生了引用坍缩规则，允许我们对引用进行引用，既能左引用，又能右引用。但是却遵循如下规则：</p>
-<table>
-<thead>
-<tr>
-<th>函数形参类型</th>
-<th>实参参数类型</th>
-<th>推导后函数形参类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>T&amp;</td>
-<td>左引用</td>
-<td>T&amp;</td>
-</tr>
-<tr>
-<td>T&amp;</td>
-<td>右引用</td>
-<td>T&amp;</td>
-</tr>
-<tr>
-<td>T&amp;&amp;</td>
-<td>左引用</td>
-<td>T&amp;</td>
-</tr>
-<tr>
-<td>T&amp;&amp;</td>
-<td>右引用</td>
-<td>T&amp;&amp;</td>
-</tr>
-</tbody></table>
+<p>| 函数形参类型 | 实参参数类型 | 推导后函数形参类型 |<br>| —————— | —————— | ————————— |<br>| T&amp;           | 左引用       | T&amp;                 |<br>| T&amp;           | 右引用       | T&amp;                 |<br>| T&amp;&amp;          | 左引用       | T&amp;                 |<br>| T&amp;&amp;          | 右引用       | T&amp;&amp;                |</p>
 </li>
 <li><p>因此，模板函数中使用 <code>T&amp;&amp;</code> 不一定能进行右值引用，当传入左值时，此函数的引用将被推导为左值。</p>
 </li>
@@ -394,9 +365,6 @@
 <li>所谓完美转发：就是为了让我们在传递参数的时候，<strong>保持原来的参数类型</strong>（左引用保持左引用，右引用保持右引用）。为了解决这个问题，我们应该使用 <code>std::forward</code> 来进行参数的转发（传递）。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;utility&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reference</span><span class="params">(<span class="keyword">int</span>&amp; v)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;左值引用&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reference</span><span class="params">(<span class="keyword">int</span>&amp;&amp; v)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;右值引用&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pass</span><span class="params">(T&amp;&amp; v)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;普通传参:&quot;</span>;</span><br><span class="line">    reference(v);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;std::move 传参:&quot;</span>;</span><br><span class="line">    reference(<span class="built_in">std</span>::<span class="built_in">move</span>(v));</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;std::forward 传参:&quot;</span>;</span><br><span class="line">    reference(<span class="built_in">std</span>::forward&lt;T&gt;(v));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;传递右值:&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    pass(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;传递左值:&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">int</span> v = <span class="number">1</span>;</span><br><span class="line">    pass(v);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出结果为：</span><br><span class="line">传递右值:</span><br><span class="line">普通传参:左值引用</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">move</span> 传参:右值引用</span><br><span class="line"><span class="built_in">std</span>::forward 传参:右值引用</span><br><span class="line">传递左值:</span><br><span class="line">普通传参:左值引用</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">move</span> 传参:右值引用</span><br><span class="line"><span class="built_in">std</span>::forward 传参:左值引用</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 <ul>
@@ -411,12 +379,8 @@
 <li><code>std::array</code> 会在编译时创建一个固定大小的数组，<code>std::array</code> 不能够被隐式的转换成指针。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="keyword">int</span>, 4&gt; arr= &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> len = <span class="number">4</span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="keyword">int</span>, len&gt; arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;; <span class="comment">// 非法, 数组大小参数必须是常量表达式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//兼容C风格的接口</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">(<span class="keyword">int</span> *p, <span class="keyword">int</span> len)</span> </span>&#123;<span class="keyword">return</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="keyword">int</span>, 4&gt; arr = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// C 风格接口传参</span></span><br><span class="line"><span class="comment">// foo(arr, arr.size());           // 非法, 无法隐式转换</span></span><br><span class="line">foo(&amp;arr[<span class="number">0</span>], arr.<span class="built_in">size</span>());</span><br><span class="line">foo(arr.data(), arr.<span class="built_in">size</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 `std::sort`</span></span><br><span class="line"><span class="built_in">std</span>::sort(arr.<span class="built_in">begin</span>(), arr.<span class="built_in">end</span>());</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="std-forward-list"><a href="#std-forward-list" class="headerlink" title="std::forward_list"></a><code>std::forward_list</code></h3><ul>
-<li><p><code>std::forward_list</code> 是一个列表容器（归类为顺序容器），使用方法和 <code>std::list</code> 基本类似。</p>
-</li>
+<li><code>std::forward_list</code> 是一个列表容器（归类为顺序容器），使用方法和 <code>std::list</code> 基本类似。</li>
 <li><p>和 <code>std::list</code> 的双向链表的实现不同，<code>std::forward_list</code> 使用单向链表进行实现，提供了 <code>O(1)</code> 复杂度的元素插入。</p>
 </li>
 <li><p><code>std::forward_list</code>不支持快速随机访问（这也是链表的特点）。</p>
@@ -445,25 +409,18 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> student = <span class="built_in">std</span>::make_tuple(<span class="number">3.8</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&quot;张三&quot;</span>);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;GPA: &quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">get</span>&lt;<span class="number">0</span>&gt;(student) &lt;&lt; <span class="string">&quot;, &quot;</span></span><br><span class="line">    &lt;&lt; <span class="string">&quot;成绩: &quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">get</span>&lt;<span class="number">1</span>&gt;(student) &lt;&lt; <span class="string">&quot;, &quot;</span></span><br><span class="line">    &lt;&lt; <span class="string">&quot;姓名: &quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">get</span>&lt;<span class="number">2</span>&gt;(student) &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">double</span> gpa;</span><br><span class="line">    <span class="keyword">char</span> grade;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 元组进行拆包</span></span><br><span class="line">    <span class="built_in">std</span>::tie(gpa, grade, name) = <span class="built_in">std</span>::make_tuple(<span class="number">3.8</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&quot;张三&quot;</span>);</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;GPA: &quot;</span> &lt;&lt; gpa &lt;&lt; <span class="string">&quot;, &quot;</span></span><br><span class="line">    &lt;&lt; <span class="string">&quot;成绩: &quot;</span> &lt;&lt; grade &lt;&lt; <span class="string">&quot;, &quot;</span></span><br><span class="line">    &lt;&lt; <span class="string">&quot;姓名: &quot;</span> &lt;&lt; name &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//c++14中 也可以通过类型来获取元组中的对象</span></span><br><span class="line">std::tuple&lt;std::string, double, double, int&gt; t(&quot;123&quot;, 4.5, 6.7, 8);</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">get</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;(t) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">get</span>&lt;<span class="keyword">double</span>&gt;(t) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;   <span class="comment">// 非法, 引发编译期错误</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">get</span>&lt;<span class="number">3</span>&gt;(t) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li><p>但元组仍存在问题，如对<strong>运行期索引</strong>不支持：</p>
 <ul>
 <li><code>std::get&lt;&gt;</code> 依赖一个编译期的常量。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不合法</span></span><br><span class="line"><span class="keyword">int</span> index = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">get</span>&lt;index&gt;(t);</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>使用 <code>boost::variant</code> 配合变长模板参数，支持运行期索引。</p>
 <ul>
 <li>使用 <code>boost</code> 只是暂时性的解决方案，<code>variant</code> 已在 C++17 中被纳入标准库 <code>std::variant</code></li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;boost/variant.hpp&gt;</span></span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">size_t</span> n, <span class="keyword">typename</span>... T&gt;</span><br><span class="line">boost::variant&lt;T...&gt; _tuple_index(<span class="keyword">size_t</span> i, <span class="keyword">const</span> <span class="built_in">std</span>::tuple&lt;T...&gt;&amp; tpl) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i == n)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">std</span>::<span class="built_in">get</span>&lt;n&gt;(tpl);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="keyword">sizeof</span>...(T) - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="built_in">std</span>::out_of_range(<span class="string">&quot;越界.&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> _tuple_index&lt;(n &lt; <span class="keyword">sizeof</span>...(T)<span class="number">-1</span> ? n+<span class="number">1</span> : <span class="number">0</span>)&gt;(i, tpl);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span>... T&gt;</span><br><span class="line">boost::variant&lt;T...&gt; tuple_index(size_t i, const std::tuple&lt;T...&gt;&amp; tpl) &#123;</span><br><span class="line">    <span class="keyword">return</span> _tuple_index&lt;<span class="number">0</span>&gt;(i, tpl);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这样就可以</span></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; tuple_index(i, t) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 </li>
@@ -472,21 +429,13 @@
 <li>合并两个元组，这可以通过 <code>std::tuple_cat</code> 来实现</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> new_tuple = <span class="built_in">std</span>::tuple_cat(<span class="built_in">std</span>::make_tuple(<span class="number">3.8</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&quot;张三&quot;</span>), <span class="built_in">std</span>::<span class="built_in">move</span>(t));</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>遍历元组：通过上述的<code>tuple_index</code>和<code>std::tuple_size&lt;T&gt;::value;</code>来实现：</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">tuple_len</span><span class="params">(T &amp;tpl)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::tuple_size&lt;T&gt;::value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 迭代</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i != tuple_len(new_tuple); ++i)</span><br><span class="line">    <span class="comment">// 运行期索引</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; tuple_index(i, new_tuple) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-
-
-
 <h2 id="智能指针和引用计数"><a href="#智能指针和引用计数" class="headerlink" title="智能指针和引用计数"></a>智能指针和引用计数</h2><ul>
-<li><p>传统C++ 的RAII 资源获取即初始化技术：在构造函数的时候申请空间，而在析构函数（在离开作用域时调用）的时候释放空间。这不是最佳实践。</p>
-</li>
-<li><p>高级程序语言如：C#，Java，在进行垃圾回收时，都会有一个概念，叫做<strong>引用计数</strong>，用于明晰变量的生命周期。现在C++中也有了。</p>
-</li>
+<li>传统C++ 的RAII 资源获取即初始化技术：在构造函数的时候申请空间，而在析构函数（在离开作用域时调用）的时候释放空间。这不是最佳实践。</li>
+<li>高级程序语言如：C#，Java，在进行垃圾回收时，都会有一个概念，叫做<strong>引用计数</strong>，用于明晰变量的生命周期。现在C++中也有了。</li>
 <li><p>引用计数：目的在于防止内存泄露。</p>
 </li>
 <li><p>基本想法：对于动态分配的对象，进行引用计数，每当增加一次对同一个对象的引用，那么引用对象的引用计数就会增加一次，每删除一次引用，引用计数就会减一，当一个对象的引用计数减为零时，就自动删除指向的堆内存。</p>
@@ -501,9 +450,6 @@
 <li><code>std::shared_ptr</code> 可以通过 <code>get()</code> 方法来获取原始指针，通过 <code>reset()</code> 来减少一个引用计数，并通过<code>get_count()</code>来查看一个对象的引用计数。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// auto pointer = new int(10); // 非法, 不允许直接赋值 error C2040: “pointer”:“auto”与“int *”的间接寻址级别不同</span></span><br><span class="line">    <span class="comment">// 构造了一个 std::shared_ptr</span></span><br><span class="line">    <span class="keyword">auto</span> pointer = <span class="built_in">std</span>::make_shared&lt;<span class="keyword">int</span>&gt;(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">auto</span> pointer2 = pointer;    <span class="comment">// 引用计数+1</span></span><br><span class="line">    <span class="keyword">auto</span> pointer3 = pointer;    <span class="comment">// 引用计数+1</span></span><br><span class="line">    <span class="keyword">int</span> *p = pointer.<span class="built_in">get</span>();             <span class="comment">// 这样不会增加引用计数</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;pointer.use_count() = &quot;</span> &lt;&lt; pointer.use_count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;      <span class="comment">// 3</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;pointer2.use_count() = &quot;</span> &lt;&lt; pointer2.use_count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;    <span class="comment">// 3</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;pointer3.use_count() = &quot;</span> &lt;&lt; pointer3.use_count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;    <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line">    pointer2.reset();</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;reset pointer2:&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;pointer.use_count() = &quot;</span> &lt;&lt; pointer.use_count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;      <span class="comment">// 2</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;pointer2.use_count() = &quot;</span> &lt;&lt; pointer2.use_count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;    <span class="comment">// 0, pointer2 已 reset</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;pointer3.use_count() = &quot;</span> &lt;&lt; pointer3.use_count() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;    <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 离开作用域前，shared_ptr 会被析构，从而释放内存</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 <ul>
@@ -514,9 +460,6 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Foo</span> &#123;</span></span><br><span class="line">    Foo() &#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Foo::Foo&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; &#125;</span><br><span class="line">    ~Foo() &#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Foo::~Foo&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;Foo::foo&quot;</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;Foo&gt; <span class="title">p1</span><span class="params">(<span class="built_in">std</span>::make_unique&lt;Foo&gt;())</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;Foo&gt; <span class="title">p2</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">move</span>(p1))</span></span>;</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li><p><code>std::weak_ptr</code>是一种弱引用（相比较而言 <code>std::shared_ptr</code> 就是一种强引用）.</p>
 <ul>
@@ -535,6 +478,7 @@
 <li><strong>普通字符</strong>包括没有显式指定为元字符的所有可打印和不可打印字符。这包括所有大写和小写字母、所有数字、所有标点符号和一些其他符号。</li>
 <li><strong>特殊字符</strong>是正则表达式里有特殊含义的字符，也是正则表达式的核心匹配语法。参见下表：</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -542,7 +486,8 @@
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>$</code></td>
 <td>匹配输入字符串的结尾位置。</td>
 </tr>
@@ -583,13 +528,17 @@
 <td>标记限定符表达式的开始。</td>
 </tr>
 <tr>
-<td>|</td>
+<td>\</td>
+<td></td>
 <td>指明两项之间的一个选择。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li><strong>限定符</strong>用来指定正则表达式的一个给定的组件必须要出现多少次才能满足匹配。见下表：</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -597,7 +546,8 @@
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>*</code></td>
 <td>匹配前面的子表达式零次或多次。例如，<code>foo*</code> 能匹配 <code>fo</code> 以及 <code>foooo</code>。<code>*</code> 等价于<code>&#123;0,&#125;</code>。</td>
 </tr>
@@ -621,14 +571,13 @@
 <td><code>&#123;n,m&#125;</code></td>
 <td><code>m</code> 和 <code>n</code> 均为非负整数，其中 <code>n</code> 小于等于 <code>m</code>。最少匹配 <code>n</code> 次且最多匹配 <code>m</code> 次。例如，<code>o&#123;1,3&#125;</code> 将匹配 <code>foooooo</code> 中的前三个 <code>o</code>。<code>o&#123;0,1&#125;</code> 等价于 <code>o?</code>。注意，在逗号和两个数之间不能有空格。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li>C++11 提供的正则表达式库操作 <code>std::string</code> 对象，模式 <code>std::regex</code> (本质是 <code>std::basic_regex</code>)进行初始化，通过 <code>std::regex_match</code> 进行匹配，从而产生 <code>std::smatch</code> （本质是 <code>std::match_results</code> 对象）。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;regex&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> fnames[] = &#123; <span class="string">&quot;foo.txt&quot;</span>, <span class="string">&quot;bar.txt&quot;</span>, <span class="string">&quot;test&quot;</span>, <span class="string">&quot;a0.txt&quot;</span>, <span class="string">&quot;AAA.txt&quot;</span> &#125;;</span><br><span class="line">    <span class="comment">// 在 C++ 中 `\` 会被作为字符串内的转义符，为使 `\.` 作为正则表达式传递进去生效，需要对 `\` 进行二次转义，从而有 `\\.`</span></span><br><span class="line">    <span class="function"><span class="built_in">std</span>::regex <span class="title">txt_regex</span><span class="params">(<span class="string">&quot;[a-z]+\\.txt&quot;</span>)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;fname : fnames)</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; fname &lt;&lt; <span class="string">&quot;: &quot;</span> &lt;&lt; <span class="built_in">std</span>::regex_match(fname, txt_regex) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="built_in">std</span>::regex <span class="title">base_regex</span><span class="params">(<span class="string">&quot;([a-z]+)\\.txt&quot;</span>)</span></span>;</span><br><span class="line">    <span class="built_in">std</span>::smatch base_match;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;fname : fnames) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">std</span>::regex_match(fname, base_match, base_regex)) &#123;</span><br><span class="line">            <span class="comment">// sub_match 的第一个元素匹配整个字符串</span></span><br><span class="line">            <span class="comment">// sub_match 的第二个元素匹配了第一个括号表达式</span></span><br><span class="line">            <span class="keyword">if</span> (base_match.<span class="built_in">size</span>() == <span class="number">2</span>) &#123;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">string</span> base = base_match[<span class="number">1</span>].str();</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;sub-match[0]: &quot;</span> &lt;&lt; base_match[<span class="number">0</span>].str() &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">                <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; fname &lt;&lt; <span class="string">&quot; sub-match[1]: &quot;</span> &lt;&lt; base &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h2 id="语言级线程支持"><a href="#语言级线程支持" class="headerlink" title="语言级线程支持"></a>语言级线程支持</h2><ul>
 <li><p><code>std::thread</code> 用于创建一个执行的线程实例，所以它是一切并发编程的基础。</p>
 </li>
@@ -664,7 +613,6 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;condition_variable&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 生产者数量</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; produced_nums;</span><br><span class="line">    <span class="comment">// 互斥锁</span></span><br><span class="line">    <span class="built_in">std</span>::mutex m;</span><br><span class="line">    <span class="comment">// 条件变量</span></span><br><span class="line">    <span class="built_in">std</span>::condition_variable cond_var;</span><br><span class="line">    <span class="comment">// 结束标志</span></span><br><span class="line">    <span class="keyword">bool</span> done = <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">// 通知标志</span></span><br><span class="line">    <span class="keyword">bool</span> notified = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生产者线程</span></span><br><span class="line">    <span class="function"><span class="built_in">std</span>::thread <span class="title">producer</span><span class="params">([&amp;]() &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; ++i) &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::seconds(<span class="number">1</span>));</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="comment">// 创建互斥锁</span></span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lock(m);</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;producing &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span></span></span><br><span class="line"><span class="function"><span class="params">            produced_nums.push(i);</span></span></span><br><span class="line"><span class="function"><span class="params">            notified = <span class="literal">true</span>;</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="comment">// 通知一个线程</span></span></span></span><br><span class="line"><span class="function"><span class="params">            cond_var.notify_one();<span class="comment">//如果不通知一个线程，会在生产者全部生产完毕后，消费者才能来消费</span></span></span></span><br><span class="line"><span class="function"><span class="params">        &#125;   </span></span></span><br><span class="line"><span class="function"><span class="params">        done = <span class="literal">true</span>;</span></span></span><br><span class="line"><span class="function"><span class="params">        cond_var.notify_one();</span></span></span><br><span class="line"><span class="function"><span class="params">    &#125;)</span></span>; </span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 消费者线程</span></span><br><span class="line">    <span class="function"><span class="built_in">std</span>::thread <span class="title">consumer</span><span class="params">([&amp;]() &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="built_in">std</span>::unique_lock&lt;<span class="built_in">std</span>::mutex&gt; lock(m);</span></span></span><br><span class="line"><span class="function"><span class="params">        <span class="keyword">while</span> (!done) &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">while</span> (!notified) &#123;  <span class="comment">// 循环避免虚假唤醒</span></span></span></span><br><span class="line"><span class="function"><span class="params">                cond_var.wait(lock);</span></span></span><br><span class="line"><span class="function"><span class="params">            &#125;   </span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">while</span> (!produced_nums.empty()) &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">                <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;consuming &quot;</span> &lt;&lt; produced_nums.front() &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span></span></span><br><span class="line"><span class="function"><span class="params">                produced_nums.pop();</span></span></span><br><span class="line"><span class="function"><span class="params">            &#125;   </span></span></span><br><span class="line"><span class="function"><span class="params">            notified = <span class="literal">false</span>;</span></span></span><br><span class="line"><span class="function"><span class="params">        &#125;   </span></span></span><br><span class="line"><span class="function"><span class="params">    &#125;)</span></span>; </span><br><span class="line"></span><br><span class="line">    producer.join();</span><br><span class="line">    consumer.join();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><code>std::thread join()</code>方法：<ul>
 <li>介绍原文：The function returns when the thread execution has completed. This synchronizes the moment this function returns with the completion of all the operations in the thread: This blocks the execution of the thread that calls this function until the function called on construction returns (if it hasn’t yet).</li>
@@ -687,12 +635,8 @@
 <ul>
 <li><p>并使用 <code>noexcept</code> 对这两种行为进行限制。</p>
 </li>
-<li><pre><code class="c++">void may_throw();           // 可能抛出异常
-void no_throw() noexcept;   // 不可能抛出异常
-&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  - 使用 &amp;#96;noexcept&amp;#96; 修饰过的函数如果抛出异常，编译器会使用 &amp;#96;std::terminate()&amp;#96; 来立即终止程序运行。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  - &amp;#96;noexcept&amp;#96; 还能用作操作符，用于操作一个表达式，当表达式无异常时，返回 &amp;#96;true&amp;#96;，否则返回 &amp;#96;false&amp;#96;。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  - &amp;#96;noexcept&amp;#96; 修饰完一个函数之后能够起到封锁异常扩散的功效，如果内部产生异常，外部也不会触发。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 原始字符串字面量：不用添加大量的转义符。可以在一个字符串前方使用 &amp;#96;R&amp;#96; 来修饰这个字符串，同时，将原始字符串使用括号包裹。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#96;&amp;#96;&amp;#96;c++&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#include &amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#include &amp;lt;string&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;int main() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    std::string str &amp;#x3D; R&amp;quot;(C:\\What\\The\\Fxxk)&amp;quot;;c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    std::cout &amp;lt;&amp;lt; str &amp;lt;&amp;lt; std::endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
-
-
-</code></pre>
+<li><p>```c++<br>void may_throw();           // 可能抛出异常<br>void no_throw() noexcept;   // 不可能抛出异常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 使用 &#96;noexcept&#96; 修饰过的函数如果抛出异常，编译器会使用 &#96;std::terminate()&#96; 来立即终止程序运行。</span><br><span class="line">  - &#96;noexcept&#96; 还能用作操作符，用于操作一个表达式，当表达式无异常时，返回 &#96;true&#96;，否则返回 &#96;false&#96;。</span><br><span class="line">  - &#96;noexcept&#96; 修饰完一个函数之后能够起到封锁异常扩散的功效，如果内部产生异常，外部也不会触发。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- 原始字符串字面量：不用添加大量的转义符。可以在一个字符串前方使用 &#96;R&#96; 来修饰这个字符串，同时，将原始字符串使用括号包裹。</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;c++</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    std::string str &#x3D; R&quot;(C:\\What\\The\\Fxxk)&quot;;c</span><br><span class="line">    std::cout &lt;&lt; str &lt;&lt; std::endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -702,8 +646,7 @@ void no_throw() noexcept;   // 不可能抛出异常
 <ul>
 <li><p>自定义字面量：通过重载双引号后缀运算符实现。支持四种字面量：</p>
 <ul>
-<li><p>整型字面量：重载时必须使用 <code>unsigned long long</code>、<code>const char *</code>、模板字面量算符参数，在下面的代码中使用的是前者；</p>
-</li>
+<li>整型字面量：重载时必须使用 <code>unsigned long long</code>、<code>const char *</code>、模板字面量算符参数，在下面的代码中使用的是前者；</li>
 <li><p>浮点型字面量：重载时参数必须使用 <code>long double</code>、<code>const char *</code>、模板字面量算符；</p>
 </li>
 <li><p>字符串字面量：必须使用 <code>(const char *, size_t)</code> 形式的参数表；</p>
@@ -715,12 +658,48 @@ void no_throw() noexcept;   // 不可能抛出异常
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符串字面量自定义必须设置如下的参数列表</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> <span class="keyword">operator</span><span class="string">&quot;&quot;</span> _wow1(<span class="keyword">const</span> <span class="keyword">char</span> *wow1, <span class="keyword">size_t</span> len) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::<span class="built_in">string</span>(wow1)+<span class="string">&quot;woooooooooow, amazing&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span> <span class="keyword">operator</span><span class="string">&quot;&quot;</span> _wow2 (<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> i) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::to_string(i)+<span class="string">&quot;woooooooooow, amazing&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> str = <span class="string">&quot;abc&quot;</span>_wow1;</span><br><span class="line">    <span class="keyword">auto</span> num = <span class="number">1</span>_wow2;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; str &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; num &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
     </div>
 
     
     
     
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-19/c++11-14%E4%B8%AD%E7%9A%84%E6%9C%89%E7%94%A8%E7%89%B9%E6%80%A72.html" title="c++11-14中的有用特性2">http://lt4hyl.top/2020-08-19/c++11-14中的有用特性2.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -806,14 +785,14 @@ void no_throw() noexcept;   // 不可能抛出异常
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘涛</p>
-  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -824,6 +803,9 @@ void no_throw() noexcept;   // 不可能抛出异常
       </div>
   </nav>
 </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -842,6 +824,8 @@ void no_throw() noexcept;   // 不可能抛出异常
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
 
 <div class="copyright">
   
@@ -851,6 +835,18 @@ void no_throw() noexcept;   // 不可能抛出异常
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

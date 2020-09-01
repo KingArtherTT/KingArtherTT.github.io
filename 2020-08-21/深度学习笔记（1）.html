@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://lt4hyl.top/pictures/image-20200629095055434.png">
 <meta property="og:image" content="http://lt4hyl.top/pictures/image-20200629103244101.png">
 <meta property="article:published_time" content="2020-08-21T08:06:42.000Z">
-<meta property="article:modified_time" content="2020-08-21T10:02:02.955Z">
+<meta property="article:modified_time" content="2020-08-21T10:06:14.859Z">
 <meta property="article:author" content="刘涛">
 <meta property="article:tag" content="基础知识，深度学习">
 <meta name="twitter:card" content="summary">
@@ -115,7 +115,7 @@
       <h1 class="site-title">Lancelot的小站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
   </div>
 
   <div class="site-nav-right">
@@ -132,6 +132,11 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -172,7 +177,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -191,7 +196,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-08-21 16:06:42 / 修改时间：18:02:02" itemprop="dateCreated datePublished" datetime="2020-08-21T16:06:42+08:00">2020-08-21</time>
+              <time title="创建时间：2020-08-21 16:06:42 / 修改时间：18:06:14" itemprop="dateCreated datePublished" datetime="2020-08-21T16:06:42+08:00">2020-08-21</time>
             </span>
 
           
@@ -201,13 +206,20 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
+                <i class="far fa-file-word"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -231,7 +243,6 @@
 <li>“Scale”一直在推动着神经网络的发展，这个“Scale”不仅指神经网络的规模，还有数据的规模。</li>
 </ul>
 <a id="more"></a>
-
 <h2 id="Geffrey-Hinton-专访"><a href="#Geffrey-Hinton-专访" class="headerlink" title="Geffrey Hinton 专访"></a>Geffrey Hinton 专访</h2><ul>
 <li>深度学习专项课程总共分为五门课程，每门课程的最后Andrew Ng都邀请到了一些学界大牛来做分享，第一门课第一周邀请到的是 <strong>Geffrey Hinton</strong>。</li>
 <li>访问视频中印象最深的是下述两点：<ol>
@@ -241,10 +252,8 @@
 </li>
 </ul>
 <h2 id="回归、分类与逻辑回归"><a href="#回归、分类与逻辑回归" class="headerlink" title="回归、分类与逻辑回归"></a>回归、分类与逻辑回归</h2><ul>
-<li><p>首先回归、分类与逻辑回归 都包含同样的一个过程，即组织数据，前向传播，反向传播，训练网络和最终的获取预测等。</p>
-</li>
-<li><p>对于上述三者首先要进行区分的是<strong>回归</strong>与<strong>分类</strong>：这主要看两者的输出</p>
-<ul>
+<li>首先回归、分类与逻辑回归 都包含同样的一个过程，即组织数据，前向传播，反向传播，训练网络和最终的获取预测等。</li>
+<li>对于上述三者首先要进行区分的是<strong>回归</strong>与<strong>分类</strong>：这主要看两者的输出<ul>
 <li>回归通常给出的预测值是连续型的数值，如：0-1之间的任意数值。</li>
 <li>分类通常输出的是离散的类别，如：0，1，2，3表示某一固定类别。</li>
 </ul>
@@ -276,8 +285,11 @@
 </ul>
 </li>
 </ul>
-<h2 id="激活函数-Activation-Functions"><a href="#激活函数-Activation-Functions" class="headerlink" title="激活函数(Activation Functions)"></a>激活函数(Activation Functions)</h2><p>$$<br>sigmoid(z) = \frac{1}{1+e^{-x}} \\<br>tanh(z)=\frac{e^x+e^{-x}}{e^x-e^{-x}} \\<br>Relu(z) =max(0,z) \\<br>leakyRelu(z) =max(0.01*z,z)<br>$$</p>
-<ul>
+<h2 id="激活函数-Activation-Functions"><a href="#激活函数-Activation-Functions" class="headerlink" title="激活函数(Activation Functions)"></a>激活函数(Activation Functions)</h2><script type="math/tex; mode=display">
+sigmoid(z) = \frac{1}{1+e^{-x}} \\\\
+tanh(z)=\frac{e^x+e^{-x}}{e^x-e^{-x}} \\\\
+Relu(z) =max(0,z) \\\\
+leakyRelu(z) =max(0.01*z,z)</script><ul>
 <li>如下图所示：</li>
 </ul>
 <p><img src="/pictures/image-20200624104855632.png" alt="image-20200624104855632"></p>
@@ -306,17 +318,12 @@
 </li>
 <li><p>对于 tanh 激活函数，有对应的 <strong>Xavier初始化</strong>，实质是权重矩阵随机初始化后再乘以 np.sqrt(1/n)，其中n是当前层输入数据的维度。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以用如下代码表示</span></span><br><span class="line">w_l = np.random.randn(n_1,n_2) * np.sqrt(<span class="number">1</span>/n_1)</span><br><span class="line"><span class="comment"># w_l 表示第l层的权重矩阵</span></span><br><span class="line"><span class="comment"># 其中n_1是当前层输入数据的维度,n_2是当前层输出数据的维度</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>这样使得权重矩阵的方差在1的左右，这样权重矩阵不会过大过小，从而部分降低梯度消失/梯度爆炸的问题。</li>
 </ul>
 </li>
 <li><p>对于 Relu 激活函数，有对应的  <strong>He Initialization</strong>，实质是权重矩阵随机初始化后再乘以 np.sqrt(2/n)，其中n是当前层输入数据的维度。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以用如下代码表示</span></span><br><span class="line">w_l = np.random.randn(n_1,n_2) * np.sqrt(<span class="number">2</span>/n_1)</span><br><span class="line"><span class="comment"># w_l 表示第l层的权重矩阵</span></span><br><span class="line"><span class="comment"># 其中n_1是当前层输入数据的维度,n_2是当前层输出数据的维度</span></span><br></pre></td></tr></table></figure>
-
-
-
-
 </li>
 </ul>
 <h2 id="前向传播与后向传播"><a href="#前向传播与后向传播" class="headerlink" title="前向传播与后向传播"></a>前向传播与后向传播</h2><ul>
@@ -328,10 +335,17 @@
 </ul>
 <p><img src="/pictures/image-20200629095055434.png" alt="image-20200629095055434"></p>
 <ul>
-<li><p>整理一下，第i层的前向传播可表示为：<br>$$<br>layer l :w^{[l]},b^{[l]} \\<br>input :a^{[l-1]} \\<br>output:a^{[l]} \\<br>z^{(i)} = w^{[l]^T}x^{(l)}+b \\<br>a^{(i)} = g^{[l]} (z^{(l)})<br>$$</p>
-</li>
-<li><p>第 i 层的后向传播可表示为：<br>$$<br>input :da^{[l]} \\<br>output:da^{[l-1]},dW^{[l]},db^{[l]} \\<br>$$</p>
-</li>
+<li><p>整理一下，第i层的前向传播可表示为：</p>
+<script type="math/tex; mode=display">
+layer l :w^{[l]},b^{[l]} \\\\
+input :a^{[l-1]} \\\\
+output:a^{[l]} \\\\ 
+z^{(i)} = w^{[l]^T}x^{(l)}+b \\\\
+a^{(i)} = g^{[l]} (z^{(l)})</script></li>
+<li><p>第 i 层的后向传播可表示为：</p>
+<script type="math/tex; mode=display">
+input :da^{[l]} \\\\
+output:da^{[l-1]},dW^{[l]},db^{[l]} \\\\</script></li>
 <li><p>详细计算可见下图：</p>
 </li>
 </ul>
@@ -344,7 +358,6 @@
 </li>
 <li><p>Vectorization（向量化）：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以用如下代码来解释什么是向量化</span></span><br><span class="line"><span class="comment"># 对于神经网络中的一层运算：Z=WT * X + b</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 非向量化的实现如下：</span></span><br><span class="line">z=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n_x) :<span class="comment"># n_x x的维数</span></span><br><span class="line">    z+= w[i]*x[i]</span><br><span class="line">z+=b</span><br><span class="line"></span><br><span class="line"><span class="comment"># 向量化的实现</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">z = np.dot(w,x) <span class="comment"># wt * x</span></span><br><span class="line">z+=b</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>使用非向量化的实现，计算会非常耗费时间，没有很好的利用到CPU/GPU的并行计算能力，因此无论何时尽量<strong>避免使用 for 循环</strong>，而尝试使用 <strong>built-in 函数</strong>（一般都有向量化的实现），尽量的使用GPU/CPU的并行化运算能力。</li>
 </ul>
@@ -361,6 +374,43 @@
     
     
     
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89.html" title="深度学习笔记（1）">http://lt4hyl.top/2020-08-21/深度学习笔记（1）.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -376,7 +426,10 @@
     <a href="/2020-08-20/%E5%B0%8F%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%80%9D%E8%B7%AF%E6%95%B4%E7%90%86.html" rel="prev" title="小目标检测思路整理">
       <i class="fa fa-chevron-left"></i> 小目标检测思路整理
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020-08-24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89.html" rel="next" title="深度学习笔记（2）">
+      深度学习笔记（2） <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -442,14 +495,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘涛</p>
-  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -460,6 +513,9 @@
       </div>
   </nav>
 </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -478,6 +534,8 @@
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
 
 <div class="copyright">
   
@@ -487,6 +545,18 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
@@ -697,7 +767,7 @@
     };
     (function () {
       var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
       script.defer = true;
       document.head.appendChild(script);
     })();

@@ -110,7 +110,7 @@
       <h1 class="site-title">Lancelot的小站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
   </div>
 
   <div class="site-nav-right">
@@ -127,6 +127,11 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -167,7 +172,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -196,13 +201,20 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
+                <i class="far fa-file-word"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
             </span>
 
         </div>
@@ -222,28 +234,20 @@
 <li>使用string类要包含头文件 : <code>&lt;string&gt;</code></li>
 </ul>
 <a id="more"></a>
-
 <h1 id="string对象的初始化："><a href="#string对象的初始化：" class="headerlink" title="string对象的初始化："></a>string对象的初始化：</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;Hello&quot;</span>)</span></span>; <span class="comment">// 一个参数的构造函数</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s2</span><span class="params">(<span class="number">8</span>, ‘x’)</span></span>; <span class="comment">// 两个参数的构造函数</span></span><br><span class="line"><span class="built_in">string</span> month = “March”; </span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>不提供以<strong>字符</strong>(char,‘’)和<strong>整数</strong>为参数的构造函数：</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//错误的初始化方法：</span></span><br><span class="line"><span class="built_in">string</span> error1 = ‘c’; <span class="comment">// 错</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">error2</span><span class="params">(‘u’)</span></span>; <span class="comment">// 错</span></span><br><span class="line"><span class="built_in">string</span> error3 = <span class="number">22</span>; <span class="comment">// 错</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">error4</span><span class="params">(<span class="number">8</span>)</span></span>; <span class="comment">// 错</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>由于重载了赋值运算符，可以将<strong>字符赋值</strong>给string对象：</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s;</span><br><span class="line">s = ‘n’;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>若构造的string太长而无法表达，则会抛出<strong>length_error</strong>异常：</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//string 对象的长度用成员函数 length()读取；</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">&quot;hello&quot;</span>)</span></span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s.length() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//string 支持流读取运算符</span></span><br><span class="line"><span class="built_in">string</span> stringObject;</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; stringObject; </span><br><span class="line"></span><br><span class="line"><span class="comment">//string 支持getline函数</span></span><br><span class="line"><span class="built_in">string</span> s;</span><br><span class="line">getline(<span class="built_in">cin</span>, s); </span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="string的赋值和连接："><a href="#string的赋值和连接：" class="headerlink" title="string的赋值和连接："></a>string的赋值和连接：</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用 ‘=’ 赋值</span></span><br><span class="line">string s1(&quot;cat&quot;), s2;</span><br><span class="line">s2 = s1;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用 assign成员函数复制</span></span><br><span class="line">string s1(&quot;cat&quot;), s3;</span><br><span class="line">s3.assign(s1);</span><br><span class="line"></span><br><span class="line"><span class="comment">//用 assign成员函数部分复制</span></span><br><span class="line">string s1(&quot;catpig&quot;), s3;</span><br><span class="line">s3.assign(s1, <span class="number">1</span>, <span class="number">3</span>); </span><br><span class="line"><span class="comment">//从s1 中下标为1的字符开始复制3个字符给s3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//单个字符复制</span></span><br><span class="line">s2[<span class="number">5</span>] = s1[<span class="number">3</span>] = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//逐个访问string对象中的字符</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;Hello&quot;</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s1.length(); i++)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s1.at(i) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//成员函数at会做范围检查, 如果超出范围, 会抛出out_of_range异常, 而下标运算符不做范围检查</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//用 + 运算符连接字符串</span></span><br><span class="line">string s1(&quot;good &quot;), s2(&quot;morning! &quot;);</span><br><span class="line">s1 += s2;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用成员函数 append 连接字符串</span></span><br><span class="line">string s1(&quot;good &quot;), s2(&quot;morning! &quot;);</span><br><span class="line">s1.append(s2);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1;</span><br><span class="line">s2.append(s1, <span class="number">3</span>, s1.<span class="built_in">size</span>()); <span class="comment">//s1.size(), s1字符数</span></span><br><span class="line"><span class="comment">//下标为3开始, s1.size()个字符</span></span><br><span class="line"><span class="comment">//如果字符串内没有足够字符, 则复制到字符串最后一个字符</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s2;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>成员函数at会做范围检查, 如果超出范围, 会抛出out_of_range异常, 而下标运算符不做范围检查。</li>
 </ul>
@@ -251,55 +255,76 @@
 <li>基于运算符的比较： <code>== , &gt;, &gt;=, &lt;, &lt;=, !=</code></li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回值都是bool类型, 成立返回true, 否则返回false</span></span><br><span class="line">string s1(&quot;hello&quot;), s2(&quot;hello&quot;), s3(&quot;hell&quot;);</span><br><span class="line"><span class="keyword">bool</span> b = (s1 == s2);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">b = (s1 == s3);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">b = (s1 &gt; s3);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//输出结果：</span></span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="comment">//0</span></span><br><span class="line"><span class="comment">//1</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>用成员函数<strong>compare</strong>比较string的大小</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">string s1(&quot;hello&quot;), s2(&quot;hello&quot;), s3(&quot;hell&quot;);</span><br><span class="line"><span class="keyword">int</span> f1 = s1.compare(s2);</span><br><span class="line"><span class="keyword">int</span> f2 = s1.compare(s3);</span><br><span class="line"><span class="keyword">int</span> f3 = s3.compare(s1);</span><br><span class="line"><span class="keyword">int</span> f4 = s1.compare(<span class="number">1</span>, <span class="number">2</span>, s3, <span class="number">0</span>, <span class="number">3</span>); <span class="comment">//s1 1-2; s3 0-3</span></span><br><span class="line"><span class="keyword">int</span> f5 = s1.compare(<span class="number">0</span>, s1.<span class="built_in">size</span>(), s3); <span class="comment">//s1 0-end</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; f1 &lt;&lt; <span class="built_in">endl</span> &lt;&lt; f2 &lt;&lt; <span class="built_in">endl</span> &lt;&lt; f3 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; f4 &lt;&lt; <span class="built_in">endl</span> &lt;&lt; f5 &lt;&lt; <span class="built_in">endl</span>; </span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="comment">//0 // hello == hello</span></span><br><span class="line"><span class="comment">// 1 // hello &gt; hell</span></span><br><span class="line"><span class="comment">//-1 // hell &lt; hello</span></span><br><span class="line"><span class="comment">//-1 // el &lt; hell</span></span><br><span class="line"><span class="comment">//1 // hello &gt; hell</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="string的特性"><a href="#string的特性" class="headerlink" title="string的特性"></a>string的特性</h1><ul>
 <li>子串 - 成员函数 <strong>substr();</strong></li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string s1(&quot;hello world&quot;), s2;</span><br><span class="line">s2 = s1.substr(<span class="number">4</span>,<span class="number">5</span>); <span class="comment">//下标4开始5个字符</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//输出：o wor</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>交换string：成员函数 <strong>swap()</strong></li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">。string s1(&quot;hello world&quot;), s2(&quot;really&quot;);</span><br><span class="line">s1.swap(s2);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="comment">//really</span></span><br><span class="line"><span class="comment">//hello world</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>string的特性</p>
 <ul>
-<li>成员函数 **capacity()**：返回无需增加内存即可存放的字符 数。</li>
-<li>成员函数**maximum_size()**：返回string对象可存放的最大字符数。</li>
-<li>成员函数<strong>length()</strong> 和**size()**相同：返回字符串的大小 /长度。</li>
+<li>成员函数 <strong>capacity()</strong>：返回无需增加内存即可存放的字符 数。</li>
+<li>成员函数<strong>maximum_size()</strong>：返回string对象可存放的最大字符数。</li>
+<li>成员函数<strong>length()</strong> 和<strong>size()</strong>相同：返回字符串的大小 /长度。</li>
 <li>成员函数<strong>empty()</strong> ：返回string对象是否为空。</li>
-<li>成员函数**resize()**：改变string对象的长度。</li>
+<li>成员函数<strong>resize()</strong>：改变string对象的长度。</li>
 </ul>
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello world&quot;</span>)</span></span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.capacity() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.max_size() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.<span class="built_in">size</span>() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.length() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.empty() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1 &lt;&lt; <span class="string">&quot;aaa&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">s1.resize(s1.length()+<span class="number">10</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.capacity() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.max_size() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.<span class="built_in">size</span>() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.length() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1 &lt;&lt; <span class="string">&quot;aaa&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">s1.resize(<span class="number">0</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.empty() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="number">31</span> <span class="comment">// capacity</span></span><br><span class="line"><span class="number">4294967293</span> <span class="comment">// maximum_size</span></span><br><span class="line"><span class="number">11</span> <span class="comment">// size</span></span><br><span class="line"><span class="number">11</span> <span class="comment">// length</span></span><br><span class="line"><span class="number">0</span> <span class="comment">// empty</span></span><br><span class="line">hello worldaaa <span class="comment">// string itself and “aaa”</span></span><br><span class="line"><span class="number">31</span></span><br><span class="line"><span class="number">4294967293</span></span><br><span class="line"><span class="number">21</span></span><br><span class="line"><span class="number">21</span></span><br><span class="line">hello worldaaa</span><br><span class="line"><span class="number">1</span></span><br><span class="line">不同编译器上可能会不一样</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="寻找string中的字符"><a href="#寻找string中的字符" class="headerlink" title="寻找string中的字符"></a>寻找string中的字符</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//成员函数  find()</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello world&quot;</span>)</span></span>;</span><br><span class="line">s1.<span class="built_in">find</span>(<span class="string">&quot;lo&quot;</span>);</span><br><span class="line"><span class="comment">//在s1中从前向后查找 “lo” 第一次出现的地方</span></span><br><span class="line"><span class="comment">//如果找到, 返回 “lo”开始的位置, 即 l 所在的位置下标</span></span><br><span class="line"><span class="comment">//如果找不到, 返回 string::npos (string中定义的静态常量)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//成员函数 rfind()</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello world&quot;</span>)</span></span>;</span><br><span class="line">s1.rfind(<span class="string">&quot;lo&quot;</span>);</span><br><span class="line"><span class="comment">//在s1中从后向前查找 “lo” 第一次出现的地方</span></span><br><span class="line"><span class="comment">//如果找到, 返回 “lo”开始的位置, 即 l 所在的位置下标</span></span><br><span class="line"><span class="comment">//如果找不到, 返回 string::npos</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//成员函数 find_first_of()</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello world&quot;</span>)</span></span>;</span><br><span class="line">s1.find_first_of(<span class="string">&quot;abcd&quot;</span>);</span><br><span class="line"><span class="comment">//在s1中从前向后查找 “abcd” 中任何一个字符第一次出现的地方</span></span><br><span class="line"><span class="comment">//如果找到, 返回找到字母的位置; 如果找不到, 返回 string::npos</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//成员函数 find_last_of()</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello world&quot;</span>)</span></span>;</span><br><span class="line">s1.find_last_of(<span class="string">&quot;abcd&quot;</span>);</span><br><span class="line"><span class="comment">//在s1中查找 “abcd” 中任何一个字符最后一次出现的地方</span></span><br><span class="line"><span class="comment">//如果找到, 返回找到字母的位置; 如果找不到, 返回 string::npos</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//成员函数 find_first_not_of()</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello world&quot;</span>)</span></span>;</span><br><span class="line">s1.find_first_not_of(<span class="string">&quot;abcd&quot;</span>);</span><br><span class="line"><span class="comment">//在s1中从前向后查找不在 “abcd” 中的字母第一次出现的地方</span></span><br><span class="line"><span class="comment">//如果找到, 返回找到字母的位置; 如果找不到, 返回 string::npos</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//成员函数 find_last_not_of()</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello world&quot;</span>)</span></span>;</span><br><span class="line">s1.find_last_not_of(<span class="string">&quot;abcd&quot;</span>);</span><br><span class="line"><span class="comment">//在s1中从后向前查找不在 “abcd” 中的字母第一次出现的地方</span></span><br><span class="line"><span class="comment">//如果找到, 返回找到字母的位置; 如果找不到, 返回 string::npos</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello worlld&quot;</span>)</span></span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.<span class="built_in">find</span>(<span class="string">&quot;ll&quot;</span>) &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//2</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.<span class="built_in">find</span>(<span class="string">&quot;abc&quot;</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">// 4294967295 //string::npos</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.rfind(<span class="string">&quot;ll&quot;</span>) &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//9</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.rfind(<span class="string">&quot;abc&quot;</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//4294967295</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.find_first_of(<span class="string">&quot;abcde&quot;</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.find_first_of(<span class="string">&quot;abc&quot;</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//4294967295</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.find_last_of(<span class="string">&quot;abcde&quot;</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//11</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.find_last_of(<span class="string">&quot;abc&quot;</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//4294967295</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.find_first_not_of(<span class="string">&quot;abcde&quot;</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//0</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.find_first_not_of(<span class="string">&quot;hello world&quot;</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//4294967295</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.find_last_not_of(<span class="string">&quot;abcde&quot;</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//10</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.find_last_not_of(<span class="string">&quot;hello world&quot;</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//4294967295</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="替换string中的字符"><a href="#替换string中的字符" class="headerlink" title="替换string中的字符"></a>替换string中的字符</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 成员函数erase() </span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello worlld&quot;</span>)</span></span>;</span><br><span class="line">s1.erase(<span class="number">5</span>);<span class="comment">//去掉下标 5 及之后的字符</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//hello</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.length()&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//5</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.<span class="built_in">size</span>()&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//成员函数 find()</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello worlld&quot;</span>)</span></span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.<span class="built_in">find</span>(<span class="string">&quot;ll&quot;</span>, <span class="number">1</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//2</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.<span class="built_in">find</span>(<span class="string">&quot;ll&quot;</span>, <span class="number">2</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//2</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1.<span class="built_in">find</span>(<span class="string">&quot;ll&quot;</span>, <span class="number">3</span>) &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//9</span></span><br><span class="line"> <span class="comment">//分别从下标1, 2, 3开始查找 “ll” 并返回对应字符的下标</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//成员函数 replace()</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello world&quot;</span>)</span></span>;</span><br><span class="line">s1.replace(<span class="number">2</span>,<span class="number">3</span>, <span class="string">&quot;haha&quot;</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1 &lt;&lt;<span class="built_in">endl</span>; <span class="comment">//hehaha world</span></span><br><span class="line"><span class="comment">//将s1中下标2 开始的3个字符换成 “haha”</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello world&quot;</span>)</span></span>;</span><br><span class="line">s1.replace(<span class="number">2</span>,<span class="number">3</span>, <span class="string">&quot;haha&quot;</span>, <span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1 &lt;&lt; <span class="built_in">endl</span>;<span class="comment">// heah world</span></span><br><span class="line"><span class="comment">//将s1中下标2 开始的3个字符  ,换成 “haha” 中下标1开始的2个字符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 成员函数 insert()</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(“hello world”)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s2</span><span class="params">(“show insert”)</span></span>;</span><br><span class="line">s1.insert(<span class="number">5</span>, s2); <span class="comment">// 将s2插入s1下标5的位置</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1 &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//helloshow insert world</span></span><br><span class="line">s1.insert(<span class="number">2</span>, s2, <span class="number">5</span>, <span class="number">3</span>);</span><br><span class="line"><span class="comment">//将s2中下标5开始的3个字符插入s1下标2的位置</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; s1 &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//heinslloshow insert world</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="转换成C语言式char-字符串"><a href="#转换成C语言式char-字符串" class="headerlink" title="转换成C语言式char *字符串"></a>转换成C语言式<code>char *字符串</code></h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 成员函数 c_str()</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello world&quot;</span>)</span></span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, s1.c_str());<span class="comment">//输出：hello world</span></span><br><span class="line"><span class="comment">// s1.c_str() 返回传统的const char * 类型字符串</span></span><br><span class="line"><span class="comment">//且该字符串以 ‘\0’ 结尾</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//成员函数data()</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello world&quot;</span>)</span></span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> * p1=s1.data();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;s1.length(); i++)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,*(p1+i));</span><br><span class="line"><span class="comment">//输出:hello world</span></span><br><span class="line"><span class="comment">//s1.data() 返回一个char * 类型的字符串</span></span><br><span class="line"><span class="comment">//对s1 的修改可能会使p1出错。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//成员函数copy()</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s1</span><span class="params">(<span class="string">&quot;hello world&quot;</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> len = s1.length();</span><br><span class="line"><span class="keyword">char</span> * p2 = <span class="keyword">new</span> <span class="keyword">char</span>[len+<span class="number">1</span>];</span><br><span class="line">s1.copy(p2, <span class="number">5</span>, <span class="number">0</span>);</span><br><span class="line">p2[<span class="number">5</span>]=<span class="number">0</span>;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; p2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//输出:hello</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// s1.copy(p2, 5, 0) 从s1的下标0的字符开始,</span></span><br><span class="line"> <span class="comment">//制作一个最长5个字符长度的字符串副本并将其赋值给p2</span></span><br><span class="line"> <span class="comment">//返回值表明实际复制字符串的长度</span></span><br></pre></td></tr></table></figure>
-
 
     </div>
 
     
     
     
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-18/string%E7%B1%BB%E7%9B%B8%E5%85%B3.html" title="string类相关">http://lt4hyl.top/2020-08-18/string类相关.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -385,14 +410,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘涛</p>
-  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -403,6 +428,9 @@
       </div>
   </nav>
 </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -421,6 +449,8 @@
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
 
 <div class="copyright">
   
@@ -430,6 +460,18 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://lt4hyl.top/pictures/image-20200726185512198.png">
 <meta property="og:image" content="http://lt4hyl.top/pictures/image-20200727090131005.png">
 <meta property="article:published_time" content="2020-08-18T07:57:01.000Z">
-<meta property="article:modified_time" content="2020-08-20T10:30:20.175Z">
+<meta property="article:modified_time" content="2020-08-21T11:23:12.602Z">
 <meta property="article:author" content="刘涛">
 <meta property="article:tag" content="编程工具">
 <meta property="article:tag" content="c++">
@@ -114,7 +114,7 @@
       <h1 class="site-title">Lancelot的小站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
   </div>
 
   <div class="site-nav-right">
@@ -131,6 +131,11 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -171,7 +176,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -196,7 +201,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-20 18:30:20" itemprop="dateModified" datetime="2020-08-20T18:30:20+08:00">2020-08-20</time>
+                <time title="修改时间：2020-08-21 19:23:12" itemprop="dateModified" datetime="2020-08-21T19:23:12+08:00">2020-08-21</time>
               </span>
 
           
@@ -206,13 +211,20 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
+                <i class="far fa-file-word"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
             </span>
 
         </div>
@@ -238,8 +250,7 @@
 </li>
 </ol>
 <a id="more"></a>
-
-<ol start="3">
+<ol>
 <li><strong>注意：</strong>学习STL，不但要知道这些容器和算法完成什么样的功能以及如何去使用它，我们还必须了解在这些容器和算法上进行的各种操作它的<strong>时间复杂度</strong>是怎么样的。</li>
 <li>STL中的基本概念：<ul>
 <li><strong>容器</strong>：可容纳各种数据类型的通用数据结构,是<strong>类模板</strong>；</li>
@@ -255,9 +266,6 @@
 </li>
 </ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sort(<span class="built_in">array</span>,<span class="built_in">array</span>+<span class="number">70</span>); <span class="comment">//将前70个元素排序</span></span><br><span class="line"><span class="comment">// array  是 迭代器</span></span><br><span class="line"><span class="comment">// array+70 也是 迭代器</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="容器概述"><a href="#容器概述" class="headerlink" title="容器概述"></a>容器概述</h1><ul>
 <li>可以用于存放各种类型的数据（<strong>基本类型的变量</strong>， <strong>对象</strong>等）的数据结构，都是<strong>类模版</strong>,分为三种：<ol>
 <li>顺序容器：<code>vector,deque,list</code></li>
@@ -354,34 +362,26 @@
 <li>通过迭代器可以读取它指向的元素。</li>
 <li>通过<code>非const</code>迭代器还能修改其指向的元素。</li>
 <li>定义一个容器类的迭代器的方法可以是：<ul>
-<li><strong><code>容器类名::iterator 变量名; </code>或 <code>容器类名::const_iterator 变量名;</code></strong></li>
+<li><strong><code>容器类名::iterator 变量名;</code>或 <code>容器类名::const_iterator 变量名;</code></strong></li>
 </ul>
 </li>
 <li>访问一个迭代器指向的元素：<code>* 迭代器变量名</code></li>
 <li>迭代器上可以执行 <code>++ 操作</code>, 以使其指向容器中的下一个元素。 如果迭代器到达了容器中的<strong>最后一个元素的后面</strong>，此时再使用 它，就会出错，类似于使用NULL或未初始化的指针一样。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v; <span class="comment">//一个存放int元素的数组，一开始里面没有元素</span></span><br><span class="line">    v.push_back(<span class="number">1</span>); v.push_back(<span class="number">2</span>); v.push_back(<span class="number">3</span>); v.push_back(<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator i; <span class="comment">//常量迭代器</span></span><br><span class="line">    <span class="keyword">for</span>( i = v.<span class="built_in">begin</span>();i != v.<span class="built_in">end</span>();++i )</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; * i &lt;&lt; <span class="string">&quot;,&quot;</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::reverse_iterator r; <span class="comment">//反向迭代器</span></span><br><span class="line">    <span class="keyword">for</span>( r = v.rbegin();r != v.rend();r++ )</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; * r &lt;&lt; <span class="string">&quot;,&quot;</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator j; <span class="comment">//非常量迭代器</span></span><br><span class="line">    <span class="keyword">for</span>( j = v.<span class="built_in">begin</span>();j != v.<span class="built_in">end</span>();j ++ )</span><br><span class="line">        * j = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">for</span>( i = v.<span class="built_in">begin</span>();i != v.<span class="built_in">end</span>();i++ )</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; * i &lt;&lt; <span class="string">&quot;,&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出结果：</span></span><br><span class="line"><span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,</span><br><span class="line"><span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,</span><br><span class="line"><span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li><strong>双向迭代器</strong>：若p和p1都是双向迭代器，则可对p、p1可进行以下操作：</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">++p, p++ <span class="comment">//使p指向容器中下一个元素</span></span><br><span class="line">--p, p-- <span class="comment">//使p指向容器中上一个元素</span></span><br><span class="line">* p <span class="comment">//取p指向的元素</span></span><br><span class="line">p = p1 <span class="comment">//赋值</span></span><br><span class="line">p == p1 , p!= p1 <span class="comment">//判断是否相等、不等</span></span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li><p><strong>随机访问迭代器</strong>：若p和p1都是随机访问迭代器，则可对p、p1可进行以下操作：</p>
 <ul>
 <li><strong>双向迭代器的所有操作</strong>，都可</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">p += i <span class="comment">//将p向后移动i个元素</span></span><br><span class="line">p -= i <span class="comment">//将p向向前移动i个元素</span></span><br><span class="line">p + i <span class="comment">//值为: 指向 p 后面的第i个元素的迭代器</span></span><br><span class="line">p - i <span class="comment">//值为: 指向 p 前面的第i个元素的迭代器</span></span><br><span class="line">p[i] <span class="comment">//值为: p后面的第i个元素的引用</span></span><br><span class="line">p &lt; p1, p &lt;= p1, p &gt; p1, p&gt;= p1</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -389,7 +389,8 @@
 <th>容器上的迭代器类别</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>vector</td>
 <td>随机访问</td>
 </tr>
@@ -421,49 +422,35 @@
 <td>priority_queue</td>
 <td>不支持迭代器</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li>要注意：有的算法，例如<code>sort， binary_search</code>需要通过 <strong>随机访问迭代器</strong> 来访问容器中的元素，那么 <code>list</code>以及<strong>关联容器</strong>就不支持该算法！</li>
 <li><code>vector</code>的迭代器是随机迭代器，遍历 <code>vector</code> 可以有以下几种做法(<code>deque</code>亦然)：C++11/14的区间迭代也是可以的。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">v</span><span class="params">(<span class="number">100</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; v.<span class="built_in">size</span>() ; i ++)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; v[i];<span class="comment">//根据下标随机访问</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator ii;</span><br><span class="line"><span class="keyword">for</span>( ii = v.<span class="built_in">begin</span>(); ii != v.<span class="built_in">end</span> ();ii ++ )</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; * ii;</span><br><span class="line"><span class="keyword">for</span>( ii = v.<span class="built_in">begin</span>(); ii &lt; v.<span class="built_in">end</span> ();ii ++ )</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; * ii;</span><br><span class="line"></span><br><span class="line"><span class="comment">//间隔一个输出：</span></span><br><span class="line">ii = v.<span class="built_in">begin</span>();</span><br><span class="line"><span class="keyword">while</span>( ii &lt; v.<span class="built_in">end</span>()) &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; * ii;</span><br><span class="line">    ii = ii + <span class="number">2</span>; </span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>list 的迭代器是双向迭代器。双向迭代器不支持： <strong>&lt; ,[]运算符</strong>。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正确的遍历list的方法：</span></span><br><span class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::const_iterator ii;</span><br><span class="line"><span class="keyword">for</span>( ii = v.<span class="built_in">begin</span>(); ii != v.<span class="built_in">end</span> ();++ii )</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; * ii; </span><br><span class="line"></span><br><span class="line"><span class="comment">//错误的做法：</span></span><br><span class="line"><span class="keyword">for</span>( ii = v.<span class="built_in">begin</span>(); ii &lt; v.<span class="built_in">end</span> ();ii ++ )</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; * ii;</span><br><span class="line"><span class="comment">//双向迭代器不支持 &lt;,list没有 [] 成员函数</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; v.<span class="built_in">size</span>() ; i ++)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; v[i]; </span><br></pre></td></tr></table></figure>
-
-
-
-
-
 <h1 id="算法简介"><a href="#算法简介" class="headerlink" title="算法简介"></a>算法简介</h1><ul>
-<li><p>算法就是一个个<strong>函数模板</strong>, 大多数在 <code>&lt;algorithm&gt;</code> 中定义。</p>
-</li>
-<li><p>STL中提供能在各种容器中通用的算法，比如查找，排序等。</p>
-</li>
-<li><p>算法通过迭代器来操纵容器中的元素。许多算法可以对容器中的一个 局部区间进行操作，因此需要两个参数，一个是<strong>起始元素的</strong>迭代器， 一个是<strong>终止元素的后面一个元素</strong>的迭代器。比如，排序和查找。</p>
-</li>
-<li><p>有的算法返回一个迭代器。比如 <code>find()</code> 算法，在容器中查找一个元 素，并返回一个指向该元素的迭代器。</p>
-</li>
+<li>算法就是一个个<strong>函数模板</strong>, 大多数在 <code>&lt;algorithm&gt;</code> 中定义。</li>
+<li>STL中提供能在各种容器中通用的算法，比如查找，排序等。</li>
+<li>算法通过迭代器来操纵容器中的元素。许多算法可以对容器中的一个 局部区间进行操作，因此需要两个参数，一个是<strong>起始元素的</strong>迭代器， 一个是<strong>终止元素的后面一个元素</strong>的迭代器。比如，排序和查找。</li>
+<li>有的算法返回一个迭代器。比如 <code>find()</code> 算法，在容器中查找一个元 素，并返回一个指向该元素的迭代器。</li>
 <li><p>算法可以处理容器，也可以处理普通数组。</p>
 </li>
 <li><p>算法示例：find()</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">InIt</span>, <span class="title">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">InIt</span> <span class="title">find</span>(<span class="title">InIt</span> <span class="title">first</span>, <span class="title">InIt</span> <span class="title">last</span>, <span class="title">const</span> <span class="title">T</span>&amp; <span class="title">val</span>);</span></span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><code>first</code> 和 <code>last</code> 这两个参数都是容器的迭代器，它们给出了容器中的查找区间起点和终点<code>[first,last)</code>。区间的<strong>起点是位于查找范围之中</strong>的，而<strong>终点不是</strong>。**<code>find</code>在<code>[first,last)</code>查找等于<code>val</code>的元素**。</li>
+<li><code>first</code> 和 <code>last</code> 这两个参数都是容器的迭代器，它们给出了容器中的查找区间起点和终点<code>[first,last)</code>。区间的<strong>起点是位于查找范围之中</strong>的，而<strong>终点不是</strong>。<strong><code>find</code>在<code>[first,last)</code>查找等于<code>val</code>的元素</strong>。</li>
 <li>用 <code>==</code> 运算符判断相等。</li>
 <li>函数返回值是一个迭代器。如果找到，则该迭代器<strong>指向被找到的元素</strong>。 如果找不到，则该迭代器<strong>等于last</strong>。</li>
 </ul>
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123; <span class="comment">//find算法示例</span></span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">array</span>[<span class="number">10</span>] = &#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>&#125;;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">    v.push_back(<span class="number">1</span>); v.push_back(<span class="number">2</span>);</span><br><span class="line">    v.push_back(<span class="number">3</span>); v.push_back(<span class="number">4</span>);</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator p;</span><br><span class="line">    p = <span class="built_in">find</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">end</span>(),<span class="number">3</span>);</span><br><span class="line">    <span class="keyword">if</span>( p != v.<span class="built_in">end</span>())</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; * p &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//输出3</span></span><br><span class="line">    p = <span class="built_in">find</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">end</span>(),<span class="number">9</span>);</span><br><span class="line">    <span class="keyword">if</span>( p == v.<span class="built_in">end</span>())</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;not found &quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    p = <span class="built_in">find</span>(v.<span class="built_in">begin</span>()+<span class="number">1</span>,v.<span class="built_in">end</span>()<span class="number">-2</span>,<span class="number">1</span>); <span class="comment">//整个容器：[1,2,3,4]， 查找区间：[2,3)</span></span><br><span class="line">    <span class="keyword">if</span>( p != v.<span class="built_in">end</span>())</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; * p &lt;&lt; <span class="built_in">endl</span>;<span class="comment">//输出3</span></span><br><span class="line">    <span class="keyword">int</span> * pp = <span class="built_in">find</span>( <span class="built_in">array</span>,<span class="built_in">array</span>+<span class="number">4</span>,<span class="number">20</span>);<span class="comment">//数组名是迭代器</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; * pp &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="keyword">not</span> found</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">20</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
 <h1 id="STL中的“大”、“小”、“相等”的概念"><a href="#STL中的“大”、“小”、“相等”的概念" class="headerlink" title="STL中的“大”、“小”、“相等”的概念"></a>STL中的“大”、“小”、“相等”的概念</h1><ul>
 <li><p>STL 中 <strong>“大”   “小”</strong>   的概念：</p>
 <ul>
@@ -487,12 +474,48 @@
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    A(<span class="keyword">int</span> n):v(n) &#123; &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt; ( <span class="keyword">const</span> A &amp; a2) <span class="keyword">const</span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; v &lt;&lt; <span class="string">&quot;&lt;&quot;</span> &lt;&lt; a2.v &lt;&lt; <span class="string">&quot;?&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span> ==(<span class="keyword">const</span> A &amp; a2) <span class="keyword">const</span>&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; v &lt;&lt; <span class="string">&quot;==&quot;</span> &lt;&lt; a2.v &lt;&lt; <span class="string">&quot;?&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> v == a2.v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    A a [] = &#123; A(<span class="number">1</span>),A(<span class="number">2</span>),A(<span class="number">3</span>),A(<span class="number">4</span>),A(<span class="number">5</span>) &#125;;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; binary_search(a,a+<span class="number">4</span>,A(<span class="number">9</span>)); <span class="comment">//折半查找</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line"><span class="number">3</span>&lt;<span class="number">9</span>?</span><br><span class="line"><span class="number">2</span>&lt;<span class="number">9</span>?</span><br><span class="line"><span class="number">1</span>&lt;<span class="number">9</span>?</span><br><span class="line"><span class="number">9</span>&lt;<span class="number">1</span>? </span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="comment">//输出1 并不是因为1==9 为true，而是因为1&lt;9 为 false 并且 9&lt;1也为 false。</span></span><br></pre></td></tr></table></figure>
 
-
     </div>
 
     
     
     
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-18/%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93-STL.html" title="标准模板库-STL">http://lt4hyl.top/2020-08-18/标准模板库-STL.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -578,14 +601,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘涛</p>
-  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -596,6 +619,9 @@
       </div>
   </nav>
 </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -614,6 +640,8 @@
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
 
 <div class="copyright">
   
@@ -623,6 +651,18 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

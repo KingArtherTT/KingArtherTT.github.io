@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lt4hyl.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Improving Deep Neural Networks: Hyperparameter tuning, Regularization and OptimizationTrain&#x2F;dev&#x2F;test sets 三者对总体数据量的划分问题： 对于传统机器学习上，由于数据量较少，对数据的分割上可以将Train&#x2F;dev&#x2F;test sets分别分成：70&#x2F;20&#x2F;10%，也有 60&#x2F;20&#x2F;20%。 但对于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习笔记（2）">
+<meta property="og:url" content="http://lt4hyl.top/2020-08-24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89.html">
+<meta property="og:site_name" content="Lancelot的小站">
+<meta property="og:description" content="Improving Deep Neural Networks: Hyperparameter tuning, Regularization and OptimizationTrain&#x2F;dev&#x2F;test sets 三者对总体数据量的划分问题： 对于传统机器学习上，由于数据量较少，对数据的分割上可以将Train&#x2F;dev&#x2F;test sets分别分成：70&#x2F;20&#x2F;10%，也有 60&#x2F;20&#x2F;20%。 但对于">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200629171843053.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/20200826224521.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200630104136212.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200630110059340.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200701120812774.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200701180610792.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200701171750647.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200701192116288.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200701193848346.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200702102532461.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200702103752982.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200702143810591.png">
+<meta property="article:published_time" content="2020-08-24T11:14:49.000Z">
+<meta property="article:modified_time" content="2020-08-28T03:30:28.769Z">
+<meta property="article:author" content="刘涛">
+<meta property="article:tag" content="基础知识，深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://lt4hyl.top/pictures/image-20200629171843053.png">
+
+<link rel="canonical" href="http://lt4hyl.top/2020-08-24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>深度学习笔记（2） | Lancelot的小站</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43b02ed86a701dce319ff86325707452";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Lancelot的小站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-08-24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘涛">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lancelot的小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          深度学习笔记（2）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-24 19:14:49" itemprop="dateCreated datePublished" datetime="2020-08-24T19:14:49+08:00">2020-08-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-28 11:30:28" itemprop="dateModified" datetime="2020-08-28T11:30:28+08:00">2020-08-28</time>
+              </span>
+
+          
+            <span id="/2020-08-24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89.html" class="post-meta-item leancloud_visitors" data-flag-title="深度学习笔记（2）" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Improving-Deep-Neural-Networks-Hyperparameter-tuning-Regularization-and-Optimization"><a href="#Improving-Deep-Neural-Networks-Hyperparameter-tuning-Regularization-and-Optimization" class="headerlink" title="Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization"></a>Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization</h1><h2 id="Train-dev-test-sets"><a href="#Train-dev-test-sets" class="headerlink" title="Train/dev/test sets"></a>Train/dev/test sets</h2><ul>
+<li>三者对总体数据量的划分问题：<ul>
+<li>对于传统机器学习上，由于数据量较少，对数据的分割上可以将<code>Train/dev/test sets</code>分别分成：70/20/10%，也有 60/20/20%。</li>
+<li>但对于现在的 <code>big data</code> 可以只用少部分数据作为 dev /test sets ，如：99/1/1%；就足以比较出来不同算法的性能好坏以及适用性。</li>
+<li>其中对于测试集（test set）是在系统开发完成后，用于帮助我们评估最终系统的性能，因此测试集的大小只要足够能保证对系统整体性能评估的高置信度即可。</li>
+</ul>
+</li>
+<li>三者数据的分布一致问题：<ul>
+<li>首先最重要的是要：<strong>尽量保证  dev/test sets 中的数据分布是一致的</strong>；</li>
+<li>使用 <code>dev sets</code>的目的也就是帮我们评估不同的想法，让我们能更好地从A或B中做出选择 。</li>
+<li>使用 <code>test sets</code>的目的是为了保证对模型的无偏估计，也就是在系统开发完成后，用于帮助我们评估最终系统的性能，当然如果没有 test sets 的话 ，也是ok的。这将只在 train/dev sets 上进行训练和测试。</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><strong>三者的作用</strong>：<ul>
+<li><code>train sets</code> 毫无疑问用于训练模型；</li>
+<li>在训练时，我们除了想知道模型对 <code>train sets</code> 的<strong>拟合程度</strong>之外，也想知道此刻模型对<strong>真实业务场景下的数据</strong>但未出现在 <code>train sets</code>中的数据的预测准确性，因此在训练间隙要时不时的跑一下 <code>dev sets</code> 输出评估值，以此来判断模型是否应该<strong>继续训练</strong>还是<strong>停止训练</strong>，也就是以此来判断是<strong>欠拟合</strong>还是<strong>过拟合</strong>，或者用来判断训练该模型的想法是优是劣，是否应该转换思路。</li>
+<li>在使用 <code>dev sets</code> 时有两点要注意：<ol>
+<li><code>dev sets</code> 一定要与 <code>test sets</code> 的数据分布保持一致，要不然无法评估模型的拟合程度。</li>
+<li><code>dev sets</code> 是不参与训练的，只是用来评测，用 <code>dev sets</code> 评测时是不进行反向传播-梯度下降的。</li>
+</ol>
+</li>
+<li>当训练基本完毕后，我们可能有多个不同版本的难以抉择的模型时，就需要 <code>test sets</code> 出场了。此时我们在不同的模型上跑一跑 <code>test sets</code>，获取评估值，以此来判断不同模型的<strong>鲁棒性</strong>，也就是得到模型在真正业务中的使用效果，据此抉择出最后的要应用到业务中的模型。</li>
+<li>在使用 <code>test sets</code> 时有四点要注意：<ol>
+<li><code>test sets</code>  中的数据是与  <code>train/dev sets</code>  不同的，是没有被使用过的；</li>
+<li><code>test sets</code> 一般在模型训练的差不多时才使用；</li>
+<li><code>test sets</code> 可以与  <code>train sets</code>  的数据分布不一致，但必须与<strong>真实业务场景</strong>的数据分布保持一致，因为 <code>test sets</code> 就是用来评测模型在真是业务场景下的性能的。</li>
+<li><code>test sets</code> 是在系统开发完成后，用于帮助我们评估最终系统的性能，因此测试集的大小只要足够能保证对系统整体性能评估的高置信度即可。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Bias-Variance-与拟合程度"><a href="#Bias-Variance-与拟合程度" class="headerlink" title="Bias/Variance 与拟合程度"></a>Bias/Variance 与拟合程度</h2><ul>
+<li>模型的<strong>拟合程度</strong>可以使用 <strong>Bias 偏差（偏离度）</strong>和 <strong>Variance 方差（集中度）</strong>来进行更好的刻画。</li>
+<li>高偏差对应于 欠拟合；高方差对应于过拟合，如下图示，在二维数据上很好画出来：</li>
+</ul>
+<p><img src="/pictures/image-20200629171843053.png" alt="image-20200629171843053"></p>
+<ul>
+<li>对于高维数据，可以看训练集误差 和 测试集误差，这里假设 <strong>人类观察误差/贝叶斯误差</strong> =0%，并且 <strong>训练集和测试集的数据分布</strong>是保持一致的。</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Train set error</th>
+<th>1%</th>
+<th>15%</th>
+<th>15%</th>
+<th>0.5%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Test set error</strong></td>
+<td><strong>11%</strong></td>
+<td><strong>16%</strong></td>
+<td><strong>30%</strong></td>
+<td><strong>1%</strong></td>
+</tr>
+<tr>
+<td>问题</td>
+<td>高方差</td>
+<td>高偏差</td>
+<td>高方差/高偏差</td>
+<td>低方差/低偏差</td>
+</tr>
+<tr>
+<td>拟合程度</td>
+<td>过拟合</td>
+<td>欠拟合</td>
+<td>部分数据过拟合/总体上欠拟合</td>
+<td></td>
+</tr>
+<tr>
+<td>解决思路</td>
+<td>更多的数据<br />正则化<br />更合适的神经网络</td>
+<td>更大的网络<br />训练更长时间<br />更合适的神经网络</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>当训练集与开发集/测试集的<strong>数据分布不一致</strong>时，Bias/Variance 的分析方法要做出改变：<ul>
+<li>此时由于训练集和开发集来自不同的数据分布，因此不好直接通过 Train Error 和 Dev Error的比较来判断出，模型的 Bias/Variance 问题；</li>
+<li>这时需要从原始的训练集中，抽取一部分数据组成 Training-dev set：与训练集具有相同的分布，但却没有用于训练的过程；</li>
+<li>通过比较 Train Error 和  Training-dev Error 来判断模型的Bias/Variance 问题；</li>
+<li>最终调试过后，若 Train Error 和  Training-dev Error 都很接近于  human-level 了，但 Dev Error 仍旧很大，这时可以认为是 失配问题（Mismatch Problem）：算法并未在我所关心的分布上训练的很好。</li>
+</ul>
+</li>
+</ul>
+<h2 id="通过正则化防止过拟合-Regularization"><a href="#通过正则化防止过拟合-Regularization" class="headerlink" title="通过正则化防止过拟合 Regularization"></a>通过正则化防止过拟合 Regularization</h2><ul>
+<li><p>正则化的作用</p>
+<ul>
+<li><strong>正则化可以降低过拟合问题</strong></li>
+<li><strong>正则化会使得权重矩阵变小</strong></li>
+<li>不同的正则化方式可以有不同的应用，如：<ul>
+<li>L1正则化可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择；当然也可以一定程度上防止过拟合。</li>
+<li>L2正则化可以防止模型过拟合（overfitting）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>什么是正则化？</p>
+<ul>
+<li><p>通常说起正则化（Regularization）<strong>狭义上讲</strong>就是 <strong>L1正则化</strong> 和 <strong>L2正则化</strong>或者 <strong><em>L1范数</em></strong> 和 <strong><em>L2范数</em></strong>，<strong>L1 norm</strong> 和 <strong>L2 norm</strong>，这两种正则化的表现形式为在模型原本的损失函数后加上了一个正则项，也叫惩罚项。<strong>但从广义上讲</strong>，正则化表示着能降低模型过拟合问题的技术，这不仅有L1正则化、L2正则化，还有 随机失活（Dropout）、数据增强、Early stopping等技术。</p>
+</li>
+<li><p>这两个正则项具体为下述表示：</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/20200826224521.png" alt="image-20200826224521"></p>
+<ul>
+<li><p>为什么正则化可以防止过拟合？</p>
+<ul>
+<li>这里从两个方面进行简单的定性的推导：</li>
+<li>首先通过设置正则项，并调节超参数 lambda 可以减小权重矩阵<ul>
+<li>从而降低隐藏神经元的影响，进而简化网络</li>
+<li>使得网络逐步从 高方差（过拟合）逐步转移到 高偏差（欠拟合）</li>
+<li>在转移的过程中也许是有合适的值使得权重矩阵处于，低方差和低偏差里，也就是可接受的范围里。</li>
+</ul>
+</li>
+<li>其次如果正则项变得很大就会导致权重矩阵参数W很小<ul>
+<li>那么Z（该层的输出值）就会相对很小</li>
+<li>若Z只在很小范围内取值，如果激活函数是 tanh，则在该区间的激活函数就会相对线性</li>
+<li>因此就意味着，网络的非线性程度会降低，整个网络只能计算一些离线性函数很近的值，也就是简单的函数，而不能计算很复杂的非线性函数</li>
+<li>这样就可以神经网络就不容易过拟合。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>L2正则化在梯度下降中的逐步推导（L2正则化应用的比较多）</p>
+<ul>
+<li><p>L2正则化也叫L2 范数，而L2范数又叫 <strong>Frobenius Norm</strong>。</p>
+</li>
+<li><p>L2 正则化，由于它的结果形式也被称为 <strong>权重衰减；</strong> 在通常得神经网络反向传播求导中，相当于让 w *（1-lambda/m）,总是比原本的权重系数要小一点。</p>
+</li>
+<li><p>在具有多层的<strong>神经网络</strong>中，要在最后的损失函数上加上 L2正则化项，其形式为：</p>
+<script type="math/tex; mode=display">
+Cost\,Function:J(W^{[1]},b^{[1]},...,W^{[L]},b^{[L]})=\frac{1}{m} \sum_{i=1}^{m}L(\hat{y}^{(i)},y^{(i)}) + \frac{\lambda}{2m} \sum_{l=1}^{L}||W^{[l]}||^2  \\\\ 
+Frobenius\, norm: ||W^{l}||^{2}=\sum_{i=1}^{n^l} \sum_{j=1}^{n^{l-1}}(w_{i,j}^{[l]})^2 \\\\
+权重矩阵w.shape:(n^{[l]},n^{[l-1]})</script></li>
+<li><p>在反向传播求解梯度的过程为</p>
+<script type="math/tex; mode=display">
+求梯度时，不加正则项的梯度为： dW^{[L]}=\frac{1}{m} dZ^{[L]} A^{[L-1]^T} = (from\,backprop) \\\\
+W^{[l]}:=W^{[l]}- \alpha dW^{[l]} \\\\
+其中 \alpha 为学习率,from\,backprop表示传递过来的梯度 \\\\
+加入L2 正则项后：dW^{[L]}=\frac{1}{m} dZ^{[L]} A^{[L-1]^T} + \frac{\lambda}{m}W^{[L]} \\\\
+W^{[l]}:=W^{[l]}- \alpha [(from\,backprop)+\frac{\lambda}{m}W^{[l]}]\\\\
+=W^{[l]}-\frac{\alpha \lambda}{m}W^{[l]}- \alpha [(from\,backprop)]\\\\
+= (1-\frac{\alpha \lambda}{m})W^{[l]}- \alpha [(from\,backprop)]\\\\
+由于让权重矩阵乘以一个小于1的数，因此L2正则项也叫做权重衰减（weight\,\,decay）\\\\</script></li>
+</ul>
+</li>
+<li><p>反向随机失活技术（Inverted dropout technique）</p>
+<ul>
+<li><p>该技术是 也就是常说的 随即失活（Dropout）的一种实现形式。</p>
+</li>
+<li><p>dropout是一项正则化技术，用于防止过拟合，因此一般是在过拟合时才会使用。</p>
+</li>
+<li><p>假设有一个三层的神经网络，在训练阶段第三层进行反向传播时：</p>
+<script type="math/tex; mode=display">
+keep.prop=0.8  \,意味着隐层神经元有百分之20的可能性会失活\\\\
+d3 = np.random.rand((a3.shape[0],a3.shape[1]))<keep.prop \\\\
+a3 = np.multiply(a3,d3) \,逐元素相乘 a3*d3 \\\\
+a3/=keep.prop \\\\
+进行校正处理，使得a3的期望值恢复到原有水准（没使用dropout时）用于激活函数\\\\
+因为有部分神经元已经失活了,这样可以使得输出具有相同的期望值。</script></li>
+<li><p>dropout的<strong>缺点</strong>：</p>
+<ul>
+<li>由于dropout的随机失活，会导致损失函数的定义变得模糊，因此绘制损失函数的下降曲线时，可以先关闭掉dropout。</li>
+</ul>
+</li>
+<li><p>为什么 dropout 会有效的防止过拟合？</p>
+<ul>
+<li>首先dropout 会让神经元随机失活，使得每一次迭代都在一个更小的神经网络中计算，更小的神经网络具有一定的正则化效果。</li>
+<li>使用dropout后，最后的输出不能依赖于任何一个特征（某一特定神经元），因为每一个都可能被随即丢弃（每一个输入都可能随即失活）。由于每一个输入都可能失活，因此对每一个输入都会给一个比较小的权重。而泛化这些权值，将有利于压缩权重的平方和（平方范数）有利于收缩权值，防止过拟合。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>其它正则化技术：</p>
+<ul>
+<li><p>数据增强（data augmentation）：通过裁剪、反转、亮度随即调整等技术来增加训练数据。</p>
+</li>
+<li><p>Early stopping：其基本含义是在训练中计算模型在测试集上的表现，当模型在测试集上的表现开始下降的时候，停止训练，这样就能避免继续训练导致过拟合的问题。</p>
+<ul>
+<li>存在的问题：将优化损失函数和 防止过拟合  这两个任务混合起来了。这时就是尝试使用一个工具解决两个问题，而不是两套不同的工具解决两个不同的问题。这会使得问题变得复杂。</li>
+<li>也就是 Early stopping 没有用到正交化的思想，尝试一次解决两个问题，反而会不好判断影响因素。</li>
+</ul>
+<p><img src="/pictures/image-20200630104136212.png" alt="image-20200630104136212"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Optimization-problem"><a href="#Optimization-problem" class="headerlink" title="Optimization problem"></a>Optimization problem</h1><ul>
+<li>优化问题：主要想解决的就是<strong>又快又好</strong>的训练模型，这包括从输入数据的处理，到模型权重矩阵的初始化，如何更好的更新权重矩阵等多个方面。</li>
+</ul>
+<h2 id="对输入进行归一化处理"><a href="#对输入进行归一化处理" class="headerlink" title="对输入进行归一化处理"></a>对输入进行归一化处理</h2><ul>
+<li>通常而言：对输入数据进行归一化处理，就意味着对数据要<strong>减去均值，再除标准差</strong>。<ul>
+<li>也就是除去量纲对不同数据的影响。</li>
+<li>将各方面数据的变化范围缩小，比如都缩小到：[-1,1]之间。</li>
+<li>要注意的是，若使用了归一化，则对<strong>dev/test sets</strong> 都要进行归一化，并且<strong>归一化的参数值要相同</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200630110059340.png" alt="image-20200630110059340"></p>
+<h2 id="更好的初始化权重矩阵"><a href="#更好的初始化权重矩阵" class="headerlink" title="更好的初始化权重矩阵"></a>更好的初始化权重矩阵</h2><ul>
+<li>较好的初始化权重矩阵，不仅可以打破隐层单元的“对称失效问题”，也部分解决梯度消失/梯度爆炸问题；</li>
+<li>可以详见：<strong>深度学习笔记（1）的初始化参数问题</strong>；</li>
+<li>不同的初始化方式将导致不同的结果；</li>
+<li>权重矩阵 W 初始化为0 将无法打破对称性，这意味着每一层里所有的神经元学到的东西都一样，最终只有一个线性分类器；</li>
+<li><strong>随机初始化</strong>就是用于打破对称性，并且保证不同的隐层神经元可以学到不同的东西；</li>
+<li>权重矩阵初始化时，不能过大，这会加重梯度消失/爆炸的问题，降低损失函数的优化速度；</li>
+<li>权重矩阵初始化时，采用<code>He initiaization</code> 会工作的很好（当使用 Relu作为激活函数时）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> range(<span class="number">1</span>, L + <span class="number">1</span>):</span><br><span class="line">        parameters[<span class="string">&#x27;W&#x27;</span> + str(l)] = np.random.randn(layers_dims[l],layers_dims[l<span class="number">-1</span>])*np.sqrt(<span class="number">2</span>/layers_dims[l<span class="number">-1</span>])</span><br><span class="line">        parameters[<span class="string">&#x27;b&#x27;</span> + str(l)] = np.zeros((layers_dims[l],<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>He initiaization</code>实质就是通过标准正态分布随机初始化后 乘以一个系数，系数为 ： </li>
+</ul>
+<script type="math/tex; mode=display">
+\sqrt{\frac{2}{\text{dimension of the previous layer}}}</script><h2 id="优化算法-Optimization-algorithms"><a href="#优化算法-Optimization-algorithms" class="headerlink" title="优化算法(Optimization algorithms)"></a>优化算法(Optimization algorithms)</h2><ul>
+<li>优化算法也就是指代：在模型训练中用于优化网络的算法。优化算法并不是单一存在，常常是组合使用，各有优劣。</li>
+</ul>
+<h3 id="SGD、mini-batch和batch-gradient"><a href="#SGD、mini-batch和batch-gradient" class="headerlink" title="SGD、mini-batch和batch-gradient"></a>SGD、mini-batch和batch-gradient</h3><ul>
+<li><p>在反向传播过程根据每次计算梯度时所使用的<strong>样本数</strong>可以分为三种<strong>梯度计算</strong>方式：</p>
+<ul>
+<li>Stochastic Gradient Descent(SGD)，也叫随机梯度下降：即对每次对每个样本都进行梯度计算并更新参数。</li>
+<li>mini-batch Gradient Descent(MBGD)，也叫小批量梯度下降：即每次进行梯度计算时都使用了n个样本，其中 1&lt;n&lt;整体样本数。</li>
+<li>Batch Gradient Descent(BGD)，也叫批量梯度下降：即每次进行梯度计算时，都是用了全部的样本（整个数据集）。</li>
+</ul>
+</li>
+<li><p>上述三种方式的优劣：</p>
+<ul>
+<li><p>首先见下图所描绘的：假设圆环中心是模型的最优解，三条不同的折线代表了每次进行梯度计算并更新参数时是怎么逐步靠近最优解的。</p>
+<p><img src="/pictures/image-20200701120812774.png" alt="image-20200701120812774"></p>
+</li>
+<li><p>从图中观察可知：SGD的波动幅度较大，虽然最终也可以靠近最优解，但可能会在最优解附近震荡；mini-batch虽然有些曲折，波动幅度相对小一些，并且最终可以很靠近最优解；而 batch-gradient 没什么波动幅度，通过一次次的更新参数，最终抵达了最优解。</p>
+</li>
+<li><p>因此进一步总结，给出如下表格：</p>
+</li>
+</ul>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>梯度下降方式</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>随机梯度下降</td>
+<td>一个样本一更新，计算量小，速度快<br />虽然SGD容易在最优解附近震荡，当从期望上看还是可以抵达最优解的</td>
+<td><strong>噪音</strong>多，并不是每次迭代都是向着整体最优方向，准确度不高<br />损失函数的波动会很剧烈，使得学习率往往不能设置的很大，要随着迭代次数逐渐衰减<br />类别极度不均衡时，因为学习率固定，无法针对不同类别样本进行调整，因此训练效率很低，需要结合其它优化方法</td>
+</tr>
+<tr>
+<td>小批量梯度下降</td>
+<td><strong>可以降低参数更新时的方差，收敛更稳定</strong><br />可以充分利用向量化的计算方式，加速计算，速度较快</td>
+<td>不能保证很好的收敛性，学习率不好设置，需要与其它算法相结合<br />对于非凸函数的优化，容易陷入<strong>鞍点</strong>，或者陷入局部最优解，发生震荡<br /></td>
+</tr>
+<tr>
+<td>批量梯度下降</td>
+<td>对于凸函数可以收敛到全局最优解<br />对于非凸函数可以收敛到局部最优解。</td>
+<td>对整个数据集计算梯度，计算量大，速度慢<br />模型训练过程中不好实时增加数据</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="momentum、RMSprop-和-Adam"><a href="#momentum、RMSprop-和-Adam" class="headerlink" title="momentum、RMSprop 和 Adam"></a>momentum、RMSprop 和 Adam</h3><ul>
+<li>在反向传播过程中根据<strong>计算参数更新值</strong>方式的不同，可以将梯度下降的方法大致划分为下述几种：<ul>
+<li>Gradient descent with momentum（动量梯度下降算法）</li>
+<li>RMSprop (Root Mean Square prop) 均方根传递</li>
+<li>Adam (Adaptive Moment Estimation)自适应矩估计</li>
+</ul>
+</li>
+<li>上述三种方法的<strong>主要目的</strong>：在于优化损失函数时，减少损失函数的震荡，并增大每次优化的步伐（更大学习速度），加快模型优化速度。</li>
+</ul>
+<ul>
+<li>首先是<strong>指数加权平均</strong>的引入：<code>Exponentially Weighted averages (指数加权平均)</code><ul>
+<li>也叫指数加权滑动平均；其目的是：优化损失函数时，减少损失函数的震荡；使得样本的分布更加平滑。</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+公式为：v_t=\beta v_{t-1} + (1-\beta)\theta_t \\\\
+\theta_t 代表第t个位置的实际数据 \\\\
+v_t 代表第t个位置经过加权平均后的数据 \\\\
+可以认为 v_t 近似为 前\, \frac{1}{(1-\beta)} 个数据的平均 \\\\
+\beta 的取值为(0,1),是一个超参数</script><ul>
+<li>可以用下图来阐述经过了 指数加权平均的作用：使得原始数据更加平滑，减少了波动的同时仍旧保留原有分布。<ul>
+<li>蓝色的点是实际数据，后续的曲线就是进行了不同形式的加权后的数据表示。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200701180610792.png" alt="image-20200701180610792"></p>
+<ul>
+<li>接着是<strong>偏差修正</strong>的引入：<code>Bias correction in exponentially weighted average （偏差修正）</code><ul>
+<li>在指数加权平均中：若初始值设定为0，则对头部数据进行平均时，刚开始的数值会很低；</li>
+<li>为了解决对头部的些许数据的平均问题，需要增加修正值；</li>
+<li>实现形式为：</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+用 \frac{v_t}{1-\beta^t} 代替原本的 v_t \\\\
+带偏差修正的 指数加权平均公式为：v_t=\frac{\beta v_{t-1} + (1-\beta)\theta_t}{1-\beta^t} \\\\</script><ul>
+<li>有了带偏差修正的指数加权平均后就能再进一步解释 <code>momentum</code>了。也就是<code>Gradient descent with momentum（动量梯度下降算法）</code><ul>
+<li>该算法比标准的梯度下降算法更快；有用物理概念里的速度来解释 <code>momentum</code>的，但直接用指数加权平均的概念可能更加直观。</li>
+<li>算法的核心思想：是计算<strong>梯度的指数加权平均</strong>然后用这个梯度来更新权重。</li>
+<li>实现细节如下：</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+1.初始值设定：v_{dW}=0,v_{db}=0 ,这两者最后会用于更新权重\\\\ 
+2.在第t次迭代中：\\\\ 
+计算当前的 mini-batch的 dW,db  ，也就是实际梯度 \\\\ 
+指数加权平均后的梯度：\\\\  
+v_{dW} = \beta v_{dW} + (1-\beta)dW \\\\ 
+v_{db} = \beta v_{db} + (1-\beta)db \\\\ 
+W=W-\alpha v_{dW},b=b-\alpha v_{db} \\\\ 
+超参数有：\alpha -学习率 ， \beta</script><ul>
+<li>该算法的效果可以用下图来进行直观解释：<ul>
+<li>其中圆环中心红点，假设为最优解；</li>
+<li>不同颜色的折线为梯度下降中绘制的损失函数表现图；</li>
+<li>蓝线是使用实际梯度来更新权重；红线是使用 <code>动量梯度下降算法</code> 来更新权重。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200701171750647.png" alt="image-20200701171750647"></p>
+<ul>
+<li><code>RMSprop (Root Mean Square prop) 均方根传递</code> 算法<ul>
+<li>该算法同样可以加速梯度下降，降低梯度下降时的振荡，并且使得可以使用更大的学习率 alpha。从而提高算法的学习速度。</li>
+<li>主体思想也是：想减小竖轴方向上的震荡，而增大横轴方向的步伐（移动速率），能更快的收敛到最小值（联系上图）。</li>
+<li>实现细节如下：</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+1.初始化  S_{dW} =0，S_{db}=0 (也可以是其它数值) \\\\ 
+2.在第t次迭代中： \\\\
+计算当前的 mini-batch的 dW,db  \\\\ 
+S_{dW} = \beta_2 S_{dW} + (1-\beta_2)dW^2（Square \,is\,element-wise） \\\\ 
+S_{db} = \beta_2 S_{db} + (1-\beta_2)db^2 （Square \,is\,element-wise） \\\\ 
+W=W-\alpha \frac{dW}{\sqrt{S_{dW} + \epsilon}} \\\\ 
+b=b-\alpha \frac{db}{\sqrt{S_{db} + \epsilon}} \\\\ 
+超参数有：\alpha ， \beta_2; \\\\ 
+其中的 \epsilon 是一个较小的常数，如：10^{-8} \\\\ 
+是为了数值稳定性，不至于除以0（或一个过小的数）</script><ul>
+<li><code>Adam (Adaptive Moment Estimation)自适应矩估计</code> 算法<ul>
+<li>可以说是在 <code>RMSprop</code>上更进一步，综合了  <code>momentum</code> 和 <code>RMSprop</code>的优点后形成的<strong>自适应学习率算法</strong>，也就是对初始学习率的设定具有很好的鲁棒性（很好的适应性，不会因为学习率设置不好就导致模型无法训练）。</li>
+<li>实现细节如下：</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+1.初始化 v_{dW}=0, S_{dW}=0,v_{db}=0,S_{db}=0  \\\\ 
+2.在第t次迭代中： \\\\ 
+计算当前的 mini-batch的 dW,db  \\\\ 
+v_{dW} = \beta_1 v_{dW} + (1-\beta_1)dW \\\\ 
+v_{db} = \beta_1 v_{db} + (1-\beta_1)db \\\\ 
+(对应于“Momentum” 的\beta_1)\\\\ 
+S_{dW} = \beta_2 S_{dW} + (1-\beta_2)dW^2 \\\\ 
+S_{db} = \beta_2 S_{db} + (1-\beta_2)db^2 \\\\ 
+（Square \quad is \quad element-wise）(对应于“RMSprop”的 \beta_2) \\\\ 
+v^{correction}_{dW}= \frac{v_{dW}}{1-\beta_1^t} \\\\ 
+v^{correction}_{db}= \frac{v_{db}}{1-\beta_1^t}  \\\\ 
+S^{correction}_{dW}= \frac{S_{dW}}{1-\beta_2^t} \\\\ 
+S^{correction}_{db}= \frac{S_{db}}{1-\beta_2^t}  \\\\ 
+W=W-\alpha \frac{v^{correction}_{dW}}{\sqrt{S^{correction}_{dW} + \epsilon}} \\\\ 
+b=b- \alpha \frac{v^{correction}_{db}}{\sqrt{S^{correction}_{db} + \epsilon}} \\\\ 
+超参数有：\\\\ 
+\alpha  -学习率需要进行调整 \\\\ 
+\beta_1 :0.9 (对应dW)\\\\ 
+\beta_2 :0.999 (对应dW^2)\\\\ 
+其中的 \epsilon 是一个较小的常数，如：10^{-8} \\\\ 
+是为了数值稳定性，不至于除以0（或一个过小的数）</script><h3 id="学习率衰减-Learning-Rate-Decay"><a href="#学习率衰减-Learning-Rate-Decay" class="headerlink" title="学习率衰减(Learning Rate Decay )"></a>学习率衰减(Learning Rate Decay )</h3><ul>
+<li>思想：在训练的初始阶段，可以采取大得多的步长；但随着学习的模型逐渐收敛于一点时，较低的学习率可以允许你采取更小的步长。</li>
+</ul>
+<p><img src="/pictures/image-20200701192116288.png" alt="image-20200701192116288"></p>
+<ul>
+<li>1 epoch = 1 pass through data<ul>
+<li>其中一种实现细节如下：</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\alpha = \frac{1}{1+ deacy.rate*epoch.num} \alpha_0</script><h3 id="local-optima（局部最优）和-Saddle-Point-鞍点"><a href="#local-optima（局部最优）和-Saddle-Point-鞍点" class="headerlink" title="local optima（局部最优）和 Saddle Point (鞍点)"></a>local optima（局部最优）和 Saddle Point (鞍点)</h3><ul>
+<li>局部最优的定性理解：<ul>
+<li>当损失函数是非凸函数时，就会存在许多局部最优解；</li>
+<li>但要注意的是由于损失函数定义在相对高维的空间上，因此局部最优可能不是问题，随着参数的增加，遇到局部最优解的概率会非常低（逐步降低）。</li>
+</ul>
+</li>
+<li>而真正是问题的可能是 鞍点，也就是导数为0 的点。<ul>
+<li>真正<strong>降低学习速度</strong>的是 停滞区（Plateaus）：导数长时间接近于0的一段区域。</li>
+<li>如下图所描述的：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200701193848346.png" alt="image-20200701193848346"></p>
+<h3 id="超参数调优-Hyperparameter-tuning"><a href="#超参数调优-Hyperparameter-tuning" class="headerlink" title="超参数调优(Hyperparameter tuning)"></a>超参数调优(Hyperparameter tuning)</h3><ul>
+<li>不同超参数的重要性优先级（从高到低）：<ul>
+<li>学习率 alpha</li>
+<li>神经网络隐层单元的数量，momentum的系数beta1，mini-batch size</li>
+<li>神经网络的层数-layers、学习率衰减-learning rate decay</li>
+<li>beta2（二阶矩估计的参数，RMSprop 和 Adam 中都有用到），epcilon （为了维持分母稳定的一个较小值）</li>
+</ul>
+</li>
+<li>对超参数的组合进行选择时：<ul>
+<li>尽量使用随机取样，而不是在等距的网格中定点搜索；</li>
+<li>当对一些超参数取值进行尝试时，尽量采用随机的取值点，而不是规整的网格上的点；因为不知道哪些超参数会更重要，因此要尝试更可能多的值的组合。</li>
+</ul>
+</li>
+<li>对单个超参数取值的选择上，要<strong>从粗到精</strong>(coarse to fine)：<ul>
+<li>使用区域定位的搜索功能，逐步缩小区域，在小区域内进行更密集的采样。</li>
+</ul>
+</li>
+<li>在对单个超参数取样进行衡量时，要有合适的尺度，不能采用线性均匀随机取样，而应该转换为对数尺度的均匀随机取样；<ul>
+<li>如对学习率（0.0001，1）之间进行均匀随机取样划分范围时，就不能在线性维度上划分，因为 90%的取样值会落在（0.1，1）之间，只有10%的取样值（0.0001，0.1）之间。</li>
+<li>因此要基于对数尺度进行取样，即在（log0.0001，log1）之间进行取样，可以比较均匀的分成4段（0.0001，0.001）、（0.001，0.01）、（0.01，0.1）和（0.1，1）。</li>
+</ul>
+</li>
+<li>如何探索超参数的问题：一般两种思路<ul>
+<li>Babysitting one model（由于算力有限：细心的调整一个模型）；</li>
+<li>Training many models in parallel（并行的训练多个模型，尝试更多的组合）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Batch-Normalization"><a href="#Batch-Normalization" class="headerlink" title="Batch Normalization"></a>Batch Normalization</h3><ul>
+<li>回忆文章开头对<strong>输入数据做的归一化处理</strong>，这将有助于训练，去除量纲影响，减少数据的波动；<ul>
+<li>而 Batch Normalization 就是想对所有的<strong>隐藏层的输出</strong>也做归一化处理，进而加速训练。</li>
+<li>BN的目的：让超参数搜索变的更简单，加速训练。</li>
+</ul>
+</li>
+<li>BN在实现时：默认是在<strong>激活函数之前</strong>做归一化处理也就是BN处理。</li>
+<li><strong>单隐藏层</strong>的实现细节如下所示：</li>
+</ul>
+<script type="math/tex; mode=display">
+给与神经网络的一些中间值,针对某一层：z^{(1)},...,z^{(m)} \\\\ 
+\mu = \frac{1}{m} \sum_{i=1}^{m}z^{(i)} \\\\ 
+\sigma^2 = \frac{1}{m} \sum_{i=1}^{m}(z^{(i)}-\mu)^2 \\\\ 
+z_{norm}^{(i)} = \frac{z^(i)-\mu}{\sqrt{\sigma^2+\epsilon }},此时服从于均值为0，方差为1的分布 \\\\ 
+但不是所有数据都非得遵从这个分布，可以有自己分布 \\\\ 
+因此有两个参数，要在训练过程中学习：\gamma,\beta \\\\ 
+这可以让归一化后的数据有可控的方差和均值，这两个数值可以服务于后续的激活函数等 \\\\ 
+最终归一化的形式如下所示：\\\\ 
+\hat{z}^{(i)}=\gamma z_{norm}^{(i)} +\beta</script><ul>
+<li><strong>有一点需要注意的</strong>：如果采用BN层，那么每一层神经元的线性计算的 <strong>bias</strong>，在减去均值时，都会被减掉（此时均值为0），因此这一项可以默认为不存在，或者一直为0.相应地，这一项被后续的参数 beta给代替了。</li>
+</ul>
+<p><img src="/pictures/image-20200702102532461.png" alt="image-20200702102532461"></p>
+<p><img src="/pictures/image-20200702103752982.png" alt="image-20200702103752982"></p>
+<h3 id="Why-does-BN-work？"><a href="#Why-does-BN-work？" class="headerlink" title="Why does BN work？"></a>Why does BN work？</h3><ul>
+<li>BN为什么是有效的，作用机制是什么？这点可以说是最重要的。面试常问！！！</li>
+<li>通过归一化将数据的范围缩小到一定范围，比如（0，1）之间，都拥有相同的变化范围，这将加速学习。<ul>
+<li>协变量问题：我们的数据分布总是在变化的：我们学习的是 X—&gt;Y的某种映射，若X的分布改变了，我们就得重新训练算法。而现实数据是说不准分布的。</li>
+<li>BN 减少了隐层单元数值分布的不稳定性。也就是确保了隐层输出数据的均值和方差的稳定性。</li>
+<li>BN 削弱了前面层参数和后层参数之间的耦合，允许网络的每一层独立学习。从后层来看，前面层的影响不会太大，因为被同一均值和方差所限制。</li>
+</ul>
+</li>
+<li>BN层有轻微的正则化效果<ul>
+<li>仅仅只在 mini-batch上计算了均值和方差，就会有一定的噪音。</li>
+<li>类似于 dropout，对每个隐藏层的激活函数增加了一定的噪音。</li>
+<li>通过对隐层单元增加了噪音，使得后续的隐藏单元不过度依赖其它隐藏单元。</li>
+</ul>
+</li>
+<li>BN在测试时<ul>
+<li>由于测试时，可能是逐一输入样本的，不是mini-batch，因此会使用 训练时 <strong>指数加权平均</strong>的均值和方差或者其它形式，获得近似的均值和方差值，来进行测试。而不像训练时，会计算一个mini-batch的均值和方差。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Multi-class-classification-多类别分类问题"><a href="#Multi-class-classification-多类别分类问题" class="headerlink" title="Multi-class classification 多类别分类问题"></a>Multi-class classification 多类别分类问题</h3><ul>
+<li>单类别分类中，通常网络最后的输出是一个标量（也就是一个数值），因此若某物体有多个类别则无法预测这么多个类别。</li>
+<li>因此可以修改网络最后的输出，让输出也是一个向量，通过向量不同位置的值来表示物体属于不同类别的概率。</li>
+<li>这也就是 <code>Softmax regression</code>：是 <code>logistic regression</code> 从2分类到多分类的推广。<ul>
+<li>即网络最后输出的是向量，然后通过 <code>softmax函数</code>进行归一化表示，输入输出都是向量。</li>
+<li>实现细节，假设最多有四个类别：</li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+激活函数上：\\\\ 
+t=e^{z^{[L]}} \\\\ 
+a^{[L]} = \frac{e^{z^{[L]}} }{\sum_{i=1}^{4}t_i} \\\\ 
+a^{[L]}_i = \frac{t_i }{\sum_{j=1}^{4}t_j}</script><ul>
+<li>根据上述实现形式，Loss Function 可以定义为下述，可以理解成某种形式上的 <strong>最大似然估计</strong>，优化方向是让损失函数总体最小，对应于四个类别出现的概率最大。</li>
+</ul>
+<script type="math/tex; mode=display">
+L(\hat{y},y)=-\sum_{j=1}^{4}y_j log \hat{y}_j</script><ul>
+<li>与 <code>softmax</code>对应的是 <code>hardmax</code> 直接将最终输出向量中最大的值置为1，其余置为0. </li>
+</ul>
+<h3 id="选择深度学习框架的标准"><a href="#选择深度学习框架的标准" class="headerlink" title="选择深度学习框架的标准"></a>选择深度学习框架的标准</h3><p><img src="/pictures/image-20200702143810591.png" alt="image-20200702143810591"></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-24/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%882%EF%BC%89.html" title="深度学习笔记（2）">http://lt4hyl.top/2020-08-24/深度学习笔记（2）.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 基础知识，深度学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020-08-21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89.html" rel="prev" title="深度学习笔记（1）">
+      <i class="fa fa-chevron-left"></i> 深度学习笔记（1）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020-08-27/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89.html" rel="next" title="深度学习笔记（3）">
+      深度学习笔记（3） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Improving-Deep-Neural-Networks-Hyperparameter-tuning-Regularization-and-Optimization"><span class="nav-number">1.</span> <span class="nav-text">Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Train-dev-test-sets"><span class="nav-number">1.1.</span> <span class="nav-text">Train&#x2F;dev&#x2F;test sets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bias-Variance-%E4%B8%8E%E6%8B%9F%E5%90%88%E7%A8%8B%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">Bias&#x2F;Variance 与拟合程度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%AD%A3%E5%88%99%E5%8C%96%E9%98%B2%E6%AD%A2%E8%BF%87%E6%8B%9F%E5%90%88-Regularization"><span class="nav-number">1.3.</span> <span class="nav-text">通过正则化防止过拟合 Regularization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optimization-problem"><span class="nav-number">2.</span> <span class="nav-text">Optimization problem</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%BE%93%E5%85%A5%E8%BF%9B%E8%A1%8C%E5%BD%92%E4%B8%80%E5%8C%96%E5%A4%84%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">对输入进行归一化处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E5%A5%BD%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9D%83%E9%87%8D%E7%9F%A9%E9%98%B5"><span class="nav-number">2.2.</span> <span class="nav-text">更好的初始化权重矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95-Optimization-algorithms"><span class="nav-number">2.3.</span> <span class="nav-text">优化算法(Optimization algorithms)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SGD%E3%80%81mini-batch%E5%92%8Cbatch-gradient"><span class="nav-number">2.3.1.</span> <span class="nav-text">SGD、mini-batch和batch-gradient</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#momentum%E3%80%81RMSprop-%E5%92%8C-Adam"><span class="nav-number">2.3.2.</span> <span class="nav-text">momentum、RMSprop 和 Adam</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%A1%B0%E5%87%8F-Learning-Rate-Decay"><span class="nav-number">2.3.3.</span> <span class="nav-text">学习率衰减(Learning Rate Decay )</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#local-optima%EF%BC%88%E5%B1%80%E9%83%A8%E6%9C%80%E4%BC%98%EF%BC%89%E5%92%8C-Saddle-Point-%E9%9E%8D%E7%82%B9"><span class="nav-number">2.3.4.</span> <span class="nav-text">local optima（局部最优）和 Saddle Point (鞍点)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98-Hyperparameter-tuning"><span class="nav-number">2.3.5.</span> <span class="nav-text">超参数调优(Hyperparameter tuning)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Batch-Normalization"><span class="nav-number">2.3.6.</span> <span class="nav-text">Batch Normalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-does-BN-work%EF%BC%9F"><span class="nav-number">2.3.7.</span> <span class="nav-text">Why does BN work？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-class-classification-%E5%A4%9A%E7%B1%BB%E5%88%AB%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98"><span class="nav-number">2.3.8.</span> <span class="nav-text">Multi-class classification 多类别分类问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6%E7%9A%84%E6%A0%87%E5%87%86"><span class="nav-number">2.3.9.</span> <span class="nav-text">选择深度学习框架的标准</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">刘涛</p>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+      
+      
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          //console.log(error);
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"MxrUXwts7rlzq762NfLCiSVk-gzGzoHsz","app_key":"bqlnUht41VcOv8c5hK8DrOyz","server_url":"https://mxruxwts.lc-cn-n1-shared.com","security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

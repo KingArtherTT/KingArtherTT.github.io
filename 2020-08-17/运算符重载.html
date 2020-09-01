@@ -113,7 +113,7 @@
       <h1 class="site-title">Lancelot的小站</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">记录点滴成长</p>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
   </div>
 
   <div class="site-nav-right">
@@ -130,6 +130,11 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -170,7 +175,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="刘涛">
-      <meta itemprop="description" content="机器学习，深度学习，CNN，卷积神经网络，c++,python">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -205,13 +210,20 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
-            </span>
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
+                <i class="far fa-file-word"></i>
               </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>11k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
             </span>
 
         </div>
@@ -235,7 +247,6 @@
 </li>
 </ul>
 <a id="more"></a>
-
 <ul>
 <li><strong>运算符重载</strong>：<ul>
 <li>对<strong>已有的运算符</strong>赋予多重的含义。</li>
@@ -250,7 +261,6 @@
 <li>运算符重载的<strong>实质</strong>是<strong>函数重载</strong>，可以用如下写法</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">返回值类型 <span class="keyword">operator</span> 运算符（形参表）</span><br><span class="line">&#123;</span><br><span class="line">…</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>运算符重载时，程序编译过程大概为：<ul>
 <li>把含运算符的表达式对应转换成为：对 <strong>运算符函数</strong>的调用。</li>
@@ -266,7 +276,6 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Complex(<span class="keyword">double</span> r=<span class="number">0.0</span>,<span class="keyword">double</span> i=<span class="number">0.0</span>)&#123;</span><br><span class="line">        real = r;</span><br><span class="line">        <span class="built_in">imaginary</span> = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">double</span> real;</span><br><span class="line">    <span class="keyword">double</span> <span class="built_in">imaginary</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Complex <span class="keyword">operator</span>+(<span class="keyword">const</span> Complex &amp;a,<span class="keyword">const</span> Complex &amp;b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> Complex(a.real + b.real, a.<span class="built_in">imaginary</span>+b.<span class="built_in">imaginary</span>);</span><br><span class="line">&#125;<span class="comment">// “类名(参数表)” 就代表一个对象</span></span><br><span class="line"></span><br><span class="line">Complex a(1,2), b(2,3), c;</span><br><span class="line">c = a+b;<span class="comment">//相当于 operator+(a,b);</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>运算符重载为<strong>成员函数</strong><ul>
 <li>重载为成员函数时, <strong>参数个数为运算符目数减一</strong></li>
@@ -274,9 +283,6 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Complex( <span class="keyword">double</span> r= <span class="number">0.0</span>, <span class="keyword">double</span> m = <span class="number">0.0</span> ):real(r), <span class="built_in">imaginary</span>(m) &#123; &#125; <span class="comment">// constructor</span></span><br><span class="line">    Complex <span class="keyword">operator</span>+ ( <span class="keyword">const</span> Complex &amp;a ); <span class="comment">// addition</span></span><br><span class="line">    Complex <span class="keyword">operator</span>- ( <span class="keyword">const</span> Complex &amp;b ); <span class="comment">// subtraction</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> real; <span class="comment">// real part</span></span><br><span class="line">    <span class="keyword">double</span> <span class="built_in">imaginary</span>; <span class="comment">// imaginary part</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//此时的 a+b 相当于 a.operator+(b),因此运算符重载参数只有一个。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Overloaded addition operator</span></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>+(<span class="keyword">const</span> Complex &amp;operand2)&#123;</span><br><span class="line">    <span class="keyword">return</span> Complex( real + operand2.real, <span class="built_in">imaginary</span> + operand2.<span class="built_in">imaginary</span> );</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Overloaded subtraction operator</span></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>- (<span class="keyword">const</span> Complex &amp;operand2)&#123;</span><br><span class="line">    <span class="keyword">return</span> Complex( real - operand2.real, <span class="built_in">imaginary</span> - operand2.<span class="built_in">imaginary</span> );</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Complex x, y(<span class="number">4.3</span>, <span class="number">8.2</span>), z(<span class="number">3.3</span>, <span class="number">1.1</span>);</span><br><span class="line">     x = y + z;<span class="comment">//相当于 y.operator+(z)</span></span><br><span class="line">     x = y - z;<span class="comment">//相当于 y.operator-(z)</span></span><br><span class="line">     <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="赋值运算符“-”的重载"><a href="#赋值运算符“-”的重载" class="headerlink" title="赋值运算符“=”的重载"></a>赋值运算符“=”的重载</h1><ul>
 <li><p>进行重载后，赋值运算符 两边的类型 可以 <strong>不匹配</strong></p>
 <ul>
@@ -286,17 +292,15 @@
 </li>
 <li><p><strong>注意</strong>：赋值运算符 “=” 只能重载为<strong>成员函数</strong>；</p>
 </li>
-<li><p>举例：编写一个长度可变的字符串类String</p>
-<ul>
+<li>举例：编写一个长度可变的字符串类String<ul>
 <li>包含一个<code>char *</code> 类型的成员变量，用于指向动态分配的存储空间；</li>
 <li>该存储空间用于存放 <code>‘\0’ 字符串结束符</code>结尾的字符串。</li>
 </ul>
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">String</span>&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">char</span>* str;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">String</span>():str(<span class="literal">NULL</span>)&#123;&#125; <span class="comment">//构造函数, 初始化str为NULL</span></span><br><span class="line">    <span class="function"><span class="keyword">const</span> <span class="keyword">char</span>* <span class="title">c_str</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> str;&#125;<span class="comment">//返回 str指针，又不希望外部对指针指向内容修改，因此返回常量指针（不可修改常量指针指向的内容，可以将非常量指针赋值给常量指针）</span></span><br><span class="line">    <span class="keyword">char</span>* <span class="keyword">operator</span>=(<span class="keyword">const</span> <span class="keyword">char</span>* s);<span class="comment">//重载赋值运算符</span></span><br><span class="line">    ~<span class="keyword">String</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span>* <span class="keyword">String</span>::<span class="keyword">operator</span>=(<span class="keyword">const</span> <span class="keyword">char</span>* s)&#123;</span><br><span class="line">    <span class="keyword">if</span>(str) <span class="keyword">delete</span>[]str;</span><br><span class="line">    <span class="keyword">if</span>(s)&#123;<span class="comment">//s不为NULL才会执行拷贝</span></span><br><span class="line">        str=<span class="keyword">new</span> <span class="keyword">char</span>[<span class="built_in">strlen</span>(s)+<span class="number">1</span>];<span class="comment">//+1 是要算上 字符串结束符&#x27;\0&#x27;</span></span><br><span class="line">        <span class="built_in">strcpy</span>(str,s);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        str = <span class="literal">NULL</span>;    </span><br><span class="line">    <span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">String</span>::~<span class="keyword">String</span>()&#123;</span><br><span class="line">    <span class="keyword">if</span>(str) <span class="keyword">delete</span>[]str;<span class="comment">//要判断是否为NULL</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">String</span> s;</span><br><span class="line">    s = <span class="string">&quot;Good Luck,&quot;</span>; <span class="comment">//相当于 s.operator=(&quot;Good Luck,&quot;);</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s.c_str() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">// String s2 = “hello!”; //这条语句要是不注释掉就会出错</span></span><br><span class="line">    <span class="comment">//因为这条语句是初始化语句，不是赋值语句</span></span><br><span class="line">    <span class="comment">//初始化语句会去调用，一个以 char*作为参数的构造函数</span></span><br><span class="line">    <span class="comment">//赋值语句会去调用 重载的operator=函数</span></span><br><span class="line">    s = <span class="string">&quot;Shenzhou!&quot;</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s.c_str() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//程序输出结果：</span></span><br><span class="line"><span class="comment">//Good Luck,</span></span><br><span class="line"><span class="comment">//Shenzhou!</span></span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p>重载赋值运算符的意义–用于明确<strong>浅复制</strong>和<strong>深复制</strong>。</p>
+<li><p>重载赋值运算符的意义—用于明确<strong>浅复制</strong>和<strong>深复制</strong>。</p>
 <ul>
 <li>如： <code>s1 = s2 ;</code>在没有相应的重载赋值运算符时，编译器会自动调用 浅复制/浅拷贝。</li>
 <li>浅复制/浅拷贝：执行逐个字节的复制工作。不能实现，将字符串“that”赋值给s1，见下图。</li>
@@ -309,9 +313,6 @@
 </ul>
 <p><img src="/pictures/image-20200719171527847.png" alt="image-20200719171527847"></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在 class MyString 里添加成员函数:</span></span><br><span class="line"><span class="keyword">String</span> &amp; <span class="keyword">operator</span> = (<span class="keyword">const</span> <span class="keyword">String</span> &amp;s) &#123;</span><br><span class="line">    <span class="keyword">if</span>(str) <span class="keyword">delete</span>[]str;</span><br><span class="line">    str = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="built_in">strlen</span>(s.str)+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">strcpy</span>(str, s.str);</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//但上述写法可能存在问题，也就是当 s=s 自身给自身赋值时</span></span><br><span class="line">MyString s;</span><br><span class="line">s = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">s = s;<span class="comment">//会先有 delete操作，再有赋值操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//因此为了避免上述问题，有如下写法</span></span><br><span class="line"><span class="keyword">String</span> &amp; <span class="keyword">String</span>::<span class="keyword">operator</span>=(<span class="keyword">const</span> <span class="keyword">String</span> &amp;s)&#123;</span><br><span class="line">    <span class="keyword">if</span>(str==s.str) <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">if</span>(str) <span class="keyword">delete</span>[]str;</span><br><span class="line">    <span class="keyword">if</span>(s.str)&#123; <span class="comment">//s.str不为NULL才会执行拷贝</span></span><br><span class="line">        str = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="built_in">strlen</span>(s.str)+<span class="number">1</span>];</span><br><span class="line">        <span class="built_in">strcpy</span>( str,s.str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        str=<span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 <h2 id="对重载运算符后，返回值类型的讨论"><a href="#对重载运算符后，返回值类型的讨论" class="headerlink" title="对重载运算符后，返回值类型的讨论?!"></a>对重载运算符后，返回值类型的讨论?!</h2><ul>
@@ -326,7 +327,7 @@
 <li><p>那直接使用 <code>String</code>类型 好不好，不使用 <code>String &amp;</code>？</p>
 <ul>
 <li>可以，但是不好；</li>
-<li>因为运算符重载时, <strong>好的风格 – 尽量保留运算符原本的特性</strong></li>
+<li>因为运算符重载时, <strong>好的风格 — 尽量保留运算符原本的特性</strong></li>
 <li>如： <code>(a=b)=c;</code> //最终目的是会修改a的值</li>
 <li>即等价于：<code>(a.operator=(b)).operator=(c);</code></li>
 <li>若返回值类型为 <code>String</code> 则修改的不是a的值，而是新生成的 <code>String</code> 对象。</li>
@@ -338,7 +339,6 @@
 <li>为 String类编写 <strong>复制构造函数</strong> 时，会面临和 ‘=’ 同样的问题, 用同样的方法处理。（即浅复制的问题，内存垃圾和重复释放内存空间）</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span>::<span class="keyword">String</span>(<span class="keyword">String</span> &amp; s)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(s.str) &#123;</span><br><span class="line">        str = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="built_in">strlen</span>(s.str)+<span class="number">1</span>];</span><br><span class="line">        <span class="built_in">strcpy</span>(str, s.str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        str = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用时</span></span><br><span class="line"><span class="keyword">String</span> s1;</span><br><span class="line">s1=<span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="function"><span class="keyword">String</span> <span class="title">s2</span><span class="params">(s1)</span></span>;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>类型转换构造函数，则因使用情况而定。</li>
 </ul>
@@ -353,24 +353,18 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span>&#123;</span></span><br><span class="line">    <span class="keyword">double</span> real,imag;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Complex(<span class="keyword">double</span> r, <span class="keyword">double</span> i):real(r), imag(i)&#123; &#125;; </span><br><span class="line">    Complex <span class="keyword">operator</span>+(<span class="keyword">double</span> r); </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>+(<span class="keyword">double</span> r)&#123; <span class="comment">//能解释 c+5</span></span><br><span class="line">    <span class="keyword">return</span> Complex(real + r, imag);<span class="comment">//相当于 c.operator+(5) 没问题</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//经过上述重载后： 可以解释 c+5 却没办法解释 5+c</span></span><br><span class="line">Complex c;</span><br><span class="line">c = c+<span class="number">5</span>;<span class="comment">//有定义，相当于 c = c.operator +(5);</span></span><br><span class="line"><span class="comment">//但是</span></span><br><span class="line">c = <span class="number">5</span> + c; <span class="comment">//编译出错 ，因为没有定义</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>为了使得上述表达式能成立, 需要将+重载为<strong>普通函数</strong>（传入+号两边的表达式作为函数参数）。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Complex <span class="keyword">operator</span>+ (<span class="keyword">double</span> r, <span class="keyword">const</span> Complex &amp; c) &#123;</span><br><span class="line">    <span class="comment">//能解释 5+c</span></span><br><span class="line">     <span class="keyword">return</span> Complex( c.real + r, c.imag);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//但存在问题，普通函数不能访问私有成员</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>由于普通函数不能类的访问私有成员，因此要声明为 <strong>友元函数</strong>。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span></span><br><span class="line">    <span class="keyword">double</span> real, imag;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Complex( <span class="keyword">double</span> r, <span class="keyword">double</span> i):real(r),imag(i)&#123;&#125;;</span><br><span class="line">    Complex <span class="keyword">operator</span>+( <span class="keyword">double</span> r );</span><br><span class="line">    <span class="comment">//基于下面这一行 再重载 + 运算符</span></span><br><span class="line">    <span class="keyword">friend</span> Complex <span class="keyword">operator</span> + (<span class="keyword">double</span> r, <span class="keyword">const</span> Complex &amp; c);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="长度可变的整型数组类"><a href="#长度可变的整型数组类" class="headerlink" title="长度可变的整型数组类"></a>长度可变的整型数组类</h1><ul>
 <li>运算符重载实例-长度可变的整型数组类。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 要编写可变长整型数组类，使之能如下使用</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    CArray a;<span class="comment">//开始里的数组是空的</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;++i)</span><br><span class="line">        a.push_back(i);</span><br><span class="line">    CArray a2,a3;</span><br><span class="line">    a2 = a;<span class="comment">//将a数组的值深复制一份到 a2中</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.length();++i)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;a2[i]&lt;&lt;<span class="string">&quot; &quot;</span>;<span class="comment">//输出a2</span></span><br><span class="line">    a2 = a3;<span class="comment">//将a2 置为空数组</span></span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a2.length(); ++i) <span class="comment">//a2.length()返回0，没有任何输出</span></span><br><span class="line">         <span class="built_in">cout</span> &lt;&lt; a2[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    a[<span class="number">3</span>] = <span class="number">100</span>;</span><br><span class="line">    <span class="function">CArray <span class="title">a4</span><span class="params">(a)</span></span>;<span class="comment">//用a 来初始化 a4(复制构造函数)</span></span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a4.length(); ++i )</span><br><span class="line">         <span class="built_in">cout</span> &lt;&lt; a4[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">     <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>要用动态分配的内存来存放数组元素，需要一个指针成员变量；</li>
 <li>要在析构函数中释放申请的内存；</li>
@@ -379,14 +373,9 @@
 <li>自己写复制构造函数，用于深复制。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CArray</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">size</span>;<span class="comment">//数组元素的个数</span></span><br><span class="line">    <span class="keyword">int</span>* ptr; <span class="comment">//指向动态分配的数组</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    CArray(<span class="keyword">int</span> s = <span class="number">0</span>);<span class="comment">//s代表数组元素的个数</span></span><br><span class="line">    CArray(CArray &amp; a);</span><br><span class="line">    ~CArray();</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push_back</span><span class="params">(<span class="keyword">int</span> v)</span></span>;<span class="comment">//用于在数组尾部添加一个元素v</span></span><br><span class="line">    CArray &amp; <span class="keyword">operator</span>=( <span class="keyword">const</span> CArray &amp; a); <span class="comment">//用于数组对象间的赋值</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">length</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">size</span>; &#125; <span class="comment">//返回数组元素个数</span></span><br><span class="line">    <span class="keyword">int</span> &amp;  CArray::<span class="keyword">operator</span>[](<span class="keyword">int</span> i) <span class="comment">//返回值类型是 int引用</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//用以支持根据下标访问数组元素，如n = a[i]和a[i] = 4; 这样的语句</span></span><br><span class="line">        <span class="keyword">return</span> ptr[i]; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">CArray::CArray(<span class="keyword">int</span> s):<span class="built_in">size</span>(s)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>( s == <span class="number">0</span>)</span><br><span class="line">        ptr = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        ptr = <span class="keyword">new</span> <span class="keyword">int</span>[s];</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">CArray::CArray(CArray &amp; a)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!a.ptr)&#123;</span><br><span class="line">        ptr = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="built_in">size</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    ptr = <span class="keyword">new</span> <span class="keyword">int</span>[a.<span class="built_in">size</span>];</span><br><span class="line">    <span class="built_in">memcpy</span>(ptr, a.ptr, <span class="keyword">sizeof</span>(<span class="keyword">int</span> ) * a.<span class="built_in">size</span>);</span><br><span class="line">    <span class="built_in">size</span> = a.<span class="built_in">size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CArray::~CArray()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(ptr) <span class="keyword">delete</span>[]ptr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CArray &amp; CArray::<span class="keyword">operator</span>=(<span class="keyword">const</span> CArray &amp; a)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//赋值号的作用是使“=”左边对象里存放的数组，大小和内容都和右边的对象一样</span></span><br><span class="line">    <span class="keyword">if</span>(ptr==a.ptr)<span class="comment">///防止a=a这样的赋值导致出错</span></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">if</span>(a.ptr==<span class="literal">NULL</span>)&#123; <span class="comment">//如果a里面的数组是空的</span></span><br><span class="line">        <span class="keyword">if</span>(ptr)</span><br><span class="line">            <span class="keyword">delete</span>[]ptr;</span><br><span class="line">        ptr=<span class="literal">NULL</span>;</span><br><span class="line">        <span class="built_in">size</span>=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//小技巧：如果原有空间够大，就不用分配新的空间，直接复制内容</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">size</span>&lt;a.<span class="built_in">size</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(ptr)</span><br><span class="line">            <span class="keyword">delete</span>[]ptr;</span><br><span class="line">        ptr = <span class="keyword">new</span> <span class="keyword">int</span>[a.<span class="built_in">size</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memcpy</span>(ptr,a.ptr,<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*a.<span class="built_in">size</span>);</span><br><span class="line">    <span class="built_in">size</span>=a.<span class="built_in">size</span>;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//简单 但效率较低</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CArray::push_back</span><span class="params">(<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="comment">//在数组尾部添加一个元素</span></span><br><span class="line">    <span class="keyword">if</span>(ptr)&#123;</span><br><span class="line">        <span class="keyword">int</span>* tmpPtr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="built_in">size</span>+<span class="number">1</span>]; <span class="comment">//重新分配空间</span></span><br><span class="line">        <span class="built_in">memcpy</span>(tmpPtr,ptr,<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*<span class="built_in">size</span>); <span class="comment">//拷贝原数组内容</span></span><br><span class="line">        <span class="keyword">delete</span>[]ptr;</span><br><span class="line">        ptr = tmpPtr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="comment">//数组本来是空的</span></span><br><span class="line">        ptr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">1</span>];</span><br><span class="line">    ptr[<span class="built_in">size</span>++]=v;<span class="comment">//最后加入新的数组元素</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="流插入-lt-lt-运算符和流提取-gt-gt-运算符的重载"><a href="#流插入-lt-lt-运算符和流提取-gt-gt-运算符的重载" class="headerlink" title="流插入(&lt;&lt;)运算符和流提取(&gt;&gt;)运算符的重载"></a>流插入(&lt;&lt;)运算符和流提取(&gt;&gt;)运算符的重载</h1><ul>
-<li><p>问题提出：<code>cout &lt;&lt; 5 &lt;&lt; “this”;</code>为什么能够成立？<code>cout</code>是什么？<code>“&lt;&lt;”</code> 为什么能用在 <code>cout</code>上？</p>
-</li>
-<li><p><code>cout</code> 是在 <code>iostream</code> 中定义的，<code>ostream</code> 类 的对象。</p>
-</li>
+<li>问题提出：<code>cout &lt;&lt; 5 &lt;&lt; “this”;</code>为什么能够成立？<code>cout</code>是什么？<code>“&lt;&lt;”</code> 为什么能用在 <code>cout</code>上？</li>
+<li><code>cout</code> 是在 <code>iostream</code> 中定义的，<code>ostream</code> 类 的对象。</li>
 <li><p><code>“&lt;&lt;”</code> 能用在 <code>cout</code> 上是因为，在 <code>iostream</code> 里对 <code>“&lt;&lt;”</code> 进行了重载。</p>
 </li>
 <li><p>考虑，怎么重载才能使得 <code>cout &lt;&lt; 5;</code> 和 <code>cout &lt;&lt; “this”</code>都能成立 ？</p>
@@ -400,12 +389,10 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ostream &amp; ostream::<span class="keyword">operator</span>&lt;&lt;(<span class="keyword">int</span> n)</span><br><span class="line">&#123;</span><br><span class="line">    …… <span class="comment">//输出n的代码</span></span><br><span class="line">    <span class="keyword">return</span> * <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line">ostream &amp; ostream::<span class="keyword">operator</span>&lt;&lt;( <span class="keyword">const</span> <span class="keyword">char</span> * s )</span><br><span class="line">&#123;</span><br><span class="line">    …… <span class="comment">//输出s的代码</span></span><br><span class="line">    <span class="keyword">return</span> * <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>实例:下述程序输出 5hello,该补充些什么</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实例:下述程序输出 5hello,该补充些什么</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CStudent</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> nAge;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    CStudent s ;</span><br><span class="line">    s.nAge = <span class="number">5</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s &lt;&lt;<span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//重载流插入 也就是 &lt;&lt; 运算符</span></span><br><span class="line">ostream &amp; <span class="keyword">operator</span>&lt;&lt;( ostream &amp; o,<span class="keyword">const</span> CStudent &amp; s)&#123;</span><br><span class="line">    o &lt;&lt; s.nAge ;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>举例：复数的输入输出<ul>
 <li>假定c是<code>Complex</code>复数类的对象，现在希望 写<code>“cout &lt;&lt; c;”</code>，就能以<code>“a+bi”</code>的形式输出c的值，写<code>“cin&gt;&gt;c;”</code>，就能从键盘接受<code>“a+bi”</code>形式的输入，并且使得 <code>c.real = a,c.imag = b</code>。</li>
@@ -413,14 +400,9 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//即重载运算符后，能满足下述需求</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Complex c;</span><br><span class="line">    <span class="keyword">int</span> n;    </span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; c &gt;&gt; n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; c &lt;&lt; <span class="string">&quot;,&quot;</span> &lt;&lt; n;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//程序运行结果可以如下：</span></span><br><span class="line"><span class="comment">//输入：13.2+133i 87↙</span></span><br><span class="line"><span class="comment">//输出：13.2+133i, 87</span></span><br></pre></td></tr></table></figure>
-
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span>&#123;</span></span><br><span class="line">    <span class="keyword">double</span> real,imag;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Complex(<span class="keyword">double</span> r =<span class="number">0</span>,<span class="keyword">double</span> i=<span class="number">0</span>):real(r),imag(i)&#123;&#125;;</span><br><span class="line">    <span class="keyword">friend</span> ostream &amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp; os,<span class="keyword">const</span> Complex &amp; c);</span><br><span class="line">    <span class="keyword">friend</span> istream &amp; <span class="keyword">operator</span>&gt;&gt;(istream &amp; is,Complex &amp; c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ostream &amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp; os,<span class="keyword">const</span> Complex &amp; c)</span><br><span class="line">&#123;</span><br><span class="line">    os&lt;&lt;c.real&lt;&lt;<span class="string">&quot;+&quot;</span>&lt;&lt;c.imag&lt;&lt;<span class="string">&quot;i&quot;</span>;<span class="comment">//以“a+bi”的形式输出</span></span><br><span class="line">    <span class="keyword">return</span> os;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">istream &amp; <span class="keyword">operator</span>&gt;&gt;(istream &amp; is,Complex &amp; c)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    is&gt;&gt;s; <span class="comment">//将&quot;a+bi&quot;作为字符串读入, “a+bi” 中间不能有空格</span></span><br><span class="line">    <span class="keyword">int</span> pos = s.<span class="built_in">find</span>(<span class="string">&quot;+&quot;</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">string</span> sTmp = s.substr(<span class="number">0</span>,pos); <span class="comment">//分离出代表实部的字符串</span></span><br><span class="line">    c.real = atof(sTmp.c_str());<span class="comment">//atof库函数能将const char*指针指向的内容转换成float</span></span><br><span class="line">    sTmp = s.substr(pos+<span class="number">1</span>,s.length()-pos<span class="number">-2</span>);<span class="comment">//分离出代表虚部的字符串</span></span><br><span class="line">    c.imag =  atof(sTmp.c_str());</span><br><span class="line">    <span class="keyword">return</span> is;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="自增-自减运算符的重载"><a href="#自增-自减运算符的重载" class="headerlink" title="自增/自减运算符的重载"></a>自增/自减运算符的重载</h1><ul>
-<li><p>自增 ++/自减 – 运算符有 <strong>前置/后置</strong> 之分。</p>
-</li>
+<li>自增 ++/自减 — 运算符有 <strong>前置/后置</strong> 之分。</li>
 <li><p><strong>前置</strong>运算符作为<strong>一元运算符</strong>重载</p>
 <ul>
 <li>重载为成员函数:<ul>
@@ -454,20 +436,15 @@
 </li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 遵循运算符的直观感受：d++  先输出d 然后对d进行++操作</span></span><br><span class="line"><span class="comment">// --d 先对d 进行--操作，然后输出d.</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function">CDemo <span class="title">d</span><span class="params">(<span class="number">5</span>)</span></span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; (d++) &lt;&lt; <span class="string">&quot;,&quot;</span>; <span class="comment">//等价于 d.operator++(0);</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; d &lt;&lt; <span class="string">&quot;,&quot;</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; (++d) &lt;&lt; <span class="string">&quot;,&quot;</span>; <span class="comment">//等价于 d.operator++();</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; d &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; (d--) &lt;&lt; <span class="string">&quot;,&quot;</span>; <span class="comment">//等价于 operator--(d,0);</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; d &lt;&lt; <span class="string">&quot;,&quot;</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; (--d) &lt;&lt; <span class="string">&quot;,&quot;</span>; <span class="comment">//等价于 operator--(d);</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; d &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//程序输出结果:</span></span><br><span class="line"><span class="comment">//5,6,7,7</span></span><br><span class="line"><span class="comment">//7,6,5,5</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>举例：设计 <code>CDemo</code> 类实现上述功能</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CDemo</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span> :</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    CDemo(<span class="keyword">int</span> i=<span class="number">0</span>):n(i) &#123; &#125;</span><br><span class="line">    CDemo &amp; <span class="keyword">operator</span>++(); <span class="comment">//用于前置++形式</span></span><br><span class="line">    CDemo <span class="keyword">operator</span>++(<span class="keyword">int</span>); <span class="comment">//用于后置++形式</span></span><br><span class="line">    <span class="function"><span class="keyword">operator</span> <span class="title">int</span> <span class="params">( )</span> </span>&#123; <span class="keyword">return</span> n; &#125; <span class="comment">//重载 类型强制转换运算符</span></span><br><span class="line">    <span class="keyword">friend</span> CDemo &amp; <span class="keyword">operator</span>--(CDemo &amp;); <span class="comment">//用于前置--形式  全局函数</span></span><br><span class="line">    <span class="keyword">friend</span> CDemo <span class="keyword">operator</span>--(CDemo &amp;, <span class="keyword">int</span>); <span class="comment">//用于后置--形式  全局函数</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">CDemo &amp; CDemo::<span class="keyword">operator</span>++() &#123; <span class="comment">//前置 ++</span></span><br><span class="line">    n++;</span><br><span class="line">    <span class="keyword">return</span> * <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CDemo CDemo::<span class="keyword">operator</span>++(<span class="keyword">int</span> k) &#123; <span class="comment">//后置 ++</span></span><br><span class="line">    <span class="function">CDemo <span class="title">tmp</span><span class="params">(*<span class="keyword">this</span>)</span></span>; <span class="comment">//记录修改前的对象</span></span><br><span class="line">    n++;</span><br><span class="line">    <span class="keyword">return</span> tmp; <span class="comment">//返回修改前的对象</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CDemo &amp; <span class="keyword">operator</span>--(CDemo &amp; d) &#123; <span class="comment">//前置--</span></span><br><span class="line">    d.n--;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CDemo <span class="keyword">operator</span>--(CDemo &amp; d, <span class="keyword">int</span>) &#123; <span class="comment">//后置--</span></span><br><span class="line">    <span class="function">CDemo <span class="title">tmp</span><span class="params">(d)</span></span>;</span><br><span class="line">    d.n--;</span><br><span class="line">    <span class="keyword">return</span> tmp;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">operator</span> <span class="title">int</span> <span class="params">()</span> </span>&#123; <span class="keyword">return</span> n; &#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="类型强制转换运算符的重载"><a href="#类型强制转换运算符的重载" class="headerlink" title="类型强制转换运算符的重载"></a>类型强制转换运算符的重载</h1><ul>
 <li>C++中为了安全起见，通常不会直接使用如：<code>b=int(a)</code>，这种形式来进行类型强制转换，而会根据类型强制转换的风险程度，采用不同风险等级的类型转换类，如：static_cast、reinterpret_cast等。</li>
 <li><code>int</code> 作为一个<strong>类型强制转换运算符</strong>被重载的写法：</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Demo s;</span><br><span class="line">(<span class="keyword">int</span>) s ; <span class="comment">//等效于 s.int();</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><strong>注意</strong>，类型强制转换运算符重载时：<ul>
 <li>不能写返回值类型；</li>
@@ -485,7 +462,7 @@
 </li>
 <li>运算符重载不改变运算符的优先级；</li>
 <li>以下运算符不能被重载: <strong><code>“.”, “.*”, “::”, “?:”, sizeof</code></strong></li>
-<li>重载运算符**<code>(), [], -&gt;或者赋值运算符=</code><strong>时, 重载函数必须声明 为</strong>类的成员函数**</li>
+<li>重载运算符<strong><code>(), [], -&gt;或者赋值运算符=</code></strong>时, 重载函数必须声明 为<strong>类的成员函数</strong></li>
 </ol>
 
     </div>
@@ -493,6 +470,43 @@
     
     
     
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-08-17/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.html" title="运算符重载">http://lt4hyl.top/2020-08-17/运算符重载.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
 
       <footer class="post-footer">
           <div class="post-tags">
@@ -578,14 +592,14 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘涛</p>
-  <div class="site-description" itemprop="description">机器学习，深度学习，CNN，卷积神经网络，c++,python</div>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -596,6 +610,9 @@
       </div>
   </nav>
 </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
 
 
@@ -614,6 +631,8 @@
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
 
 <div class="copyright">
   
@@ -623,6 +642,18 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">137k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

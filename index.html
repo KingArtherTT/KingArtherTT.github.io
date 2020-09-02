@@ -186,10 +186,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-28 12:26:45 / 修改时间：17:02:32" itemprop="dateCreated datePublished" datetime="2020-08-28T12:26:45+08:00">2020-08-28</time>
+              <time title="创建时间：2020-08-28 12:26:45" itemprop="dateCreated datePublished" datetime="2020-08-28T12:26:45+08:00">2020-08-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-02 09:18:34" itemprop="dateModified" datetime="2020-09-02T09:18:34+08:00">2020-09-02</time>
+              </span>
 
           
             <span id="/2020-08-28/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%884%EF%BC%89.html" class="post-meta-item leancloud_visitors" data-flag-title="深度学习笔记（4）" title="阅读次数">
@@ -204,14 +210,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>21</span>
+              <span>4.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -223,7 +229,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Computer-Vision（计算机视觉）"><a href="#Computer-Vision（计算机视觉）" class="headerlink" title="Computer Vision（计算机视觉）"></a>Computer Vision（计算机视觉）</h1>
+          <h1 id="Computer-Vision（计算机视觉）"><a href="#Computer-Vision（计算机视觉）" class="headerlink" title="Computer Vision（计算机视觉）"></a>Computer Vision（计算机视觉）</h1><h2 id="Convolutional-Neural-Networks"><a href="#Convolutional-Neural-Networks" class="headerlink" title="Convolutional Neural Networks"></a>Convolutional Neural Networks</h2><ul>
+<li>随着感知向量机层数的加深，逐渐进入了深层感知向量机也可以叫做 <strong>深度神经网络（DNN）</strong>；</li>
+<li>DNN在处理图片数据时会引发<strong>参数灾难</strong><ul>
+<li>DNN的隐层之间都是采用<strong>全连接</strong>的形式，假设图片较大，比如：300x300x3（宽高均为300像素，红蓝绿三通道）；</li>
+<li>此时假设DNN某一隐层的输入等于图片大小，输出也想等于图片的大小，则该层的参数数量就为：<code>300x300x3x300x300x3=72,900,000,000</code>，也就7百万的参数量，这将导致网络无法训练，也就是常说的<strong>参数灾难</strong>或者<strong>维度灾难</strong>。</li>
+<li>因此需要引入其它的处理方式，降低参数量的同时还能有效的学习到图片中包含的信息，也就是<strong>CNN：卷积神经网络</strong>。</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020-08-28/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%884%EF%BC%89.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1227,13 +1249,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">137k</span>
+    <span title="站点总字数">141k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:04</span>
+    <span title="站点阅读时长">2:08</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

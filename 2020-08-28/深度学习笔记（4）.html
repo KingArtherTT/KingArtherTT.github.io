@@ -48,8 +48,37 @@
 <meta property="og:image" content="http://lt4hyl.top/pictures/image-20200705185043775.png">
 <meta property="og:image" content="http://lt4hyl.top/pictures/image-20200705190431839.png">
 <meta property="og:image" content="http://lt4hyl.top/pictures/image-20200705190546428.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200705203127470.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200705210421996.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200705211422908.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706113150576.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706114658214.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706121231188.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706135247615.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706142443842.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706152516446.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706153241763.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706153851813.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706154904663.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706200918442.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706202152963.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706203216698.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706203255638.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/cnnsiameseloss.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706205851202.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706210610393.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706212002904.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706212455827.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706214025099.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/cnngrammatrix.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/cnnstyletransfer.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706214830502.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706215315522.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706221906851.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706221800278.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200706223240303.png">
 <meta property="article:published_time" content="2020-08-28T04:26:45.000Z">
-<meta property="article:modified_time" content="2020-09-02T01:18:34.981Z">
+<meta property="article:modified_time" content="2020-09-02T04:24:11.190Z">
 <meta property="article:author" content="刘涛">
 <meta property="article:tag" content="基础知识，深度学习">
 <meta name="twitter:card" content="summary">
@@ -218,7 +247,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-02 09:18:34" itemprop="dateModified" datetime="2020-09-02T09:18:34+08:00">2020-09-02</time>
+                <time title="修改时间：2020-09-02 12:24:11" itemprop="dateModified" datetime="2020-09-02T12:24:11+08:00">2020-09-02</time>
               </span>
 
           
@@ -234,14 +263,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.3k</span>
+              <span>11k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>10 分钟</span>
             </span>
 
         </div>
@@ -292,15 +321,15 @@
 <li>要注意：现在又多了一种卷积形式并且应用广泛，就是：空洞卷积（<code>atrous convolutions</code>）又名扩张卷积（<code>dilated convolutions</code>），向卷积层引入了一个称为 “<code>扩张率(dilation rate)</code>”的新参数，该参数定义了卷积核处理数据时各值的间距。</li>
 <li>full模式：从filter和image刚相交处开始做卷积（相当于进行卷积核<code>size-1</code>的边缘填充，此时<code>p=size-1</code>），白色部分可填充为0，其中橙色部分是image，蓝色部分为filter。filter的运动范围如下图所示：</li>
 </ul>
-<p><img src="/pictures/cnnfull.png" alt="CNNfull"></p>
+<p><img src="/pictures/cnnfull.png" alt="cnnfull" style="zoom:50%;" /></p>
 <ul>
 <li>same模式：让该层输入输出的特征图大小保持不变，当filter的中心(K)与image的边角重合时（相当于进行卷积核<code>size/2</code>的边缘填充，此时<code>p=size/2向下取整</code>），开始做卷积运算，如下图示：</li>
 </ul>
-<p><img src="/pictures/cnnsame.png" alt="cnnsame"></p>
+<p><img src="/pictures/cnnsame.png" alt="cnnsame" style="zoom:50%;" /></p>
 <ul>
 <li>valid模式：当filter全部在image里面的时候（相当于没有任何填充，此时<code>p=0</code>），进行卷积运算，如下图示：</li>
 </ul>
-<p><img src="/pictures/cnnvalid.png" alt="cnnvalid"></p>
+<p><img src="/pictures/cnnvalid.png" alt="cnnvalid" style="zoom:50%;" /></p>
 </li>
 <li><p>stride的引入：</p>
 <ul>
@@ -456,8 +485,309 @@ n_c^{[l]}是该层输出特征图的通道数 \\\\
 <p><img src="/pictures/image-20200705190546428.png" alt="image-20200705190546428"></p>
 <h1 id="Object-Detection（目标检测）"><a href="#Object-Detection（目标检测）" class="headerlink" title="Object Detection（目标检测）"></a>Object Detection（目标检测）</h1><ul>
 <li>目标检测的引入：Object Localization 和 Landmark Detection</li>
-<li>Object Localization：让神经网络输出一堆数值，用于表示图像中目标的位置和类别，这个想法很棒</li>
+<li>Object Localization：让神经网络输出一堆数值，用于表示图像中目标的<strong>位置和类别</strong>，这个想法很棒，如下图所示：<ul>
+<li>在最终输出的向量中至少要包含2种类型的数据：目标类别和目标的边界框，如下图所示：</li>
 </ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200705203127470.png" alt="image-20200705203127470"></p>
+<ul>
+<li>简单的定义目标标签Y和损失函数：<ul>
+<li>假设有四个类别，目标标签Y可定义为一个向量：[pc,bx,by,bh,bw,c1,c2,c3,c4];</li>
+<li>其中 pc 指代图像中是否包含目标；bx,by,bh,bw，用来表示边界框；</li>
+<li>c1,c2,c3,c4 可用于表示四个类别；</li>
+<li>如下图所示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200705210421996.png" alt="image-20200705210421996"></p>
+<ul>
+<li>Landmark Detection：神经网络可以定位目标的边界框，但更普遍的情况可以让神经网络只输出重要的点，即图像中（X,Y）坐标，这个也被称作 Landmark。<ul>
+<li>要注意对于 Landmark Detection：标签必须在不同的图片中保持一致性；对于 <code>Landmark</code> 的定义在不同的图片中必须保持一致。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200705211422908.png" alt="image-20200705211422908"></p>
+<h2 id="滑动窗口检测（Sliding-windows-detection）"><a href="#滑动窗口检测（Sliding-windows-detection）" class="headerlink" title="滑动窗口检测（Sliding windows detection）"></a>滑动窗口检测（Sliding windows detection）</h2><ul>
+<li><p>实现方式：Convnet + sliding windows</p>
+</li>
+<li><p>训练：使用紧密裁剪的图像（只包含目标的图像）的数据集来训练卷积神经网络。</p>
+</li>
+<li>测试：给定多个size的矩形框，让这些矩形框在一定步长下滑过整个图像，然后判定每个方框内的区域是否含有目标。如下图示：</li>
+</ul>
+<p><img src="/pictures/image-20200706113150576.png" alt="image-20200706113150576"></p>
+<ul>
+<li><p>该种检测方式的缺点：</p>
+<ul>
+<li>巨大的计算成本：裁剪出了很多不同的矩形框，每个矩形框都要通过Convnet的计算。单次Convnet的计算开销就比较大。</li>
+<li>颗粒度上：除非使用很小的颗粒度，也就是很小的步长，这样才能比较精确的定位到图像中的目标；但这会造成巨大的计算成本。</li>
+</ul>
+</li>
+<li><p>为了减少计算量，提出了滑动窗口的卷积化实现：</p>
+<ul>
+<li>滑动窗口中，重叠部分的图像，在卷积网络中的计算是重复的，因此可以想方法共享这部分的计算结果，这就是下图的设计，最终输出的结果，可以对应到原始图片不同区域（滑动窗口经过区域）的卷积结果；</li>
+<li>不在裁剪后的输入图像上分别进行前向传播，而是合并成一个前向传播。</li>
+<li>如下两图所示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200706114658214.png" alt="image-20200706114658214"></p>
+<p><img src="/pictures/image-20200706121231188.png" alt="image-20200706121231188"></p>
+<ul>
+<li>当然上述滑动窗口的卷积化实现的缺点也是很明显的：<ul>
+<li>窗口边框的定位并不精确；</li>
+<li>如何很好的打标签也是个问题。</li>
+</ul>
+</li>
+</ul>
+<h2 id="边界框预测（Bounding-Box-Predictions）"><a href="#边界框预测（Bounding-Box-Predictions）" class="headerlink" title="边界框预测（Bounding Box Predictions）"></a>边界框预测（Bounding Box Predictions）</h2><ul>
+<li>为了解决卷积化的滑动窗口预测边界框不准确的问题，提出了Yolo系列算法，为了更精确的预测边界框；</li>
+<li>Yolo 算法：You only look once，大概实现思想如下（此时还没有包括 Anchor的思想，后续会介绍）：<ul>
+<li>将整体图片分成 3x3的网格（这是示例，实际中可以更精细比如：19x19）；</li>
+<li>每个网格负责输出一个向量 Y=[Pc,bx,by,bw,bh,c1,c2,c3]，用于做最后的预测（与Object Localization很像）；<ul>
+<li>其中Pc指代该网格是否包含目标物；</li>
+<li>bx,by,bw,bh 表示目标的位置</li>
+<li>c1,c2,c3 表示用于分类的类别</li>
+</ul>
+</li>
+<li>根据网格数和最终单个网格要输出的向量维度，以此来设计全卷积网络（也就是通过一系列的卷积层、池化层等将图像的维度逐渐转化成 3x3x8—示例的最终输出维度），就是Yolo了。</li>
+<li>该算法的优势在于：<ul>
+<li>该神经网络可以精确地输出目标的边界框（任意长宽比，不会受限于滑动窗口的步长） ；</li>
+<li>算法通过卷积的形式实现-共享了部分计算量，不需要将网格逐次输入；</li>
+<li>运算速度较快，基本可以实时检测。</li>
+</ul>
+</li>
+<li>该算法的劣势在于：<ul>
+<li>每个网格中不能超过一个目标物。</li>
+</ul>
+</li>
+<li>需要注意的是<strong>将目标物分配到网格中的方式</strong>：<ul>
+<li>先找到目标物的中心点，再根据中心点的位置将它分配到包含该中心点的网格中；</li>
+<li>所以对于每个目标物，即便跨越了多个网格，也只会分配到一个网格。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="IOU、NMS-和-Anchor-Box"><a href="#IOU、NMS-和-Anchor-Box" class="headerlink" title="IOU、NMS 和 Anchor Box"></a>IOU、NMS 和 Anchor Box</h2><ul>
+<li>IOU：Intersection Over Union，又称为<strong>交并比</strong>，用于衡量两个方框的重叠程度<ul>
+<li>IOU=两个方框的交集/两个方框的并集；</li>
+<li>交并比(Intersection Over Union)，它既可以用来评价你的目标检测算法，也可以用于，往目标检测算法中加入其他特征部分，来进一步改善它 。</li>
+<li>如下图所示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200706135247615.png" alt="image-20200706135247615"></p>
+<ul>
+<li>NMS：Non-max Suppression，又称<strong>非极大值抑制</strong>。检测算法可能会对同一目标有多次检测：非极大值抑制是保证算法对每个目标只得到一个检测结果。<ul>
+<li>非极大值抑制思想：输出有着最大可能性的分类判断结果，而抑制那些与该结果有交集（邻近），但非最大可能性的方框。</li>
+</ul>
+</li>
+<li><p>NMS算法细节：假设针对每个网格，都输出了一个五维向量[Pc,bx.by.bh,bw]，其中Pc表示网格中包含目标的概率，其余是边界框的描述。</p>
+<ol>
+<li>丢弃所有低概率输出框（如：Pc&lt;0.6的）</li>
+<li>对剩余没有被丢弃的输出：重复选出有着最大概率（Pc值最大）作为一个 Prediction；将与Prediction有重叠且IOU&gt;0.5的输出框也抛弃掉；直到所有的输出框都被处理过。</li>
+<li>最终每个输出框不是判定为 Prediction（预测结果），就是被抛弃。</li>
+</ol>
+</li>
+<li><p>如下图所示：</p>
+</li>
+</ul>
+<p><img src="/pictures/image-20200706142443842.png" alt="image-20200706142443842"></p>
+<ul>
+<li>Anchor Box：表现形式为提前给定可能目标的<strong>长宽比</strong>，然后在预测输出中增加对该长宽比的预测。<ul>
+<li>Anchor的引入：Yolo的每个网格只能检测一个目标，要是想一个网格要检测多个目标，应该怎么办？</li>
+<li>因此引入Anchor box，也就是同一网格可以根据给定长宽比对目标进行预测，这样一个网格就可以预测多个目标了，如下图示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200706152516446.png" alt="image-20200706152516446"></p>
+<ul>
+<li>从预测输出上：拓宽了原来 预测标签 Y的维度，根据不同的 Anchor box来进行预测；此时有两个 不同形状的 Anchor box之后，Y 会被拓展成[Pc,bx.by.bh,bw,c1,c2,c3,Pc,bx.by.bh,bw,c1,c2,c3].</li>
+<li>对于Anchor box 形状的选择上（长宽比的选择），可以使用聚类分析（K-means）在原始数据集上的长宽比类别中心来进行设置。</li>
+</ul>
+<ul>
+<li><p>在有了Anchor box的概念后，Yolo 算法可以进行如下表示：</p>
+<ol>
+<li>组织训练集：假设总共三个类别（不用为背景设置额外类别）；两个Anchor box</li>
+</ol>
+<p><img src="/pictures/image-20200706153241763.png" alt="image-20200706153241763"></p>
+<ol>
+<li>对预测结果进行处理</li>
+</ol>
+<p><img src="/pictures/image-20200706153851813.png" alt="image-20200706153851813"></p>
+</li>
+</ul>
+<h2 id="Region-Proposals"><a href="#Region-Proposals" class="headerlink" title="Region Proposals"></a>Region Proposals</h2><ul>
+<li>简单解释 Region Proposals：想较于滑动窗口，或者整张图片进行的卷积操作 ，Region Proposals  尝试选取少部分有意义的区域（也就是少量的窗口）用于进行卷积操作。</li>
+<li>实现 Region Proposals 的方式上，主要是想通过 segmentation algorithm 来实现。</li>
+</ul>
+<p><img src="/pictures/image-20200706154904663.png" alt="image-20200706154904663"></p>
+<h1 id="Face-Recognition"><a href="#Face-Recognition" class="headerlink" title="Face Recognition"></a>Face Recognition</h1><ul>
+<li>通用的人脸识别系统分为：<strong>人脸识别</strong>和<strong>活体检测</strong>两部分；两者均可通过CNN来实现，只是这是两个不同的任务。</li>
+<li><strong>人脸识别</strong>与<strong>人脸验证</strong>是有区别的，要注意区分：<ul>
+<li>人脸识别解决的是困难的 1对多的匹配问题，即：首先拥有包含多个人脸照的数据库；然后输入一张图片，输出数据库中匹配上的人脸照片ID或者未识别照片。</li>
+<li>人脸验证解决的是简单的 1对1的匹配问题，即：输入图片。姓名/ID；然后输出判断，这张照片是不是对应于这个人。</li>
+<li>如下图所示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200706200918442.png" alt="image-20200706200918442"></p>
+<ul>
+<li>对于人脸识别和人脸验证：<ul>
+<li><code>triplet loss</code>是一个有效的损失函数用于训练一个神经网络来学习一张人脸图片的编码特征（某个向量表示）。</li>
+<li>对于图片进行同样的特征提取后生成的编码或者向量表示，可以适用于人脸识别和人脸验证。</li>
+<li>可以通过衡量两个不同向量表示之间的距离来判断这两个向量是否表示的是同一个人脸。</li>
+</ul>
+</li>
+</ul>
+<h2 id="单样本学习（One-Shot-Learning）"><a href="#单样本学习（One-Shot-Learning）" class="headerlink" title="单样本学习（One Shot Learning）"></a>单样本学习（One Shot Learning）</h2><ul>
+<li>单样本学习问题：必须在只见过一张照片（只见过一个人的脸部-一个样本）的前提下，认出一个人。</li>
+<li>实质也就是要学习一个<strong>相似性函数</strong>，如下图示：</li>
+</ul>
+<p><img src="/pictures/image-20200706202152963.png" alt="image-20200706202152963"></p>
+<h2 id="Siamese-network"><a href="#Siamese-network" class="headerlink" title="Siamese network"></a>Siamese network</h2><ul>
+<li>该网络的学习目的：用于解决单样本学习问题，是想让相似照片的特征向量表示之间的距离更小（比如欧氏距离），不同相片的特征向量表示之间的距离更大。</li>
+<li>该网络主要思想：<ul>
+<li>接受两个图像作为输入，如下图所示，图中上下两个模型，都由CNN构成，两个模型的参数值完全相同。不同于传统CNN的地方，是Siamese网络并不直接输出类别，而是输出一个向量(比如128维的特征向量)。</li>
+<li>若输入的图像X1和X2为同一个人，则上下两个模型输出的一维向量欧氏距离较小；若输入的图像X1和X2不是同一个人，则上下两个模型输出的一维向量欧氏距离较大。</li>
+<li>如下述两幅图片所示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200706203216698.png" alt="image-20200706203216698"></p>
+<p><img src="/pictures/image-20200706203255638.png" alt="image-20200706203255638"></p>
+<ul>
+<li>训练Siamese 网络：<ul>
+<li>首先是损失函数的设计，然后使用特定的梯度下降法寻找最优解。</li>
+<li>一般损失函数定义如下所示：<ul>
+<li>即给定 Anchor、Positive、Negative；Anchor可定义为锚点图片，Positive为正样本图片与Anchor表示的是同一个人，Negative是负样本与Anchor表示的不是同一个人；</li>
+<li>Anchor、Positive的距离 d(A,P)，Anchor、Negative的距离d(A,N)，此时的优化目标就是想d(A,P)能远小于d(A,N)。</li>
+</ul>
+</li>
+<li>组织训练集时就是组织三元组（Anchor、Positive、Negative），公式中的参数α，是一个超参数，用于做Positive、Negative的最小边界（margin），能避免模型输出的都是零向量。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/cnnsiameseloss.png" alt="cnnsiameseloss.png"></p>
+<h2 id="Triplet-Loss"><a href="#Triplet-Loss" class="headerlink" title="Triplet Loss"></a>Triplet Loss</h2><ul>
+<li>参考论文：Schroff et al. 2015,FaceNet: A unified embedding for face recognition and clustering </li>
+<li>相比于 Siamese的同时输入两张图片，Triplet更进一步同时输入三张图片，分别作为：Anchor、Positive、Negative；</li>
+<li>训练目标是想通过ConvNet的变化后，对由图片所得到的向量（以F(A),F(P),F(N)分别表示）进行距离度量时，F(A),F(P)的距离可以更近，F(A),F(N)的距离可以更远。如下图所示：</li>
+</ul>
+<p><img src="/pictures/image-20200706205851202.png" alt="image-20200706205851202"></p>
+<ul>
+<li>Triplet Loss的定义如下：</li>
+</ul>
+<script type="math/tex; mode=display">
+L(A,P,N)=max(||F(A)-F(P)||^2-||F(A)-F(N)||^2+\alpha,0) \\\\
+J=\sum_{i=1}^{m}L(A^{(i)},P^{(i)},N^{(i)})</script><ul>
+<li>Triplet 网络的重点是训练集的组织，即对输入网络的三元组如何进行选取。<ul>
+<li>既不能随机选取，这样会导致条件 :d(A,P)+alpha &lt;= d(A,N) 过于容易满足；</li>
+<li>要选择那些比较“hard”去训练（也就是难以区分的）的三元组。</li>
+<li>三元组的选择，可以参考开头的论文：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200706210610393.png" alt="image-20200706210610393"></p>
+<h2 id="Face-Verification-and-Binary-Classification"><a href="#Face-Verification-and-Binary-Classification" class="headerlink" title="Face Verification and Binary Classification"></a>Face Verification and Binary Classification</h2><ul>
+<li>对于人脸验证问题，也可以不使用 Siamese/Triplet 来进行相似度衡量，可以直接将其当作一个二分类问题：<ul>
+<li>利用ConvNet的输出，后续接一个非线性的分类器（线性计算+非线性变换）用于进行二分类预测，也是可以的，如下图所示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200706212002904.png" alt="image-20200706212002904"></p>
+<h1 id="Neural-Style-Transfer"><a href="#Neural-Style-Transfer" class="headerlink" title="Neural Style Transfer"></a>Neural Style Transfer</h1><h2 id="CNN网络与神经风格迁移"><a href="#CNN网络与神经风格迁移" class="headerlink" title="CNN网络与神经风格迁移"></a>CNN网络与神经风格迁移</h2><ul>
+<li>神经风格迁移（Neural Style Transfer）是对已经<strong>训练好的CNN</strong>的一个重要应用，也是对CNN到底学习到了什么的一个很好的解答。神经风格迁移（Neural Style Transfer）有时候也叫图片风格迁移。</li>
+<li>Neural Style Transfer的过程如下图所示：</li>
+</ul>
+<p><img src="/pictures/image-20200706212455827.png" alt="image-20200706212455827"></p>
+<ul>
+<li>为了实现Neural Style Transfer, 我们需要查看卷积神经网络在不同层中提取的特征值, 包括浅层和深层的特征值。也就是深度卷积网络到底学习到了什么东西？<ul>
+<li>在浅层提取的多数是纹理、颜色等低级别的形状特征；</li>
+<li>随着网络层的加深，低级别特征之间相互组合会逐渐提取出高级别的语义特征，空间特征等，也就是网络开始对图像进行抽象识别，判断图像是雨伞、花或者其它物体等；</li>
+<li>对于卷积神经网络经过了激活函数后的<strong>深层网络层</strong>所表示的信息，我们可以将其理解成这是图像所存在的深层风格；</li>
+<li>对于<strong>浅层网络层</strong>所表示的信息，可以将其理解成图像所拥有的浅层风格（或者理解成图像包含的浅层内容，有多少纹理、什么颜色等等）。</li>
+<li>当我们将一个图像的内容和风格可以大致分开后，就可以将该图像的深层风格逐步迁移到另一张图像的内容上了。</li>
+</ul>
+</li>
+<li>参考论文：Zeiler and Fergus.,2013,Visualizing and understanding convolutional networks</li>
+</ul>
+<p><img src="/pictures/image-20200706214025099.png" alt="image-20200706214025099"></p>
+<h2 id="Gram-Matrix"><a href="#Gram-Matrix" class="headerlink" title="Gram Matrix"></a>Gram Matrix</h2><ul>
+<li><p>在理解了CNN不同层之间的抽象表示之后，我们还缺少一样工具，也就是如何度量两个图像风格的差异，这里需要引入<strong>Gram矩阵</strong>，用于度量两个图像风格的差异：</p>
+<ul>
+<li>Gram矩阵的定义如下所示：</li>
+</ul>
+<p><img src="/pictures/cnngrammatrix.png" alt="cnngrammatrix"></p>
+<ul>
+<li>在使用Gram矩阵时，可以将CNN某一层输出的特征图拼接成一个大的 NxM的矩阵，也可以分别计算不同通道的特征图，也就是逐个输入两个图片在不同通道上的特征图；</li>
+<li>通过将两个不同图片的在CNN某一层的特征图输入Gram矩阵，就可以较好的度量每个特征之间的<strong>相关性</strong>。</li>
+<li>Gram矩阵，实际上可看做是特征图之间的偏心协方差矩阵（即没有减去均值的协方差矩阵）<ul>
+<li>在特征图中，每一个数字都来自于一个特定滤波器在特定位置的卷积，因此每个数字就代表一个特征的强度，而Gram计算的实际上是两两特征之间的<strong>相关性</strong>；</li>
+<li>对于Gram矩阵的非对角线元素，当同一通道的特征图上不同的特征值相乘时：原来小的就会变的更小，原来大的就变的更大；这就表明了二个不同特征值的关系：哪两个特征是同时出现的，哪两个是此消彼长的等等；</li>
+<li>对于Gram矩阵的对角线元素，还体现了每个特征在图像中出现的量（强度），因此，Gram矩阵有助于把握整个图像的大体风格。</li>
+<li>有了表示风格的Gram矩阵后，要度量两个图像风格的差异，只需比较他们Gram 矩阵的差异即可，这就将一个抽象的问题具体化了。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="神经风格迁移的实现"><a href="#神经风格迁移的实现" class="headerlink" title="神经风格迁移的实现"></a>神经风格迁移的实现</h2><ul>
+<li>实现神经风格迁移的大致过程如下：<ul>
+<li>首先我们采用的是一个已经训练好的CNN网络，如：VGG-16。</li>
+<li>我们将风格图片（Style image）和内容图片（Content image）的输入CNN网络，并将输出特征提取出来存储。</li>
+<li>风格图片经过下图左边的网络，我们利用<strong>Gram矩阵</strong>计算每个层上的<strong>风格表征</strong>并存储。</li>
+<li>内容图片经过下图右边的这个网络，我们计算某一层的<strong>内容表征</strong>（较高层）并存储。</li>
+<li>然后再向网络中输入一张随机的白噪音图片，如下图示经过了中间这个网络，计算该图片在网络每一层的风格表征和特定层的内容表征。</li>
+<li>通过将上述的风格表征、内容表征输入损失函数，分别计算每一部分的损失，通过线性加权后组合成最终的损失值。</li>
+<li>损失值通过下图中间的神经网络进行反向传播，每次传播到输入端后，用此来更新白噪音图片的像素值，据此使得它同时尽可能的去匹配内容图的内容以及风格图的风格。</li>
+<li>当损失值降低到一定程度后，输出不断更新的图片，即为最终的神经风格迁移图片。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/cnnstyletransfer.png" alt="cnnstyletransfer"></p>
+<ul>
+<li><p>神经风格迁移的详细表述如下：</p>
+<ul>
+<li>参考论文：<ul>
+<li>A neural algorithm of artistic style. Images on slide generated by Justin Johnson</li>
+<li>A neural algorithm of artistic style</li>
+</ul>
+</li>
+<li>总体损失函数定义为：</li>
+</ul>
+<script type="math/tex; mode=display">
+J(G)=\alpha J_{content}(C,G) + \beta J_{style}(S,G) \\\\
+\alpha,\beta 是超参数</script><ul>
+<li><p>其中C-Content，内容图片；G-Generate，生成图片；S-Style，风格图片。</p>
+</li>
+<li><p>优化目标在于找到好的生成图片，如下图所示：</p>
+</li>
+</ul>
+<p><img src="/pictures/image-20200706214830502.png" alt="image-20200706214830502"></p>
+</li>
+<li><p>其中 Content 损失函数的定义如下所示：</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+J_{content}(C,G)=\frac{1}{2}||a^{[l](c)}-a^{[l](G)}||^2,element-wise级别的计算 \\\\
+其中a^{[l](c)}、a^{[l](G)}分别代表内容图片和生成图片在CNN第l层输出的特征值</script><p><img src="/pictures/image-20200706215315522.png" alt="image-20200706215315522"></p>
+<ul>
+<li>其中 Style 损失函数的定义如下所示：<ul>
+<li>针对CNN第l层风格损失的计算，对于多层风格损失，进行线性组合即可。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200706221906851.png" alt="image-20200706221906851"></p>
+<ul>
+<li>Style损失函数的计算如下所示：使用了Gram矩阵</li>
+</ul>
+<p><img src="/pictures/image-20200706221800278.png" alt="image-20200706221800278"></p>
+<h1 id="1D-and-3D-Generalizations-推广到1维和3维"><a href="#1D-and-3D-Generalizations-推广到1维和3维" class="headerlink" title="1D and 3D Generalizations(推广到1维和3维)"></a>1D and 3D Generalizations(推广到1维和3维)</h1><ul>
+<li>推广过程的实质也就是<strong>卷积核维度</strong>的变化，如下图所示：</li>
+</ul>
+<p><img src="/pictures/image-20200706223240303.png" alt="image-20200706223240303"></p>
 
     </div>
 
@@ -575,7 +905,7 @@ n_c^{[l]}是该层输出特征图的通道数 \\\\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Computer-Vision%EF%BC%88%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">Computer Vision（计算机视觉）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolutional-Neural-Networks"><span class="nav-number">1.1.</span> <span class="nav-text">Convolutional Neural Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E6%93%8D%E4%BD%9C%E3%80%81padding%E3%80%81stride"><span class="nav-number">1.1.1.</span> <span class="nav-text">卷积操作、padding、stride</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E5%B1%82%E5%8F%82%E6%95%B0%E9%87%8F%E8%AE%A1%E7%AE%97"><span class="nav-number">1.1.2.</span> <span class="nav-text">卷积层参数量计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pooling-layer"><span class="nav-number">1.1.3.</span> <span class="nav-text">Pooling layer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convnet%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">1.1.4.</span> <span class="nav-text">Convnet的优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Yann-LeCun-Interview"><span class="nav-number">1.2.</span> <span class="nav-text">Yann LeCun Interview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C"><span class="nav-number">1.3.</span> <span class="nav-text">经典的卷积网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LeNet-5"><span class="nav-number">1.3.1.</span> <span class="nav-text">LeNet-5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AlexNet"><span class="nav-number">1.3.2.</span> <span class="nav-text">AlexNet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VGG-16"><span class="nav-number">1.3.3.</span> <span class="nav-text">VGG - 16</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Residual-Networks"><span class="nav-number">1.4.</span> <span class="nav-text">Residual Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Residual-block"><span class="nav-number">1.4.1.</span> <span class="nav-text">Residual block</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-ResNet-%E5%8F%AF%E4%BB%A5%E6%9C%89%E6%95%88%E6%9E%9C%EF%BC%9F"><span class="nav-number">1.4.2.</span> <span class="nav-text">为什么 ResNet 可以有效果？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1x1-%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.4.3.</span> <span class="nav-text">1x1 卷积</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inception-Network"><span class="nav-number">1.5.</span> <span class="nav-text">Inception Network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-ConvNet-%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="nav-number">1.6.</span> <span class="nav-text">使用 ConvNet 的建议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Object-Detection%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">Object Detection（目标检测）</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Computer-Vision%EF%BC%88%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">Computer Vision（计算机视觉）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolutional-Neural-Networks"><span class="nav-number">1.1.</span> <span class="nav-text">Convolutional Neural Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E6%93%8D%E4%BD%9C%E3%80%81padding%E3%80%81stride"><span class="nav-number">1.1.1.</span> <span class="nav-text">卷积操作、padding、stride</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E5%B1%82%E5%8F%82%E6%95%B0%E9%87%8F%E8%AE%A1%E7%AE%97"><span class="nav-number">1.1.2.</span> <span class="nav-text">卷积层参数量计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pooling-layer"><span class="nav-number">1.1.3.</span> <span class="nav-text">Pooling layer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convnet%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">1.1.4.</span> <span class="nav-text">Convnet的优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Yann-LeCun-Interview"><span class="nav-number">1.2.</span> <span class="nav-text">Yann LeCun Interview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E7%9A%84%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C"><span class="nav-number">1.3.</span> <span class="nav-text">经典的卷积网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LeNet-5"><span class="nav-number">1.3.1.</span> <span class="nav-text">LeNet-5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AlexNet"><span class="nav-number">1.3.2.</span> <span class="nav-text">AlexNet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VGG-16"><span class="nav-number">1.3.3.</span> <span class="nav-text">VGG - 16</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Residual-Networks"><span class="nav-number">1.4.</span> <span class="nav-text">Residual Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Residual-block"><span class="nav-number">1.4.1.</span> <span class="nav-text">Residual block</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-ResNet-%E5%8F%AF%E4%BB%A5%E6%9C%89%E6%95%88%E6%9E%9C%EF%BC%9F"><span class="nav-number">1.4.2.</span> <span class="nav-text">为什么 ResNet 可以有效果？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1x1-%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.4.3.</span> <span class="nav-text">1x1 卷积</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inception-Network"><span class="nav-number">1.5.</span> <span class="nav-text">Inception Network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-ConvNet-%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="nav-number">1.6.</span> <span class="nav-text">使用 ConvNet 的建议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Object-Detection%EF%BC%88%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">Object Detection（目标检测）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%A3%80%E6%B5%8B%EF%BC%88Sliding-windows-detection%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">滑动窗口检测（Sliding windows detection）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E6%A1%86%E9%A2%84%E6%B5%8B%EF%BC%88Bounding-Box-Predictions%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">边界框预测（Bounding Box Predictions）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IOU%E3%80%81NMS-%E5%92%8C-Anchor-Box"><span class="nav-number">2.3.</span> <span class="nav-text">IOU、NMS 和 Anchor Box</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Region-Proposals"><span class="nav-number">2.4.</span> <span class="nav-text">Region Proposals</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Face-Recognition"><span class="nav-number">3.</span> <span class="nav-text">Face Recognition</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E6%A0%B7%E6%9C%AC%E5%AD%A6%E4%B9%A0%EF%BC%88One-Shot-Learning%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">单样本学习（One Shot Learning）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Siamese-network"><span class="nav-number">3.2.</span> <span class="nav-text">Siamese network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Triplet-Loss"><span class="nav-number">3.3.</span> <span class="nav-text">Triplet Loss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Face-Verification-and-Binary-Classification"><span class="nav-number">3.4.</span> <span class="nav-text">Face Verification and Binary Classification</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Style-Transfer"><span class="nav-number">4.</span> <span class="nav-text">Neural Style Transfer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CNN%E7%BD%91%E7%BB%9C%E4%B8%8E%E7%A5%9E%E7%BB%8F%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB"><span class="nav-number">4.1.</span> <span class="nav-text">CNN网络与神经风格迁移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gram-Matrix"><span class="nav-number">4.2.</span> <span class="nav-text">Gram Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.3.</span> <span class="nav-text">神经风格迁移的实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1D-and-3D-Generalizations-%E6%8E%A8%E5%B9%BF%E5%88%B01%E7%BB%B4%E5%92%8C3%E7%BB%B4"><span class="nav-number">5.</span> <span class="nav-text">1D and 3D Generalizations(推广到1维和3维)</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -637,13 +967,13 @@ n_c^{[l]}是该层输出特征图的通道数 \\\\
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">141k</span>
+    <span title="站点总字数">147k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:08</span>
+    <span title="站点阅读时长">2:14</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lt4hyl.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="论文原文均可从 arxiv 上检索得到。 论文：An Analysis of Scale Invariance in Object Detection – SNIPSNIP算法的提出，主要源自对coco数据集和ImageNet数据集中目标尺寸变化的分析。  SNIP论文中开篇说到：COCO数据集中GT目标与图像大小的IOU比例，中位数是 0.106，而ImageNet数据集对应比例的中位数是0.5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小目标检测论文阅读">
+<meta property="og:url" content="http://lt4hyl.top/2020-09-02/%E5%B0%8F%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB.html">
+<meta property="og:site_name" content="Lancelot的小站">
+<meta property="og:description" content="论文原文均可从 arxiv 上检索得到。 论文：An Analysis of Scale Invariance in Object Detection – SNIPSNIP算法的提出，主要源自对coco数据集和ImageNet数据集中目标尺寸变化的分析。  SNIP论文中开篇说到：COCO数据集中GT目标与图像大小的IOU比例，中位数是 0.106，而ImageNet数据集对应比例的中位数是0.5">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lt4hyl.top/pictures/SNIP1.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/SNIPER.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/FSSD1.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/FSSD2.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/FSSD3.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/FSSD4.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/MRAE1.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/HRDNet1.png">
+<meta property="article:published_time" content="2020-09-02T07:03:27.000Z">
+<meta property="article:modified_time" content="2020-09-02T08:29:40.942Z">
+<meta property="article:author" content="刘涛">
+<meta property="article:tag" content="目标检测">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://lt4hyl.top/pictures/SNIP1.png">
+
+<link rel="canonical" href="http://lt4hyl.top/2020-09-02/%E5%B0%8F%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>小目标检测论文阅读 | Lancelot的小站</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43b02ed86a701dce319ff86325707452";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Lancelot的小站</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录点滴成长：AI所向，吾之所往</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://lt4hyl.top/2020-09-02/%E5%B0%8F%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="刘涛">
+      <meta itemprop="description" content="为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lancelot的小站">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          小目标检测论文阅读
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-02 15:03:27 / 修改时间：16:29:40" itemprop="dateCreated datePublished" datetime="2020-09-02T15:03:27+08:00">2020-09-02</time>
+            </span>
+
+          
+            <span id="/2020-09-02/%E5%B0%8F%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB.html" class="post-meta-item leancloud_visitors" data-flag-title="小目标检测论文阅读" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>论文原文均可从 <code>arxiv</code> 上检索得到。</strong></p>
+<h1 id="论文：An-Analysis-of-Scale-Invariance-in-Object-Detection-–-SNIP"><a href="#论文：An-Analysis-of-Scale-Invariance-in-Object-Detection-–-SNIP" class="headerlink" title="论文：An Analysis of Scale Invariance in Object Detection – SNIP"></a>论文：An Analysis of Scale Invariance in Object Detection – SNIP</h1><p>SNIP算法的提出，主要源自对coco数据集和ImageNet数据集中目标尺寸变化的分析。</p>
+<ul>
+<li>SNIP论文中开篇说到：COCO数据集中GT目标与图像大小的IOU比例，中位数是 0.106，而ImageNet数据集对应比例的中位数是0.556。</li>
+<li>经过分析后可以得知，COCO数据集中的目标尺寸变化范围非常大，这样在做迁移学习时，可能存在很多问题（即在ImageNet上预训练的模型用于coco数据集的检测）。</li>
+</ul>
+<p><img src="/pictures/SNIP1.png" alt="SNIP1"></p>
+<a id="more"></a>
+<p>SNIP是MST（Multi-Scale Training）的一个修改版本。</p>
+<ul>
+<li>SNIP 算法主要集中在对训练数据集和 <code>Proposals</code> 进行了一定的处理，使得其中的目标实例都具有与预训练网络对应数据集相似的分辨率。</li>
+</ul>
+<p>在SNIP中提出了 <code>domain-shift</code> 的概念，即若用于目标检测数据集的目标尺度分布与预训练网络对应数据集的目标尺度分布，有较大差异，则在进行Fine-tune时，会产生诸多问题，导致性能上产生较大的损失。</p>
+<p>SNIP算法的核心观点有两个：</p>
+<ul>
+<li>对参数训练的目标实例进行筛选，剔除过大或者过小的目标，将与预训练网络所用数据集分辨率相似的目标实例用于训练，降低了 <code>domain shift</code> 问题；</li>
+<li>针对包含小目标的图片进行了数据增强：先将原图进行上采样，然后进行随机裁剪，获取包含小目标的子样本，将其添加到训练集中。</li>
+</ul>
+<p>SNIP实验后的总结是：</p>
+<ul>
+<li>使用<strong>合适尺度的目标</strong>来训练检测器是很重要的；</li>
+<li>同时应该尽可能多的捕获目标间的变化（不同尺度，姿态等）;</li>
+<li>如：在更高分辨率的图像上训练检测器，可以提升对小目标分类性能，但会不利于中到大型目标的分类；</li>
+<li><p>在更低分辨率的图像上训练检测器，可以提升中到大型目标分类性能，但不利于小目标分类。</p>
+</li>
+<li><p>SNIP 使用的网络主体是：<code>Deformable-RFCN</code>，由于后续有它的改进版本-SNIPER，因此不对SNIP进行复现了，掌握它的算法思想即可。</p>
+</li>
+</ul>
+<h1 id="论文：SNIPER-Efficient-Multi-Scale-Training"><a href="#论文：SNIPER-Efficient-Multi-Scale-Training" class="headerlink" title="论文：SNIPER: Efficient Multi-Scale Training"></a>论文：SNIPER: Efficient Multi-Scale Training</h1><p>SNIPER中提出了 <code>chips</code> 的概念，即：具体尺度下，真实框附近的上下文区域（ scale specific context-regions）。</p>
+<p>SNIPER的提出基于下述两个观点：</p>
+<ol>
+<li>由于计算量大的原因，在许多情景下使用多尺度训练是不切实际的；</li>
+<li>在使用多尺度训练时，忽略过大或者过小分辨率的目标的梯度是有益的。</li>
+</ol>
+<p>SNIPER的<strong>核心</strong>在于：</p>
+<ul>
+<li>该方法以图像内容为条件，适应性的从多尺度图像金字塔中采样 chips。</li>
+<li>以真实框为参考条件，采样 positive chips，用于训练检测器对目标的预测和分类；</li>
+<li>以训练过的RPN网络的 proposals 为参考条件， 来采样 negative chips，以此来训练检测器对背景的分类，降低误报率 （false positive rate）。</li>
+<li>其中训练的RPN网络是用来区分图像的哪些区域，真实目标更容易出现。从该RPN的 proposals 中 剔除真实框，即可得到更可能包含 false positive 的区域，以此来针对性的训练检测器对背景的分类，降低误报率。</li>
+<li>而如果在一张图片的某部分上没有 proposal 被提出，这就表明，这张图的这部分很容易的被分类为背景，这样在训练中，我们就可以忽略这张图的这部分内容，这样就可以节省部分计算量。</li>
+<li>最终所有的采样后的 chips 都是 512*512 size。由于有针对性的采样，这可以降低计算量。由于输入图像的尺寸统一，这可以在训练中应用 BN（Batch Normalization），从较大的batch size 中对模型训练进行加速。</li>
+</ul>
+<p><img src="/pictures/SNIPER.png" alt="SNIPER"></p>
+<p>SNIPER 主体架构采用的是 <code>Faster-RCNN</code>，backbone 是 <code>ResNet-101</code>，采用的深度学习框架是 <code>MXNET</code>，在<code>Github</code>上有作者提供的源码。</p>
+<h1 id="Feature-Fused-SSD"><a href="#Feature-Fused-SSD" class="headerlink" title="Feature-Fused SSD"></a>Feature-Fused SSD</h1><p>Feature-Fused SSD 在CVPR2017上有两篇相类似的文章，虽然名称很象不过两者的设计思想差距还是有的。</p>
+<p>关于这两篇文章，作者都注意了目标检测的两个问题，并采取了特征融合的解决思路，不过实验过程和方式不太一样。</p>
+<p>首先是两个问题：</p>
+<ul>
+<li>目标检测过程通常既包含分类也包含边界框预测。在用于分类时，分类器更关注feature map 的<strong>语义信息</strong>；用于边界框预测时，回归函数更注重于 feature map 的<strong>位置边缘信息</strong>。而随着模型层数的加深，语义特征会越来越多，位置信息会越来越少，这会造成天然矛盾，因此需要融合不同层的特征，尝试在语义信息和位置信息之间达成平衡，再用于最后的分类与检测。</li>
+<li>大目标在深层特征中可以被很好的定位和识别，而小目标在深层特征中容易丢失，因此小目标最好基于浅层特征进行检测；但这也存在问题，在浅层特征中小目标不会丢失过多的位置信息，但缺少足够的语义信息用于分类。</li>
+</ul>
+<p>FSSD致力于提升SSD在小目标检测上的准确性。而对小目标的检测与分类会严重依赖于上下文信息。</p>
+<ul>
+<li>因此为了在浅层特征中，加入足够的语义信息和上下文信息，这两篇论文都提出了特征融合模块。</li>
+<li>在实现方式方式的主体思路也都采用了两种：<code>concatenation</code> and <code>element-wise summation</code>。</li>
+</ul>
+<h2 id="论文：FSSD-Feature-Fusion-Single-Shot-Multibox-Detector"><a href="#论文：FSSD-Feature-Fusion-Single-Shot-Multibox-Detector" class="headerlink" title="论文：FSSD: Feature Fusion Single Shot Multibox Detector"></a>论文：FSSD: Feature Fusion Single Shot Multibox Detector</h2><p>开篇作者先分析了一下现有的CNN提取特征的通用结构，并提出了自己的特征融合和特征金字塔生成方法，如下图所示：</p>
+<p><img src="/pictures/FSSD1.png" alt="FSSD1"></p>
+<p>经过实验比较后，作者选择了 <code>concatenation</code>（也就是对feature map 进行堆叠操作）  的方式用于特征融合，即：在SSD的<code>conv4_3,fc_7,conv7_2</code>层后 接上了 1 x 1的卷积来降维，接着以 <code>conv4_3</code> 的 feature map size 作为基准（38x38），对于size更小的层，使用双线性插值（ bilinear interpolation）重新缩放到 38x38，接着 <code>concatenation</code> ，并输入 <code>BatchNorm</code> 层，用于检测。</p>
+<h2 id="论文：Feature-Fused-SSD-Fast-Detection-for-Small-Objects"><a href="#论文：Feature-Fused-SSD-Fast-Detection-for-Small-Objects" class="headerlink" title="论文：Feature-Fused SSD: Fast Detection for Small Objects"></a>论文：Feature-Fused SSD: Fast Detection for Small Objects</h2><p>经过作者修改后的 FSSD结构如下图所示：</p>
+<p><img src="/pictures/FSSD2.png" alt="FSSD2"></p>
+<p>作者设计了两个融合特征模块，用于添加上下文信息，这两者的结构如下图所示</p>
+<ul>
+<li>concatenation module：使用 1 x 1得卷积层用于学习目标信息和上下文信息相融合得权重。这可以减少无用的背景噪音。</li>
+<li>element-sum module：使用手动设置的相同的权重来融合多等级的特征以一种必须的方式，这可以有效的增强上下文信息的重要性。</li>
+</ul>
+<p><img src="/pictures/FSSD3.png" alt="FSSD3"></p>
+<p>其中值得学习的亮点是：文章中运用了 反卷积的策略，将原SSD某些层的 feature map 进行了<strong>可视化（针对某一个小目标）</strong>，通过横向的比较阐明了作者的观点，如下图所示：</p>
+<p><img src="/pictures/FSSD4.png" alt="FSSD4"></p>
+<h1 id="论文：MultiResolution-Attention-Extractor-for-Small-Object-Detection"><a href="#论文：MultiResolution-Attention-Extractor-for-Small-Object-Detection" class="headerlink" title="论文：MultiResolution Attention Extractor for Small Object Detection"></a>论文：MultiResolution Attention Extractor for Small Object Detection</h1><p>本文在特征抽取网络中引入了<code>“self-attention”</code>机制，试图通过学习到一定的 <code>attention degree</code> 来抑制无用的信息（较低的注意力权重）和增强有用的信息（更高的注意力权重），针对最后用于预测的 feature map。</p>
+<p>由于用于计算 <code>attention degree</code> 的 feature map 都是来自于同一个卷积网络，因此比较类似于“self-attention”。对于“attention”机制，我了解的比较少，需要去其他方面学习些基本概念。</p>
+<p>本文虽然提出了两种不同的注意力机制实现形式，但主体思想是：通过将不同层级的 feature map 输入一个小网络，通过这个小网络输出对应的 attention degree（一个数值），把这个数值跟原来的feature map相乘，然后经过一定的缩放（1x1卷积）再加回到用于预测的 feature map中，进行最终结果的预测。</p>
+<p>其中的注意力权重被定义为：作用于每个层级特征并生成最后 attention map 的权重。针对于单一的 feature map，这就是一个数值。</p>
+<p>本文提出的注意力机制实现形式为：Soft attention 和 Attention-based feature interaction。区别在于注意力机制网络的实现上有所不同，如下图所示：</p>
+<p><img src="/pictures/MRAE1.png" alt="MRAE1"></p>
+<p>最后总结：本文网络架构是基于Faster R-CNN的，本文作者没有提供代码复现，并且不是在整个 <code>CoCo</code> 数据集上做训练和测试，而是在选出来的小目标上做的训练和测试。可能比较仓促。</p>
+<h1 id="论文：HRDNet-High-resolution-Detection-Network-for-Small-Objects"><a href="#论文：HRDNet-High-resolution-Detection-Network-for-Small-Objects" class="headerlink" title="论文：HRDNet: High-resolution Detection Network for Small Objects"></a>论文：HRDNet: High-resolution Detection Network for Small Objects</h1><p>本文<code>HRDNet</code>网络的提出基于下述三点描述：</p>
+<ul>
+<li>给网络输入高分辨率的图片虽然有利于解决小目标检测的问题，但随着网络加深小目标本身的信息会逐渐消失。</li>
+<li>同时简单的增大分辨率会造成许多问题，如：增大了原本数据集的尺度变化幅度，并且引入了更大的计算量。</li>
+<li>因此，既想输入高分辨率的图片用于预测，又想避免上述问题，就需要对网络结构进行改进，提出新的结构。</li>
+</ul>
+<p>本文提出了两种网络结构，用于前后组合，分别是：<code>Multi-Depth Image Pyramid Network (MD-IPN)</code> 和 <code>Multi-Scale Feature Pyramid Network (MS-FPN)</code>。结合这两个网络，可以有效的利用<strong>多尺度</strong>和<strong>多层级</strong>的特征。</p>
+<ul>
+<li>其中MD-IPN用于提取特征，提取不同分辨率下的多个位置信息，使用了不同网络深度的backbones：尤其是：高分辨率的图片将被输入给浅层网络，用于保留更多的位置信息和降低计算量。低分辨率的图片用于输入深层的网络来抽取更多的语义信息。</li>
+<li>MS-FPN：用于对齐和融合 多尺度、多层级的特征组（由MD-IPN产生）减少在这些多尺度、多层级特征之间的信息失衡。</li>
+</ul>
+<p>这两种结构的示意图如下所示：</p>
+<p><img src="/pictures/HRDNet1.png" alt="HRDNet1"></p>
+<p>最后总结：</p>
+<ul>
+<li>本文使用深层的 backbone来处理低分辨率图片，同时使用浅层的 backbone 来处理高分辨率图片。</li>
+<li>这种设计真的是很不错，解决了语义信息与位置信息的不平衡的问题。</li>
+<li>可以进一步在对 feature map的融合上进行深入探索，也就是对MS-FPN网络的改进上，如何更加有效的利用来自 浅层网络的位置信息和深层网络的语义信息。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>觉着不错，打赏一下吧。</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/wechatpay.jpg" alt="刘涛 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/pictures/alipay.jpg" alt="刘涛 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>刘涛
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://lt4hyl.top/2020-09-02/%E5%B0%8F%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB.html" title="小目标检测论文阅读">http://lt4hyl.top/2020-09-02/小目标检测论文阅读.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" rel="tag"># 目标检测</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020-09-02/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%885%EF%BC%89.html" rel="prev" title="深度学习笔记（5）">
+      <i class="fa fa-chevron-left"></i> 深度学习笔记（5）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020-09-02/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%90%B4%E5%86%9B%E5%85%88%E7%94%9F%E4%B8%93%E5%9C%BA.html" rel="next" title="读书笔记-吴军先生专场">
+      读书笔记-吴军先生专场 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%EF%BC%9AAn-Analysis-of-Scale-Invariance-in-Object-Detection-%E2%80%93-SNIP"><span class="nav-number">1.</span> <span class="nav-text">论文：An Analysis of Scale Invariance in Object Detection – SNIP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%EF%BC%9ASNIPER-Efficient-Multi-Scale-Training"><span class="nav-number">2.</span> <span class="nav-text">论文：SNIPER: Efficient Multi-Scale Training</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Feature-Fused-SSD"><span class="nav-number">3.</span> <span class="nav-text">Feature-Fused SSD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%EF%BC%9AFSSD-Feature-Fusion-Single-Shot-Multibox-Detector"><span class="nav-number">3.1.</span> <span class="nav-text">论文：FSSD: Feature Fusion Single Shot Multibox Detector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%EF%BC%9AFeature-Fused-SSD-Fast-Detection-for-Small-Objects"><span class="nav-number">3.2.</span> <span class="nav-text">论文：Feature-Fused SSD: Fast Detection for Small Objects</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%EF%BC%9AMultiResolution-Attention-Extractor-for-Small-Object-Detection"><span class="nav-number">4.</span> <span class="nav-text">论文：MultiResolution Attention Extractor for Small Object Detection</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%EF%BC%9AHRDNet-High-resolution-Detection-Network-for-Small-Objects"><span class="nav-number">5.</span> <span class="nav-text">论文：HRDNet: High-resolution Detection Network for Small Objects</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">刘涛</p>
+  <div class="site-description" itemprop="description">为人民日益增长的美好生活需要而读书：机器学习、深度学习、c++、python、C#</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备2020034167号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘涛</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">154k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:20</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+<script>
+  (function() {
+    function leancloudSelector(url) {
+      url = encodeURI(url);
+      return document.getElementById(url).querySelector('.leancloud-visitors-count');
+    }
+
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.id);
+      var title = visitors.dataset.flagTitle;
+      
+      
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            leancloudSelector(url).innerText = counter.time + 1;
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              });
+          } else {
+              Counter('post', '/classes/Counter', { title, url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.id);
+      });
+
+      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
+        .then(response => response.json())
+        .then(({ results }) => {
+          for (let url of entries) {
+            let target = results.find(item => item.url === url);
+            leancloudSelector(url).innerText = target ? target.time : 0;
+          }
+        })
+        .catch(error => {
+          //console.log(error);
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+
+    let { app_id, app_key, server_url } = {"enable":true,"app_id":"MxrUXwts7rlzq762NfLCiSVk-gzGzoHsz","app_key":"bqlnUht41VcOv8c5hK8DrOyz","server_url":"https://mxruxwts.lc-cn-n1-shared.com","security":false};
+    function fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${api_server}/1.1${url}`, {
+          method,
+          headers: {
+            'X-LC-Id'     : app_id,
+            'X-LC-Key'    : app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    }
+
+    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+
+    if (api_server) {
+      fetchData(api_server);
+    } else {
+      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
+        .then(response => response.json())
+        .then(({ api_server }) => {
+          fetchData('https://' + api_server);
+        });
+    }
+  })();
+</script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

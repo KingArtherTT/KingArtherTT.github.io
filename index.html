@@ -369,7 +369,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-09-02 15:01:52 / 修改时间：22:04:29" itemprop="dateCreated datePublished" datetime="2020-09-02T15:01:52+08:00">2020-09-02</time>
+              <time title="创建时间：2020-09-02 15:01:52 / 修改时间：22:06:53" itemprop="dateCreated datePublished" datetime="2020-09-02T15:01:52+08:00">2020-09-02</time>
             </span>
 
           
@@ -410,56 +410,14 @@
 <li>神经网络太简单，不会共享从不同文本位置学习到的特征。（输入前后的序列特征、上下文特征，没有学习到）。</li>
 </ul>
 <p><img src="/pictures/image-20200707111215551.png" alt="image-20200707111215551"></p>
-<p>由此需要能学习到<strong>序列特征</strong>、<strong>上下文信息</strong>的神经网络，因此提出了标准的RNN（下文会介绍），但标准的RNN也存在自己的问题，如：只用序列中的早期数据做预测，即只使用输入或使用输入序列中之前信息，但不使用序列中后面的信息。以及只在一确定的时间内预测。因此对于RNN也有它的许多变种。</p>
-<p>RNN的<strong>前向传播过程</strong>，如下图所示：</p>
-<ul>
-<li>RNN是使用同一个网络处理多个输入，在下图网络中每个输入都会产生对应的输出。</li>
-</ul>
-<p><img src="/pictures/image-20200707130537643.png" alt="image-20200707130537643"></p>
-<p><img src="/pictures/image-20200707130705606.png" alt="image-20200707130705606"></p>
-<p>RNN的<strong>反向传播过程</strong>，如下图所示：</p>
-<ul>
-<li>下图所示的网络：输入序列长度等于输出序列长度；</li>
-<li>此时的反向传播过程随着输入序列的顺序逆向进行，每一个预测值与真实值的比较都会计入到梯度中，也都会对网络进行一次更新。输出序列后端的梯度会向前端传递。</li>
-</ul>
-<p><img src="/pictures/image-20200707131549814.png" alt="image-20200707131549814"></p>
-<p>RNN的不同类型，如下图所示：</p>
-<ul>
-<li>many-to-many1：即Tx=Ty,输入长度等于输出长度的。</li>
-<li>many-to-one： 如，Sentiment classification（情感分类），输入一段文本，输出单个Y值。</li>
-<li>one-to-one：之前的标准神经网络（输入单个值，经过线性变换和激活函数后输出一个值）。</li>
-<li>one-to-many：如，音乐产生器，用户输入偏好，自动产生一段音乐。</li>
-<li>many-to-many2：Tx!=Ty，输入长度不等于输出长度的，如，机器翻译。</li>
-</ul>
-<p><img src="/pictures/image-20200707160246000.png" alt="image-20200707160246000"></p>
-<h2 id="Language-Model-and-Sequence-generation"><a href="#Language-Model-and-Sequence-generation" class="headerlink" title="Language Model and Sequence generation"></a>Language Model and Sequence generation</h2><h2 id="语言模型（Language-Model-）"><a href="#语言模型（Language-Model-）" class="headerlink" title="语言模型（Language Model ）"></a>语言模型（Language Model ）</h2><p>语言模型的定义：即估计特定单词序列（一个句子，一串文本）的概率。</p>
-<ul>
-<li>通俗点说：即判断一个语言序列是否是正常语句，即是否是<strong>人话</strong>。</li>
-<li>标准定义如下：</li>
-</ul>
-<script type="math/tex; mode=display">
-对于语言序列 w_1,w_2,...,w_n，语言模型就是计算该序列的概率，即 P(w_1,w_2,...,w_n) \\\\
-例如我们可以明显感知到：P(I \quad am \quad handsome)>P(handsome \quad i \quad am)</script><p>当尝试使用RNN建立一个简单的语言模型时，可以如下所示来直观理解：</p>
-<ul>
-<li>RNN的输入即为单词序列，RNN的输出即为这一串单词序列的概率。</li>
-<li>在建模前，通常需要一个由大文集（Corpus）构成的训练集，如：大体量的或海量英语语句构成的英语文本。而后</li>
-<li>对于训练集中的每一句话，首先要做的是<strong>标记化（Tokenize）</strong>，就是将各个单词映射到一个 one hot 向量上。<ul>
-<li>具体来说对 Corpus 中出现过的单词进行统计形成一部词典或者直接使用现有的词典。假设词典有1万个单词，则对 Corpus 中的每个单词都可以转化为一个 1万维的 one hot 向量。</li>
-<li>在句子结束处，通常加上一个EOS(End Of Sentence)标记</li>
-<li>对未出现在单词表中的单词，打上UNK标记（全局唯一标记），表示未知单词</li>
-<li>完成<strong>标记化</strong>的基本步骤：是将输入句子映射成各个标记，或单词表中单词的集合。</li>
-</ul>
-</li>
-<li>用RNN为不同序列的概率建模：即在给定前<code>n</code>个单词序列的概率下，预测<code>n+1</code>个单词的概率，即可得到<code>n+1</code>个单词序列同时出现的概率。</li>
-</ul>
-<p>这里使用的是<strong>词级（Word-level）</strong>语言模型，也就是每个标记是针对单词，但也有<strong>字符级语言模型（Character-level）</strong>也就是每个标记都针对字符（如：’ab;!、#）。但通常意义上字符级语言模型不如词级语言模型好，如：在找出句首对句尾的，长距离的对应关系上。并且字符级语言模型在训练上也更为艰难。</p>
-<p>在语言模型定义好了以后，就需要通过前向传播/后向传播来训练该模型，但RNN所面临的问题之一—<strong>梯度消失</strong>，会使得训练无法有效进行，产生原因如下：</p>
-<ul>
-<li>基本的RNN模型有附近效应（Local influences）：输出值<code>Yhat</code>，主要受接近于<code>Yhat</code>的值的影响；所以靠后的输入很难影响到靠前的输入。反向传播时就很难做到，将靠后输入的影响反馈到序列开始的地方，从而去修改神经网络。</li>
-<li>由于句子中可能有长期依赖，而RNN模型无法很好的捕获不同词之间的长期依赖性。</li>
-</ul>
-<p>因此也就有了GRU（Gated Recurrent Unit）的提出，用于显著的减轻梯度消失问题。</p>
-<h2 id="Gated-Recurrent-Unit-GRU"><a href="#Gated-Recurrent-Unit-GRU" class="headerlink" title="Gated Recurrent Unit(GRU)"></a>Gated Recurrent Unit(GRU)</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020-09-02/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%885%EF%BC%89.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

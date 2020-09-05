@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"lt4hyl.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="对深度学习在目标检测问题上的发展与应用，可以参照：深度学习笔记（4） 目标检测问题概述目标检测问题的定义是在图片中对可变数量的目标进行查找和分类。 当前目标检测面临的问题：目标种类与数量问题；目标尺度问题；外在环境干扰问题。 计算机视觉领域中的两大基本任务：目标检测和目标分割。对于计算机视觉的其它任务往往会依赖于这两个的结果来进行后续的处理。比如说目标跟踪，口罩识别等。 其中目标检测包括了：目标定">
+  <meta name="description" content="对深度学习在目标检测问题上的发展与应用，可以参照：深度学习笔记（4） 目标检测三大神器：Detectron2、mmDetection、SimpleDet，均可在Github上找到。 目标检测问题概述目标检测问题的定义是在图片中对可变数量的目标进行查找和分类。 当前目标检测面临的问题：目标种类与数量问题；目标尺度问题；外在环境干扰问题。 计算机视觉领域中的两大基本任务：目标检测和目标分割。对于计算机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="目标检测概述">
 <meta property="og:url" content="http://lt4hyl.top/2020-09-04/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%A6%82%E8%BF%B0.html">
 <meta property="og:site_name" content="Lancelot的小站">
-<meta property="og:description" content="对深度学习在目标检测问题上的发展与应用，可以参照：深度学习笔记（4） 目标检测问题概述目标检测问题的定义是在图片中对可变数量的目标进行查找和分类。 当前目标检测面临的问题：目标种类与数量问题；目标尺度问题；外在环境干扰问题。 计算机视觉领域中的两大基本任务：目标检测和目标分割。对于计算机视觉的其它任务往往会依赖于这两个的结果来进行后续的处理。比如说目标跟踪，口罩识别等。 其中目标检测包括了：目标定">
+<meta property="og:description" content="对深度学习在目标检测问题上的发展与应用，可以参照：深度学习笔记（4） 目标检测三大神器：Detectron2、mmDetection、SimpleDet，均可在Github上找到。 目标检测问题概述目标检测问题的定义是在图片中对可变数量的目标进行查找和分类。 当前目标检测面临的问题：目标种类与数量问题；目标尺度问题；外在环境干扰问题。 计算机视觉领域中的两大基本任务：目标检测和目标分割。对于计算机">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://lt4hyl.top/pictures/targetdetect1.png">
 <meta property="og:image" content="http://lt4hyl.top/pictures/image-20200526171850391.png">
@@ -35,8 +35,59 @@
 <meta property="og:image" content="http://lt4hyl.top/pictures/image-20200526173349374.png">
 <meta property="og:image" content="http://lt4hyl.top/pictures/image-20200528100200482.png">
 <meta property="og:image" content="http://lt4hyl.top/pictures/image-20200528103301376.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200528105212508.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200528205207608.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200529104355892.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200607200330934.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200607201820526.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200607222423098.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200607223738643.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200607230328965.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200607231219861.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200617161349060.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200617161815436.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200617162002093.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200617162120171.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200618100818404.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200618101241088.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200618090516931.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200618103934435.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200618104022541.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200618104600371.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200610200615962.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200610200708351.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611103956554.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611112605108.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611114542903.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611120202205.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611120453328.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611121251250.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611121222003.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611190554951.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611193033242.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611193910055.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200618171541385.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200618171717865.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200618172642208.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200618173003651.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200618173104806.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200608111109935.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200608111337539.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200608111514765.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200610200259079.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611195710310.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611195754316.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611195915598.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611200233253.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611200412981.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611212417288.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611212433982.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611212706319.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200611200658725.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200618105345472.png">
+<meta property="og:image" content="http://lt4hyl.top/pictures/image-20200618130537146.png">
 <meta property="article:published_time" content="2020-09-04T07:22:59.000Z">
-<meta property="article:modified_time" content="2020-09-05T04:09:45.557Z">
+<meta property="article:modified_time" content="2020-09-05T08:52:33.843Z">
 <meta property="article:author" content="刘涛">
 <meta property="article:tag" content="目标检测">
 <meta property="article:tag" content="深度学习">
@@ -207,7 +258,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-05 12:09:45" itemprop="dateModified" datetime="2020-09-05T12:09:45+08:00">2020-09-05</time>
+                <time title="修改时间：2020-09-05 16:52:33" itemprop="dateModified" datetime="2020-09-05T16:52:33+08:00">2020-09-05</time>
               </span>
 
           
@@ -223,14 +274,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
+              <span>10k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>9 分钟</span>
             </span>
 
         </div>
@@ -243,6 +294,7 @@
 
       
         <p>对深度学习在目标检测问题上的发展与应用，可以参照：<a href="http://lt4hyl.top/2020-08-28/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%884%EF%BC%89.html">深度学习笔记（4）</a></p>
+<p>目标检测三大神器：Detectron2、mmDetection、SimpleDet，均可在Github上找到。</p>
 <h1 id="目标检测问题概述"><a href="#目标检测问题概述" class="headerlink" title="目标检测问题概述"></a>目标检测问题概述</h1><h2 id="目标检测问题的定义"><a href="#目标检测问题的定义" class="headerlink" title="目标检测问题的定义"></a>目标检测问题的定义</h2><p>是在图片中对<strong>可变数量</strong>的目标进行查找和分类。</p>
 <p>当前目标检测面临的问题：目标种类与数量问题；目标尺度问题；外在环境干扰问题。</p>
 <p>计算机视觉领域中的两大基本任务：<strong>目标检测</strong>和<strong>目标分割</strong>。对于计算机视觉的其它任务往往会依赖于这两个的结果来进行后续的处理。比如说目标跟踪，口罩识别等。</p>
@@ -304,7 +356,7 @@
 <p>Two-stage(Faster RCNN系列)：利用RPN网络对候选区域进行推荐（区分前景/背景，甚至更精细的裁剪），然后根据推荐再进行目标框位置和目标类别预测。</p>
 <p>后续详细介绍。</p>
 <p><img src="/pictures/image-20200526173349374.png" alt="image-20200526173349374"></p>
-<h1 id="深度学习目标检测方法-1"><a href="#深度学习目标检测方法-1" class="headerlink" title="深度学习目标检测方法"></a>深度学习目标检测方法</h1><h2 id="Two-stage基本介绍"><a href="#Two-stage基本介绍" class="headerlink" title="Two-stage基本介绍"></a>Two-stage基本介绍</h2><p>Two-stage 网络检测的基本流程，如下图所示：</p>
+<h1 id="深度学习目标检测方法-1"><a href="#深度学习目标检测方法-1" class="headerlink" title="深度学习目标检测方法"></a>深度学习目标检测方法</h1><h2 id="Two-stage-基本介绍"><a href="#Two-stage-基本介绍" class="headerlink" title="Two-stage 基本介绍"></a>Two-stage 基本介绍</h2><p>Two-stage 网络检测的基本流程，如下图所示：</p>
 <ul>
 <li>首先输入图片，然后对图片进行深度特征的提取，一幅图会作为输入，输入之后会经过一个卷积神经网，这里将这个卷积神经网称为主干网络，典型的主干网络就包括了<code>VGG，ResNet</code>等等的一些经典的神经网络的结构；</li>
 <li>接着会通过一个<strong>RPN网络</strong>来完成我们之前在传统网络的目标检测算法中滑动窗口所完成的任务，也就是产生候选区域；产生候选框时还有一个粗分类，也就是对待定区域进行前景（可能是目标）/背景的区分。</li>
@@ -339,7 +391,385 @@
 <li>样本后处理</li>
 <li>更大的mini-Batch</li>
 </ul>
-<p>—未完待续</p>
+<h2 id="One-stage-基本介绍"><a href="#One-stage-基本介绍" class="headerlink" title="One-stage 基本介绍"></a>One-stage 基本介绍</h2><p>使用CNN卷积特征、直接回归物体的类别概率和位置坐标值（无region proposal）、准确度低、速度相对two-stage快。</p>
+<p>One-stage的基本流程如下图所示：</p>
+<p><img src="/pictures/image-20200528105212508.png" alt="image-20200528105212508"></p>
+<p>One-stage的核心组件有：CNN网络（主干网络）和回归网络（创新点，参数量更少模型不容易过拟合）。</p>
+<ul>
+<li>CNN网络如VGG-16,ResNet101等主干网络；</li>
+<li>回归网络：包括区域回归（置信度、位置、类别）、Anchor机制（SSD）</li>
+</ul>
+<p>One-stage VS Two-stage的优缺点比较，如下图所示：</p>
+<p><img src="/pictures/image-20200528205207608.png" alt="image-20200528205207608"></p>
+<h2 id="SSD系列算法"><a href="#SSD系列算法" class="headerlink" title="SSD系列算法"></a>SSD系列算法</h2><h3 id="基本SSD"><a href="#基本SSD" class="headerlink" title="基本SSD"></a>基本SSD</h3><p>SSD全称为：Single Shot MultiBox Detector，单阶段目标检测器，其特点为：</p>
+<ul>
+<li>直接回归目标类别和位置</li>
+<li>在不同尺度的特征图上进行预测</li>
+<li>端到端的训练</li>
+<li>图像的分辨率比较低，也能保证检测的精度</li>
+</ul>
+<p>在SSD中提出并应用了 <code>Prior Box Layer</code> 的思想，如下图所示：</p>
+<p><img src="/pictures/image-20200529104355892.png" alt="image-20200529104355892"></p>
+<ul>
+<li>主干网络最终输出的m * n 的 feature map 对应于 m * n个cell</li>
+<li><p>每个cell上生成固定（k个）的scale（尺寸）和 aspect ratio（长宽比） 的box</p>
+<ul>
+<li>m * n 的 feature map 对应于 m * n个cell，每个cell对应k个 default box，每个default box 预测c个类别score和4个offset。</li>
+<li>也就是总共（c+4）* k * m * n个输出（300x300输入的SSD，输出是8732个数值）.</li>
+</ul>
+</li>
+<li>为了确保Prior box的分类准确且尽可能回归到GT box：Prior Box Layer里不是每一个Prior都会用来计算Loss，也就是每一个 feature map对应的 cell 不是k个 default box 都取，当prior box 与 GT box 做匹配，IOU&gt;正样本阈值（0.7）为正样本；IOU&lt;负样本阈值（0.3）为负样本；中间的样本抛弃掉。<ul>
+<li>构造正样本时：从GT box出发给找到最匹配的 prior box 放入候选正样本集；</li>
+<li>构造正样本时：从 prior box集出发，寻找与 GT box满足 IOU&gt;0.5的最大prior box 放入候选正样本集</li>
+<li>构造负样本时：也就是进行难例挖掘；保证正负样本比：1：3左右。如下图所示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200607200330934.png" alt="image-20200607200330934"></p>
+<p>SSD中引入了许多数据增强手段，如：</p>
+<ul>
+<li>随机采样多个 patch，与物体之间最小的jaccard overlap 为：0.1，0.3，0.5，0.7与0.9</li>
+<li>采样的patch比例是[0.3, 1.0]，aspect ratio 在0.5 或 2</li>
+<li>GT box 中心在采样patch 中且（重叠面积？）面积大于0</li>
+<li>Resize到固定大小</li>
+<li>以0.5的概率随机的水平翻转</li>
+</ul>
+<p>SSD最终损失函数的计算是：分类loss + 回归loss，公式如下</p>
+<script type="math/tex; mode=display">
+L(x,c,l,g)=\frac{1}{N}(L_{conf}(x,c)+\alpha L_{loc}(x,l,g))</script><ul>
+<li>分类loss：Softmax Loss</li>
+<li>回归loss：Smooth L1 Loss</li>
+</ul>
+<p><img src="/pictures/image-20200607201820526.png" alt="image-20200607201820526"></p>
+<p><strong>SSD 给与的经验</strong></p>
+<ul>
+<li>数据增强对于结果的提升非常明显</li>
+<li>使用更多的 feature maps 对结果的提升更大</li>
+<li>使用更多的 default boxes，结果也越好</li>
+<li>Atrous（空洞卷积） 使得 SSD 又好又快</li>
+</ul>
+<p><strong>空洞卷积 atrous 即不采用pooling的时候，如何增大卷积核的感受野，即在卷积核中增加空洞</strong></p>
+<h3 id="SSD系列算法优化及扩展"><a href="#SSD系列算法优化及扩展" class="headerlink" title="SSD系列算法优化及扩展"></a>SSD系列算法优化及扩展</h3><p><strong>改进主要分为两个方面：主干网络的改进/预测网络的改进</strong></p>
+<p><strong>DSSD</strong>的提出：2017-CVPR，WeiLiu</p>
+<p>提出时的想法：SSD算法对小目标不够鲁棒的最主要原因时 <strong>浅层的 feature map的表征能力不够强</strong>，因此需要加入了上下文信息；并使用更好的基础网络（ResNet）和Deconvolution层，skip连接来给浅层 feature map更好的表征能力。</p>
+<p><img src="/pictures/image-20200607222423098.png" alt="image-20200607222423098"></p>
+<hr>
+<p><strong>DSOD</strong>的提出：2017年 ICCV2017</p>
+<p>提出时的想法：DSOD 可以从0开始训练数据，不需要预训练模型，而且效果可以和 fine-tune的模型媲美。<code>SSD+DenseNet=DSOD</code></p>
+<p>DSOD给与了一些设计原则，也就是：从<strong>零开始训练</strong>得到的目标检测网络，在设计时有<strong>什么原则</strong>可以遵守。</p>
+<p>首先先说预训练模型的优缺点：</p>
+<p>优点：</p>
+<ul>
+<li>开源模型多，可以直接将他们用于目标检测</li>
+<li>可以快速得到最终的模型，需要的训练数据也相对较少</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>预训练模型大，参数太多，模型结构灵活性差，难以改变网络结构，计算量也大，限制其应用场合。</li>
+<li>分类和检测任务的损失函数和类别分布是不一样的，优化空间存在差异，容易陷入局部最优。</li>
+<li>尽管微调可以减少不同目标类别分布的差异性，但是差异性太大时，微调效果依然不理想</li>
+</ul>
+<p>接着就是DSOD给出的设计原则，如下图所示：</p>
+<p><img src="/pictures/image-20200607223738643.png" alt="image-20200607223738643"></p>
+<hr>
+<p><strong>FSSD</strong>的提出，给出了如下设计原则：</p>
+<ul>
+<li><p>主要改进了主干网络，多尺度特征挖掘，融入了上下文特征</p>
+</li>
+<li><p>借鉴了FPN的思想，重构了一组 pyramid feature map，使得算法的精度有了明显的提升，速度也没有太降</p>
+<ul>
+<li>把网络中某些feature调整为同一 size 再 contact，得到一个像素层，以此层为 base layer 来生成 pyramid feature map</li>
+<li>提出了一些 Feature Fusion Module 用于进行特征融合，如下图示：</li>
+</ul>
+</li>
+</ul>
+<p><img src="/pictures/image-20200607230328965.png" alt="image-20200607230328965"></p>
+<hr>
+<p>RSSD的提出，给出了如下设计原则：</p>
+<p><strong>给出的经验提示：对于检测层中不同尺度的特征，如何来提高特征的表示能力，一种好的方法：通过反卷积操作可以很好的增加上下文特征，提高检测精度。</strong></p>
+<p>rainbow concatenation方式（pooling 加 deconvolution）融合不同层的特征，在增加不同层之间 feature map 关系的同时也增加了不同层的 feature map 个数</p>
+<p>这种融合方式不仅解决了传统SSD算法存在的重复框问题，同时一定程度上解决了 small object 的检测问题。</p>
+<p>RSSD网络结构如下图所示：</p>
+<p><img src="/pictures/image-20200607231219861.png" alt="image-20200607231219861"></p>
+<h2 id="Yolo系列算法"><a href="#Yolo系列算法" class="headerlink" title="Yolo系列算法"></a>Yolo系列算法</h2><p>目前<strong>Yolov5</strong>也已经出来了，不过还没深入研究过，暂未进行记录。</p>
+<h3 id="YoloV1算法原理"><a href="#YoloV1算法原理" class="headerlink" title="YoloV1算法原理"></a>YoloV1算法原理</h3><p>Yolo：you only look once，单阶段目标检测器，其特点为：</p>
+<ul>
+<li>同时预测多个 Box 位置和类别</li>
+<li>端到端的目标检测和识别</li>
+<li><p>速度更快</p>
+<ul>
+<li>实现回归功能的 CNN 并不需要复杂的设计过程</li>
+<li>直接选用整图训练模型，更好的区分目标和背景区域</li>
+</ul>
+</li>
+<li>图像被分成 S  X  S个格子</li>
+<li>包含 GT 物体中心的格子负责检测相应的物体</li>
+<li>每个格子预测B个检测框及其置信度（含有待检测物体的可能性）共5个值，以及C个类别概率（对每个格子预测C个类别，C个值）</li>
+<li>bbox 信息 （x,y,w,h）为物体的中心位置相对格子位置的偏移及宽度和高度，均被归一化</li>
+<li>置信度反映是否包含物体以及包含物体情况下位置的准确性。定义如下图所示：</li>
+</ul>
+<p><img src="/pictures/image-20200617161349060.png" alt="image-20200617161349060" style="zoom:50%;" /></p>
+<ul>
+<li>缺陷：若同一个格子里出现了多个目标，则YoloV1的预测效果会很差。</li>
+</ul>
+<p>Yolov1网络结构图，如下：</p>
+<p><img src="/pictures/image-20200617161815436.png" alt="image-20200617161815436"></p>
+<p>YOLOV1 网络结构分析，如下：</p>
+<p><img src="/pictures/image-20200617162002093.png" alt="image-20200617162002093"></p>
+<p>YoloV1损失函数定义，如下：</p>
+<p><img src="/pictures/image-20200617162120171.png" alt="image-20200617162120171"></p>
+<p>YoloV1 网络训练</p>
+<ul>
+<li>预训练：ImageNet1000类数据进行预训练</li>
+<li>使用预训练参数（前20个卷积层）来初始化 Yolo，并训练 VOC20</li>
+<li>将输入图像分辨率从 224 x 224 Resize 到 448 x 448.</li>
+<li>训练时 B 个 bbox 的 GT 设置相同</li>
+</ul>
+<p><strong>YoloV1网络存在的问题</strong></p>
+<ul>
+<li>输入尺寸固定</li>
+<li>小目标检测效果差<ul>
+<li>同一格子包含多个目标时，仅预测一个（IOU最高）</li>
+</ul>
+</li>
+<li>在损失函数中，IOU损失的贡献值里，并没有区分大目标和小目标误差对IOU贡献的影响，两者基本接近。但小目标的IOU误差会对网络造成更大的影响。</li>
+</ul>
+<h3 id="YoloV2-Yolo9000"><a href="#YoloV2-Yolo9000" class="headerlink" title="YoloV2/Yolo9000"></a>YoloV2/Yolo9000</h3><p>Yolov2的提出赢得了CVPR2017，Best Paper Honorable Mention。后续发展的Yolo9000 是对 YoloV2进行了微调。Yolov2中开始引入了 anchor box 的思想，在输出层用卷积层替代 YoloV1 的全连接层，训练时联合使用 coco（检测框） 和 imagenet物体分类标注数据。最终使得识别种类、精度、速度、和定位准确性等都有大大提升。</p>
+<p>YoloV2算法网络结构，如下所示：</p>
+<p><img src="/pictures/image-20200618100818404.png" alt="image-20200618100818404"></p>
+<p><img src="/pictures/image-20200618101241088.png" alt="image-20200618101241088"></p>
+<p>相对于Yolov1，YoloV2/Yolo9000的改进之处：</p>
+<p><img src="/pictures/image-20200618090516931.png" alt="image-20200618090516931"></p>
+<p><strong>要注意：</strong>YoloV1预测类别是针对每一个Cell进行类别预测，也就是说每一个Cell最终只能对应一个类别，若存在多个目标重叠的话，就只能预测一个目标。YoloV2的改进上采用了Anchor机制，是针对每个bbox进行类别预测，不再针对单一Cell，使得可以预测重叠目标。</p>
+<h3 id="Yolov3算法原理"><a href="#Yolov3算法原理" class="headerlink" title="Yolov3算法原理"></a>Yolov3算法原理</h3><p>Yolov3是速度与精度更均衡的目标检测网络；融合了多种先进方法，改进YoloV1/V2缺点，且效果更优，并改进了小物体检测问题。</p>
+<p>YoloV3 改进策略，如下图所示：</p>
+<ul>
+<li>更好的主干网络（类似 ResNet）提取更优的特征表示</li>
+<li>多尺度预测（类似FPN）提高检测精度</li>
+<li>采用了更好的分类器</li>
+</ul>
+<p><img src="/pictures/image-20200618103934435.png" alt="image-20200618103934435"></p>
+<p><img src="/pictures/image-20200618104022541.png" alt="image-20200618104022541"></p>
+<p>更好的分类器： binary cross-entropy loss</p>
+<ul>
+<li>Softmax 对于每一个box只会输出概率最高的值，不适用于多标签分类，若存在重叠类别标签的时候，就不适用了。</li>
+<li>Softmax 可被独立的多个 Logistic 分类器替代，且准确率不会下降</li>
+</ul>
+<p>这里提一下 <strong>Darknet</strong> 真是个好东西啊</p>
+<p><img src="/pictures/image-20200618104600371.png" alt="image-20200618104600371" style="zoom:50%;" /></p>
+<h3 id="Yolo系列网络优缺点"><a href="#Yolo系列网络优缺点" class="headerlink" title="Yolo系列网络优缺点"></a>Yolo系列网络优缺点</h3><p>优点：</p>
+<ul>
+<li>快速，pipline简单。一个主干网络，统一为了回归问题。</li>
+<li>背景误检率低</li>
+<li>通用性强</li>
+</ul>
+<p>缺点，相比RCNN系列物体检测方法：</p>
+<ul>
+<li>识别物体位置精准性差</li>
+<li>召回率低：原因在于每个网格预测固定数量的bbox，使得候选框数量减少。也不像SSD有 Prior Box。</li>
+</ul>
+<h2 id="Faster-RCNN系列算法"><a href="#Faster-RCNN系列算法" class="headerlink" title="Faster RCNN系列算法"></a>Faster RCNN系列算法</h2><p><img src="/pictures/image-20200610200615962.png" alt="image-20200610200615962"></p>
+<p>此时再回顾一下传统目标检测方法流程，这跟Faster RCNN系列算法的流程很像，如下图：</p>
+<p><img src="/pictures/image-20200610200708351.png" alt="image-20200610200708351"></p>
+<h3 id="RCNN的提出"><a href="#RCNN的提出" class="headerlink" title="RCNN的提出"></a>RCNN的提出</h3><p>2014年 RGB 提出，使用卷积神经C网络（深度自学习到的特征））提取特征 代替了浅层的、手工设计的特征。部分解决了存在传统目标检测算法所存在的问题。</p>
+<p>RCNN算法步骤，总共分为五步：</p>
+<p>步骤一：训练分类网络（AlexNet）（在ImageNet数据集上）；</p>
+<p>步骤二：模型做 Fine-tuning，包括类别1000修改为20，去掉FC层；</p>
+<p>步骤三：特征提取，先是提取候选框（进行选择性提取，而不使用滑动窗口—计算量大，耗时多）多候选框输入CNN中，利用网络对候选框提取特征。</p>
+<p>步骤四：训练SVM分类器，每个类别对应一个SVM分类器。（实质是进行了 one vs rest 的类别划分）</p>
+<p>步骤五：回归器精修候选框（边界框）位置，利用线性回归模型判定框的准确度。</p>
+<p>步骤三提取候选框详解：提取候选框（选择性搜索）区域分割—合并子集</p>
+<ul>
+<li>step0：生成区域集R，具体参见论文《Efficient Graph-Based Image Segmentation》</li>
+<li>step1：计算区域集R里每个<strong>相邻区域</strong>的相似度 S={s1,s2,…}</li>
+<li>step2：找出相似度最高的两个区域，将其合并为新区域，添加进R（减少生成区域个数，合并相邻的相似度高的区域）</li>
+<li>step3：从 S 中移除所有与 step2  中有关的子集（即移除已经合并的区域）</li>
+<li>step4：计算新集与所有子集的相似度（计算<strong>新区域</strong>与<strong>所有相邻区域</strong>的相似度，更新相似度 S）</li>
+<li>step5：跳至 step2，直至 S 为空</li>
+</ul>
+<p>RCNN缺点：</p>
+<ul>
+<li>候选框选择算法耗时太多；</li>
+<li>重叠区域特征重复计算；</li>
+<li>分步骤进行，过程太过繁琐了。</li>
+</ul>
+<h3 id="SPPNet的提出"><a href="#SPPNet的提出" class="headerlink" title="SPPNet的提出"></a>SPPNet的提出</h3><p>如下图所示，SPPNet主要针对RCNN的缺点进行了改进，并增加了 Spatial Pyramid Pooling层</p>
+<p><img src="/pictures/image-20200611103956554.png" alt="image-20200611103956554"></p>
+<h3 id="Fast-RCNN的提出"><a href="#Fast-RCNN的提出" class="headerlink" title="Fast RCNN的提出"></a>Fast RCNN的提出</h3><p>结合SPPNet 改进RCNN：使用了 <strong>ROI Pooling</strong> 替换 单层 SPPNet；（也就是进行Crop/Resize-固定尺寸/固定尺寸输出）；</p>
+<p>整个过程为：图像—&gt;CNN卷积—&gt;<strong><u>候选框提取</u></strong>（选择性搜索）—&gt;ROI Pooling—&gt;FC—&gt;分类和目标框回归</p>
+<p><strong>多任务网络</strong>同时解决分类和位置回归，不再使用原来的 SVM分类器和位置的线性回归，并且共享卷积特征（去掉重复运算 ）；为 Faster RCNN的提出打下基础，提供了可能</p>
+<p><img src="/pictures/image-20200611112605108.png" alt="image-20200611112605108"></p>
+<p><strong>ROI Pooling </strong>：pooling 层的一种，<strong>目的</strong>是对非均匀尺寸的输入执行最大池化以获得固定尺寸的特征图。简单说就是将 <strong>Region proposal</strong>（区域建议）抠出来的过程（选取feature map 上对应候选区域的位置对应到原图），然后 Resize到统一的大小（采取的还是Pooling 操作）。操作如下：</p>
+<ol>
+<li><p>根据输入的image，将ROI映射到 feature map 对应的位置</p>
+</li>
+<li><p>将映射后的区域划分为相同大小的 sections（sections数量和输出的维度相同）</p>
+</li>
+<li><p>对每个section进行 max pooling 操作</p>
+</li>
+</ol>
+<p>Fast RNN网络的缺点：</p>
+<p>存在瓶颈：提取候选框的选择性搜索，找出所有的候选框十分耗时；</p>
+<p><strong>那能不能找出一个更加高效的方法来求出这些候选框呢？</strong></p>
+<ul>
+<li>Region Proposal Network（RPN）网络的提出</li>
+</ul>
+<h3 id="Faster-RCNN的提出"><a href="#Faster-RCNN的提出" class="headerlink" title="Faster RCNN的提出"></a>Faster RCNN的提出</h3><p><strong>标志着 完整的two-stage深度学习网络框架的形成</strong></p>
+<p>首先是应用了<strong>Region Proposal Network（RPN）</strong>，其次这可以算是端到端的检测了。</p>
+<p>Faster RNN 网络结构如下：</p>
+<ul>
+<li>主干网络：13con + 13 relu + 4 pooling</li>
+<li>RPN：3 x 3 滑动窗口+ 背景前景区分（二分类问题） + 初步定位</li>
+<li>ROIPooling</li>
+<li>分类 + 位置精确定位</li>
+</ul>
+<p><img src="/pictures/image-20200611114542903.png" alt="image-20200611114542903" style="zoom:50%;" /></p>
+<p><strong>Region Proposal Network（RPN）</strong>说明：</p>
+<ul>
+<li>采用Anchor机制，提出候选框（Proposal）；候选框的提出针对的是 feature map，但要映射回原始的Image。</li>
+<li>整个过程包含了：前景背景分类 + 框位置的回归，也就是<strong>粗定位</strong>与<strong>粗分类</strong>。</li>
+</ul>
+<p><img src="/pictures/image-20200611120202205.png" alt="image-20200611120202205" style="zoom:50%;" /></p>
+<p>Faster RCNN算法的改进：</p>
+<p><img src="/pictures/image-20200611120453328.png" alt="image-20200611120453328"></p>
+<h3 id="Faster-RCNN系列算法的优化与扩展"><a href="#Faster-RCNN系列算法的优化与扩展" class="headerlink" title="Faster RCNN系列算法的优化与扩展"></a>Faster RCNN系列算法的优化与扩展</h3><p>HyperNet：2016年 清华提出</p>
+<p><img src="/pictures/image-20200611121251250.png" alt="image-20200611121251250"></p>
+<hr>
+<p>R-FCN</p>
+<p><img src="/pictures/image-20200611121222003.png" alt="image-20200611121222003"></p>
+<hr>
+<p>Light-Head RCNN：旷世和清华大学在Coco 2017比赛拿到冠军</p>
+<p><img src="/pictures/image-20200611190554951.png" alt="image-20200611190554951"></p>
+<p>Light-Head RCNN <strong>核心结构</strong>：通过对 head 部分的修改减少了较多的计算量</p>
+<ul>
+<li>thinner feature map: score map 维度变成了 10*p*p=490</li>
+<li>借鉴了 Inception V3的思想，将 k*k 的卷积转化为 1*k 和 k*1</li>
+<li>R-CNN subnet部分使用 channel 为2048的 fc层来改变前一层的 feature map 的通道数，最后通过两个 fc 实现分类和回归。</li>
+</ul>
+<p>Light-Head RCNN VS Faster RCNN：</p>
+<ul>
+<li>在精度上，Faster RCNN 为了减少全连接层的计算量，使用了 global average pool，这会导致在一定程度上丢失位置信息；</li>
+<li>在速度上，Faster RCNN 的每一个 ROI 都要通过 R-CNN subnet 做计算，这必将引起计算量过大，导致检测速度慢。</li>
+</ul>
+<hr>
+<p>Mask-RCNN</p>
+<p>多任务网络：强调通过多个任务来提高目标检测的效果。包括了：分类，回归框和目标分割的任务</p>
+<hr>
+<p>Cascade RCNN</p>
+<p>主要思想：只有 region proposal自身的阈值和训练器训练用的阈值较为接近的时候，训练器的性能才最好。</p>
+<p><img src="/pictures/image-20200611193033242.png" alt="image-20200611193033242"></p>
+<hr>
+<p>CoupleNet：中科院 nlpr 实验室 ICCV2017</p>
+<p>R-FCN 可以看成是对一个 proposal。用一些 position-sensitive 的 weak classifier去做检测，然后把这些 classifier 的检测结果 ensemble 起来（position-sensitive Roi pooling）。</p>
+<p>这种方法没有考虑到 region proposal 的 global信息和 context的信息。而CoupleNet就是要解决这个问题。</p>
+<p><img src="/pictures/image-20200611193910055.png" alt="image-20200611193910055"></p>
+<h3 id="OHEM-和-Soft-NMS"><a href="#OHEM-和-Soft-NMS" class="headerlink" title="OHEM 和 Soft-NMS"></a>OHEM 和 Soft-NMS</h3><p>Faster-RCNN 的两种改进技巧：OHEM 和 Soft-NMS</p>
+<p>OHEM （Online Hard Example Mining）在线难例挖掘：</p>
+<ul>
+<li>根据输入样本的损失进行筛选，筛选出 hard example，表示对分类和检测影响较大的样本，然后将筛选得到的这些样本应用在随机梯度下降中训练。</li>
+<li>由 两个ROI  NetWork来完成。一个用来计算输入样本的损失，完成难例挖掘；另一个网络才是实际用来训练的网络。</li>
+</ul>
+<p>Soft-NMS：可以一定程度上减少漏检率</p>
+<ul>
+<li>对于IOU小于阈值的检测框，降低该检测框的分数。</li>
+</ul>
+<h2 id="文本检测系列算法概述"><a href="#文本检测系列算法概述" class="headerlink" title="文本检测系列算法概述"></a>文本检测系列算法概述</h2><p>问题定义：定位图片中文字所在区域。</p>
+<p>传统的检测框架（SSD，Yolo，Faster-RCNN），对文本检测的效果不理想。</p>
+<p>针对文本检测问题专门设计的框架，形式上分为：Top-down 和 bottom-up。实际有：CTPN、EAST、SegLink、Textboxes、Textboxes++、RRPN、Dmpnet、Pixellink、FTSN、Wordsup等。</p>
+<p>Top-Down VS Bottom-up：</p>
+<ul>
+<li>Top-down：先检测文本区域，再找出文本线（这个方法效果要好些）</li>
+<li>bottom-up：先检测字符，再串成文本线</li>
+<li>自底向上的方法的缺点：<ul>
+<li>没有考虑上下文</li>
+<li>不够鲁棒</li>
+<li>太多子模块</li>
+<li>太复杂且误差逐步积累</li>
+<li>性能受限</li>
+</ul>
+</li>
+</ul>
+<p>基于传统的手工设计特征：</p>
+<p><img src="/pictures/image-20200618171541385.png" alt="image-20200618171541385"></p>
+<p>基于深度学习的特征：</p>
+<p><img src="/pictures/image-20200618171717865.png" alt="image-20200618171717865"></p>
+<p>常规物体检测算法框架用于文本检测存在问题：</p>
+<ul>
+<li>文本长宽比不固定且相差较大</li>
+<li>文本存在水平、倾斜、弯曲等各种形状和方向</li>
+<li>容易受到自然场景中某些物体局部图像影响（类似字母）</li>
+<li>艺术字、手写体</li>
+<li>背景干扰，传统特征不鲁棒</li>
+</ul>
+<p>文本检测算法改进方向：</p>
+<ul>
+<li>特征提取，提取更加鲁棒的特征</li>
+<li>区域建议网络（RPN），对候选区域进行推荐，针对文本进行改进</li>
+<li>多目标协同训练、改进Loss的设计</li>
+<li>非极大值抑制（NMS）的改进</li>
+<li>半监督学习，非监督学习等等</li>
+</ul>
+<h3 id="CTPN-模型"><a href="#CTPN-模型" class="headerlink" title="CTPN 模型"></a>CTPN 模型</h3><p>模型介绍（自底向上的检测方法）</p>
+<ul>
+<li>Zhi Tian，黄伟林，Tong He，Pan He，乔宇</li>
+<li>可以检测水平或微斜的文本行，对于较大旋转，弧形的文本行不好检测</li>
+<li>文本行可以被看成一个字符序列，利用文本字符间的上下文关系进行文本检测</li>
+<li>数据后处理阶段：合并相邻的小文字块为文本行</li>
+<li>预测文本垂直位置比预测文本横向位置更容易</li>
+</ul>
+<p><img src="/pictures/image-20200618172642208.png" alt="image-20200618172642208"></p>
+<p><img src="/pictures/image-20200618173003651.png" alt="image-20200618173003651"></p>
+<p><img src="/pictures/image-20200618173104806.png" alt="image-20200618173104806"></p>
+<h1 id="各类业务场景综述"><a href="#各类业务场景综述" class="headerlink" title="各类业务场景综述"></a>各类业务场景综述</h1><h2 id="人脸业务场景综述"><a href="#人脸业务场景综述" class="headerlink" title="人脸业务场景综述"></a>人脸业务场景综述</h2><p>分为人脸识别和人脸验证，这两者的核心是判断是否存在人脸，如果存在人脸则定位到人脸的位置。</p>
+<p>标准的目标检测问题（针对人脸目标），要考虑到的问题包括：</p>
+<ul>
+<li>姿态和表情的变化；</li>
+<li>不同人的外观差异（中西方，胡子，眼镜）；</li>
+<li>光照、遮挡的影响；</li>
+<li>不同视角、不同大小、位置（小人脸）等。</li>
+</ul>
+<p>人脸标注方法—矩形标注和椭圆标注：</p>
+<ul>
+<li>矩形标注：传统方法，用矩形框将画面中的人脸区域包含在内，这种标记方法很难给出一个恰好包含面部的矩形框 。</li>
+<li>椭圆标注：人脸天然呈现为椭圆形，采用椭圆形来表征是一种较为准确的方法；可以对侧脸与转动后的面部进行描述，如：椭圆长轴/短轴半径、椭圆长轴偏转角度、椭圆圆心 X坐标椭圆圆心 Y坐标。</li>
+</ul>
+<p>判断算法性能好坏的检测指标有：检测率、误报率（每一个标记只允许有一个检测与之相对应、重复检测会被视为错误检测）；ROC曲线、PR曲线（通过计算IOU，描述算法性能好坏）。</p>
+<p>人脸采集业务场景考虑：</p>
+<p><img src="/pictures/image-20200608111109935.png" alt="image-20200608111109935" style="zoom:50%;" /></p>
+<p>人脸验证时，可能会存在的非法行为：</p>
+<p><img src="/pictures/image-20200608111337539.png" alt="image-20200608111337539" style="zoom:50%;" /></p>
+<p>人脸采集常用方法（抗攻击人脸数据采集）：</p>
+<p><img src="/pictures/image-20200608111514765.png" alt="image-20200608111514765" style="zoom:50%;" /></p>
+<p><img src="/pictures/image-20200610200259079.png" alt="image-20200610200259079"></p>
+<h2 id="ADAS业务场景综述"><a href="#ADAS业务场景综述" class="headerlink" title="ADAS业务场景综述"></a>ADAS业务场景综述</h2><p>先进驾驶辅助系统（Advanced Driver Assistance System）,简称 ADAS，目标是<strong>找到 高检测率 和 低误报率的模型</strong></p>
+<p><img src="/pictures/image-20200611195710310.png" alt="image-20200611195710310" style="zoom:50%;" /></p>
+<p><img src="/pictures/image-20200611195754316.png" alt="image-20200611195754316" style="zoom:50%;" /></p>
+<p><img src="/pictures/image-20200611195915598.png" alt="image-20200611195915598" style="zoom:50%;" /></p>
+<p><img src="/pictures/image-20200611200233253.png" alt="image-20200611200233253" style="zoom:50%;" /></p>
+<p>数据集资源：<br><img src="/pictures/image-20200611200412981.png" alt="image-20200611200412981" style="zoom:50%;" /></p>
+<p>KITTI数据集：</p>
+<p><img src="/pictures/image-20200611212417288.png" alt="image-20200611212417288" style="zoom:50%;" /></p>
+<p><img src="/pictures/image-20200611212433982.png" alt="image-20200611212433982" style="zoom:50%;" /></p>
+<p><img src="/pictures/image-20200611212706319.png" alt="image-20200611212706319" style="zoom:50%;" /></p>
+<p>ADAS问题检测的部分难点：</p>
+<p><img src="/pictures/image-20200611200658725.png" alt="image-20200611200658725" style="zoom:50%;" /></p>
+<h2 id="物体检测业务场景综述"><a href="#物体检测业务场景综述" class="headerlink" title="物体检测业务场景综述"></a>物体检测业务场景综述</h2><p>物体检测用于定位图象中的多个不同类别的物体，也就是：定位+分类。</p>
+<p><img src="/pictures/image-20200618105345472.png" alt="image-20200618105345472"></p>
+<p><img src="/pictures/image-20200618130537146.png" alt="image-20200618130537146"></p>
+<p>在对<strong>算法性能进行评价</strong>时：有几个指标，如：Precision 和 Recall 、AP 和 mAP；通常将TP定义为标注框重叠率高的样本；FP定义为重叠率低（甚至没有重叠）和重复检测的框。</p>
+<p>目前存在的技术难点：</p>
+<ul>
+<li>物体种类多、变化丰富</li>
+<li>场景变化丰富</li>
+<li>尺度、光照、遮挡等</li>
+</ul>
+<p>主要应用场景有：</p>
+<ul>
+<li>细粒度图像检索，如：直播商品匹配</li>
+<li>场景分析，如：火灾监测</li>
+<li>精准广告，如：短视频广告推荐</li>
+<li>内容推荐、图像美颜、相册管理等等</li>
+</ul>
 
     </div>
 
@@ -459,7 +889,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E9%97%AE%E9%A2%98%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">目标检测问题概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E9%97%AE%E9%A2%98%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">目标检测问题的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">目标检测问题的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E4%BC%A0%E7%BB%9F%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">常见传统目标检测方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NMS%EF%BC%88%E9%9D%9E%E6%9E%81%E5%A4%A7%E5%80%BC%E6%8A%91%E5%88%B6%E7%AE%97%E6%B3%95%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">NMS（非极大值抑制算法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.3.</span> <span class="nav-text">深度学习目标检测方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95-1"><span class="nav-number">2.</span> <span class="nav-text">深度学习目标检测方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-stage%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.1.</span> <span class="nav-text">Two-stage基本介绍</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E9%97%AE%E9%A2%98%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">目标检测问题概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E9%97%AE%E9%A2%98%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">目标检测问题的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">目标检测问题的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E4%BC%A0%E7%BB%9F%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">常见传统目标检测方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NMS%EF%BC%88%E9%9D%9E%E6%9E%81%E5%A4%A7%E5%80%BC%E6%8A%91%E5%88%B6%E7%AE%97%E6%B3%95%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">NMS（非极大值抑制算法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.3.</span> <span class="nav-text">深度学习目标检测方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E6%96%B9%E6%B3%95-1"><span class="nav-number">2.</span> <span class="nav-text">深度学习目标检测方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-stage-%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.1.</span> <span class="nav-text">Two-stage 基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#One-stage-%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.2.</span> <span class="nav-text">One-stage 基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSD%E7%B3%BB%E5%88%97%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">SSD系列算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%ACSSD"><span class="nav-number">2.3.1.</span> <span class="nav-text">基本SSD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSD%E7%B3%BB%E5%88%97%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96%E5%8F%8A%E6%89%A9%E5%B1%95"><span class="nav-number">2.3.2.</span> <span class="nav-text">SSD系列算法优化及扩展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Yolo%E7%B3%BB%E5%88%97%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">Yolo系列算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#YoloV1%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="nav-number">2.4.1.</span> <span class="nav-text">YoloV1算法原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#YoloV2-Yolo9000"><span class="nav-number">2.4.2.</span> <span class="nav-text">YoloV2&#x2F;Yolo9000</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Yolov3%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="nav-number">2.4.3.</span> <span class="nav-text">Yolov3算法原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Yolo%E7%B3%BB%E5%88%97%E7%BD%91%E7%BB%9C%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">2.4.4.</span> <span class="nav-text">Yolo系列网络优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Faster-RCNN%E7%B3%BB%E5%88%97%E7%AE%97%E6%B3%95"><span class="nav-number">2.5.</span> <span class="nav-text">Faster RCNN系列算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RCNN%E7%9A%84%E6%8F%90%E5%87%BA"><span class="nav-number">2.5.1.</span> <span class="nav-text">RCNN的提出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SPPNet%E7%9A%84%E6%8F%90%E5%87%BA"><span class="nav-number">2.5.2.</span> <span class="nav-text">SPPNet的提出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fast-RCNN%E7%9A%84%E6%8F%90%E5%87%BA"><span class="nav-number">2.5.3.</span> <span class="nav-text">Fast RCNN的提出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Faster-RCNN%E7%9A%84%E6%8F%90%E5%87%BA"><span class="nav-number">2.5.4.</span> <span class="nav-text">Faster RCNN的提出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Faster-RCNN%E7%B3%BB%E5%88%97%E7%AE%97%E6%B3%95%E7%9A%84%E4%BC%98%E5%8C%96%E4%B8%8E%E6%89%A9%E5%B1%95"><span class="nav-number">2.5.5.</span> <span class="nav-text">Faster RCNN系列算法的优化与扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OHEM-%E5%92%8C-Soft-NMS"><span class="nav-number">2.5.6.</span> <span class="nav-text">OHEM 和 Soft-NMS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B%E7%B3%BB%E5%88%97%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-number">2.6.</span> <span class="nav-text">文本检测系列算法概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CTPN-%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.6.1.</span> <span class="nav-text">CTPN 模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%84%E7%B1%BB%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E7%BB%BC%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">各类业务场景综述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%BA%E8%84%B8%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E7%BB%BC%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">人脸业务场景综述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ADAS%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E7%BB%BC%E8%BF%B0"><span class="nav-number">3.2.</span> <span class="nav-text">ADAS业务场景综述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E4%B8%9A%E5%8A%A1%E5%9C%BA%E6%99%AF%E7%BB%BC%E8%BF%B0"><span class="nav-number">3.3.</span> <span class="nav-text">物体检测业务场景综述</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -521,13 +951,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">165k</span>
+    <span title="站点总字数">173k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:38</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
